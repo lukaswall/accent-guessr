@@ -292,9 +292,11 @@ function buildMap(answer, wrongs, taps) {
   return svg;
 }
 
-// Equirectangular projection helpers (matches the map data) for tap guessing.
-function llToXY(lat, lon) { return [(lon + 180) / 360 * MAP.w, (90 - lat) / 180 * MAP.h]; }
-function xyToLL(x, y) { return [90 - y / MAP.h * 180, x / MAP.w * 360 - 180]; }
+// Equirectangular projection helpers for tap guessing. Matches the map-data
+// generator exactly: poles cropped at lat 84 / -58, then rounded to pixels.
+const MAP_LAT_TOP = 84, MAP_LAT_SPAN = 142;
+function llToXY(lat, lon) { return [(lon + 180) / 360 * MAP.w, (MAP_LAT_TOP - lat) / MAP_LAT_SPAN * MAP.h]; }
+function xyToLL(x, y) { return [MAP_LAT_TOP - y / MAP.h * MAP_LAT_SPAN, x / MAP.w * 360 - 180]; }
 // Anchor point per answer: the documented anchor for country-named labels; for
 // region labels, the centre of the region marker drawn over that area.
 function anchorOf(answer) {
