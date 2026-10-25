@@ -43,6 +43,11 @@ body {
 .ag-linklike { background: none; border: 0; font: inherit; font-size: 14px; color: var(--ds-ink-2); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 8px; align-self: center; }
 .ag-home-sub { margin: 14px 0 -6px; font-size: 13px; font-weight: 620; color: var(--ds-ink-2); text-align: center; }
 .ag-foot { margin-top: 28px; display: flex; justify-content: center; }
+.ag-auth-prompt { margin-top: 18px; padding: 16px; border-radius: 14px; background: var(--ag-acc-soft); text-align: center; }
+.ag-auth-prompt p { margin: 0 0 10px; font-size: 14px; }
+.ag-auth-gate { position: fixed; inset: 0; background: rgba(28, 26, 23, 0.45); display: flex; align-items: center; justify-content: center; z-index: 40; padding: 20px; }
+.ag-auth-gate-card { background: var(--ds-page); border-radius: 16px; padding: 22px; max-width: 340px; display: flex; flex-direction: column; gap: 10px; text-align: center; }
+.ag-btn.is-locked { opacity: 0.75; }
 .ag-round, .ag-home, .ag-results { animation: ag-enter 0.28s ease-out both; }
 @keyframes ag-enter { from { opacity: 0; transform: translateY(8px); } }
 .ag-mode-row { display: flex; gap: 10px; }
@@ -196,19 +201,9 @@ body {
 </head>
 <body>
 <main id="app"></main>
-<script>const CLIPS_PARTS = [];</script>
-<script src="clips-0.js"></script>
-<script src="clips-1.js"></script>
-<script src="clips-2.js"></script>
-<script src="clips-3.js"></script>
-<script src="clips-4.js"></script>
-<script src="clips-5.js"></script>
-<script src="clips-6.js"></script>
-<script src="clips-7.js"></script>
-<script src="clips-8.js"></script>
-<script src="clips-9.js"></script>
-<script>const CLIPS = CLIPS_PARTS.flat();</script>
 <script src="map-data.js?v=1"></script>
-<script src="app.js?v=12"></script>
+<script src="auth-config.js?v=1"></script>
+<script src="auth.js?v=1"></script>
+<script src="app.js?v=13"></script>
 </body>
 </html>

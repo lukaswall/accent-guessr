@@ -126,7 +126,12 @@ function fmtKm(km) {
   return `about ${rounded.toLocaleString('en-US')} km`;
 }
 
-const ANSWERS = Array.from(new Set(CLIPS.map(c => c.answer))).sort((a, b) => a.localeCompare(b));
+// The clip library: metadata for all 120 voices lives in clips.json (about
+// 32 KB), loaded by boot() before the first render. Audio is one small MP3
+// per voice, fetched only when that round starts, so the first page load no
+// longer downloads the whole library.
+let CLIPS = [];
+let ANSWERS = [];
 
 // Ranked search over accent label, display place and per-label terms.
 // Exact match first, then prefix matches, then substring matches.
@@ -239,6 +244,18 @@ for (const k of ['quick']) {
 
 let audio = null;
 function stopAudio() { if (audio) { audio.pause(); audio = null; } }
+let preloadedClip = null;
+// Fetch the next voice's MP3 in the background while the player guesses, so
+// the following round starts instantly. The browser cache serves it when the
+// next round creates its own Audio for the same URL.
+function preloadNextClip() {
+  const nxt = state.set[state.index + 1];
+  if (!nxt || (preloadedClip && preloadedClip._agClip === nxt.id)) return;
+  preloadedClip = new Audio();
+  preloadedClip._agClip = nxt.id;
+  preloadedClip.preload = 'auto';
+  preloadedClip.src = nxt.src;
+}
 
 function el(tag, cls, text) {
   const e = document.createElement(tag);
@@ -352,6 +369,16 @@ function startQuick() {
   state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
 }
 
+// Account gate (inert unless accounts are configured in auth-config.js).
+// gated() wraps a mode starter with the sign-in wall; gateMark() adds a lock
+// hint to the button label while the mode needs a login.
+function gated(modeKey, fn) {
+  return () => { if (window.AGAuth && AGAuth.gateInterception(modeKey)) return; fn(); };
+}
+function gateMark(modeKey) {
+  return window.AGAuth && AGAuth.needsLogin(modeKey) ? ' 🔒' : '';
+}
+
 function renderHome() {
   app.appendChild(header());
   const home = el('div', 'ag-home');
@@ -372,23 +399,24 @@ function renderHome() {
   home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
   const modeRow = el('div', 'ag-mode-row');
   [['Quick pick', startQuick]].forEach(([lab, fn]) => {
-    const b = el('button', 'ag-btn is-primary', lab);
-    b.onclick = fn;
+    const b = el('button', 'ag-btn is-primary', lab + gateMark('quick'));
+    b.onclick = gated('quick', fn);
     modeRow.appendChild(b);
   });
   home.appendChild(modeRow);
   const runRow = el('div', 'ag-mode-row');
   [['Endless', startEndless], ['Hard · 2 s start', startHard]].forEach(([lab, fn]) => {
-    const b = el('button', 'ag-btn is-primary', lab);
-    b.onclick = fn;
+    const key = fn === startEndless ? 'endless' : 'hard';
+    const b = el('button', 'ag-btn is-primary', lab + gateMark(key));
+    b.onclick = gated(key, fn);
     runRow.appendChild(b);
   });
   home.appendChild(runRow);
   home.appendChild(el('p', 'ag-home-sub', 'Short clips - pick how much of each voice you hear'));
   const shortRow = el('div', 'ag-mode-row');
   Object.keys(SHORT).forEach((key) => {
-    const b = el('button', 'ag-btn is-ghost', SHORT[key].label);
-    b.onclick = () => startShort(key);
+    const b = el('button', 'ag-btn is-ghost', SHORT[key].label + gateMark('short'));
+    b.onclick = gated('short', () => startShort(key));
     shortRow.appendChild(b);
   });
   home.appendChild(shortRow);
@@ -414,6 +442,7 @@ function renderHome() {
     credBtn.textContent = opening ? 'Hide credits' : 'Credits & sources';
   };
   foot.appendChild(credBtn);
+  if (window.AGAuth) { const ac = AGAuth.accountControl(); if (ac) foot.appendChild(ac); }
   home.appendChild(foot);
   app.appendChild(home);
   app.appendChild(aboutBlock);
@@ -504,6 +533,7 @@ function renderRound() {
 
   audio = new Audio(clip.src);
   audio.preload = 'auto';
+  preloadNextClip();
   const windowLen = () => {
     const lim = audioLimit();
     return isFinite(lim) ? lim : (audio.duration || 0);
@@ -900,6 +930,7 @@ function finishRun() {
     state.quick = { best: Math.max(state.quick.best, state.cleared), runs: state.quick.runs + 1 };
     store.set('accent-guessr.quick.v1', state.quick);
   }
+  if (window.AGAuth) AGAuth.recordGameEnd();
   state.screen = 'results';
   render();
 }
@@ -957,6 +988,7 @@ function renderResults() {
   actions.appendChild(again);
   res.appendChild(actions);
 
+  if (window.AGAuth) { const prompt = AGAuth.signupPrompt(state.mode); if (prompt) res.appendChild(prompt); }
   if (ADS.enabled && ADS.client) res.appendChild(el('div', 'ad-slot'));
   if (state.mode === 'daily') res.appendChild(countdownLine());
   const back = el('button', 'ag-linklike', 'Back to start');
@@ -966,4 +998,26 @@ function renderResults() {
   app.appendChild(res);
 }
 
-render();
+// Boot: load the clip manifest (metadata only) before the first render.
+// Without it the game cannot run, so fail with a plain message instead of a
+// half-broken page.
+async function boot() {
+  try {
+    const res = await fetch('clips.json?v=1');
+    if (!res.ok) throw new Error(`clips.json: HTTP ${res.status}`);
+    const data = await res.json();
+    if (!Array.isArray(data) || !data.length) throw new Error('clips.json: empty');
+    CLIPS = data;
+  } catch (e) {
+    app.innerHTML = '';
+    const box = el('div', 'ag-home');
+    box.appendChild(el('h1', 'ag-title', 'Accent Guessr'));
+    box.appendChild(el('p', 'ag-done-score', 'The voice library could not be loaded. Check your connection and reload the page.'));
+    app.appendChild(box);
+    return;
+  }
+  ANSWERS = Array.from(new Set(CLIPS.map(c => c.answer))).sort((a, b) => a.localeCompare(b));
+  if (window.AGAuth) AGAuth.onChange(() => { if (state.screen !== 'play') render(); });
+  render();
+}
+boot();

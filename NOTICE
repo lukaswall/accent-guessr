@@ -14,8 +14,8 @@ Changes made: short conversational turns by the same speaker were joined into
 excerpts of about 10-13 seconds, loudness-normalized, and converted to mono
 MP3. In line with the sharealike condition, this edited clip set is shared
 under the same CC BY-SA 4.0 license. Per-clip credits are in ATTRIBUTION.md,
-and the edited clips can be extracted from the shipped files with
-decode_clips.py.
+and the edited clips are the MP3 files in the clips/ folder of this
+repository.
 
 Answers in the game are the corpus's own accent labels for each recording.
 An accent label describes speech, not where someone was born or raised.

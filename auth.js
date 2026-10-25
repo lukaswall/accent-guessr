@@ -1,0 +1,229 @@
+'use strict';
+/* Accent Guessr accounts: free sign-in (Google via Supabase), one-time guest
+ * progress merge, then save-once-per-game sync. Everything in this file is
+ * inert unless AG_AUTH.enabled is true and configured (see auth-config.js).
+ * When disabled, nothing here runs and no network requests are made. */
+window.AGAuth = (() => {
+  const cfg = typeof AG_AUTH !== 'undefined' ? AG_AUTH : { enabled: false, gatedModes: [] };
+  const on = !!(cfg.enabled && cfg.url && cfg.anonKey && typeof window !== 'undefined');
+  let client = null;      // supabase-js client, created lazily
+  let session = null;     // current auth session, or null
+  let merged = false;     // guest progress already merged this session
+  let readyPromise = null;
+  const listeners = [];
+
+  const LS = {
+    stats: 'accent-guessr.stats.v1',
+    endless: 'accent-guessr.endless.v1',
+    hard: 'accent-guessr.hard.v1',
+    short: 'accent-guessr.shorts.v1',
+    quick: 'accent-guessr.quick.v1',
+    seen: 'accent-guessr.practice-seen.v1',
+    promptDismissed: 'accent-guessr.auth-prompt-dismissed.v1',
+  };
+
+  function getLS(key, fallback) {
+    try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; }
+  }
+  function setLS(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+
+  // Load supabase-js from the CDN only when accounts are actually on.
+  function loadLib() {
+    return new Promise((resolve, reject) => {
+      if (window.supabase && window.supabase.createClient) return resolve();
+      const s = document.createElement('script');
+      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+      s.onload = () => resolve();
+      s.onerror = () => reject(new Error('supabase-js failed to load'));
+      document.head.appendChild(s);
+    });
+  }
+
+  async function init() {
+    if (!on) return;
+    if (readyPromise) return readyPromise;
+    readyPromise = (async () => {
+      await loadLib();
+      client = window.supabase.createClient(cfg.url, cfg.anonKey);
+      const { data } = await client.auth.getSession();
+      session = data.session || null;
+      client.auth.onAuthStateChange((_event, s) => {
+        const wasLoggedOut = !session;
+        session = s;
+        if (session && wasLoggedOut) syncAfterLogin();
+        listeners.forEach((fn) => { try { fn(); } catch (e) {} });
+      });
+      if (session) syncAfterLogin();
+    })().catch((e) => { console.warn('AGAuth init failed:', e); });
+    return readyPromise;
+  }
+
+  function user() { return session && session.user ? session.user : null; }
+  function isGated(mode) { return on && cfg.gatedModes.includes(mode); }
+  function needsLogin(mode) { return isGated(mode) && !user(); }
+
+  function signIn() {
+    if (!on || !client) return;
+    client.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
+  }
+  function signOut() {
+    if (!on || !client) return;
+    client.auth.signOut().then(() => { session = null; listeners.forEach((fn) => { try { fn(); } catch (e) {} }); });
+  }
+
+  // --- Progress sync -------------------------------------------------------
+  // One JSONB row per user. Writes happen only when a game ends (and once at
+  // first login). Nothing phones home while playing.
+  function localProgress() {
+    return {
+      stats: getLS(LS.stats, null),
+      endless: getLS(LS.endless, null),
+      hard: getLS(LS.hard, null),
+      short: getLS(LS.short, null),
+      quick: getLS(LS.quick, null),
+      seen: getLS(LS.seen, null),
+    };
+  }
+  // Casual-game merge: bests take the max, play counts take the max (the same
+  // games can exist on both sides, so summing would double-count), the daily
+  // record with the more recent date wins, seen lists are unioned.
+  function mergeProgress(local, remote) {
+    const out = {};
+    for (const k of ['endless', 'hard', 'quick']) {
+      const l = local[k] || { best: 0, runs: 0 }, r = (remote && remote[k]) || { best: 0, runs: 0 };
+      out[k] = { best: Math.max(l.best || 0, r.best || 0), runs: Math.max(l.runs || 0, r.runs || 0) };
+    }
+    {
+      const l = local.short || {}, r = (remote && remote.short) || {};
+      out.short = {};
+      for (const key of new Set([...Object.keys(l), ...Object.keys(r), 's2', 's3', 's5'])) {
+        const a = l[key] || { best: 0, runs: 0 }, b = r[key] || { best: 0, runs: 0 };
+        out.short[key] = { best: Math.max(a.best || 0, b.best || 0), runs: Math.max(a.runs || 0, b.runs || 0) };
+      }
+    }
+    {
+      const l = local.stats || {}, r = (remote && remote.stats) || {};
+      const newer = String(r.lastDaily || '') > String(l.lastDaily || '') ? r : l;
+      out.stats = {
+        ...newer,
+        plays: Math.max(l.plays || 0, r.plays || 0),
+        best: Math.max(l.best || 0, r.best || 0),
+        best5: Math.max(l.best5 || 0, r.best5 || 0),
+      };
+    }
+    {
+      const l = local.seen || [], r = (remote && remote.seen) || [];
+      out.seen = Array.from(new Set([...l, ...r])).slice(-120);
+    }
+    return out;
+  }
+  function applyMerged(m) {
+    setLS(LS.stats, m.stats); setLS(LS.endless, m.endless); setLS(LS.hard, m.hard);
+    setLS(LS.short, m.short); setLS(LS.quick, m.quick); setLS(LS.seen, m.seen);
+    if (typeof state === 'object' && state) {
+      state.stats = m.stats; state.endless = m.endless; state.hard = m.hard;
+      state.short = m.short; state.quick = m.quick; state.seen = m.seen;
+    }
+    listeners.forEach((fn) => { try { fn(); } catch (e) {} });
+  }
+  async function pushProgress() {
+    if (!on || !client || !user()) return;
+    try {
+      await client.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
+    } catch (e) { console.warn('AGAuth sync failed (kept locally):', e); }
+  }
+  async function syncAfterLogin() {
+    if (merged || !user()) return;
+    merged = true;
+    try {
+      const { data } = await client.from('progress').select('data').eq('user_id', user().id).maybeSingle();
+      const remote = data && data.data;
+      if (!remote) { await pushProgress(); return; } // first-ever login: upload guest progress as is
+      const mergedData = mergeProgress(localProgress(), remote);
+      applyMerged(mergedData);
+      await client.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
+    } catch (e) { console.warn('AGAuth merge failed (local progress kept):', e); }
+  }
+  // Called by app.js (finishRun) when a game ends.
+  function recordGameEnd() { if (on && user()) pushProgress(); }
+
+  // --- UI ------------------------------------------------------------------
+  function accountControl() {
+    if (!on) return null;
+    const wrap = document.createElement('span');
+    const renderChip = () => {
+      wrap.innerHTML = '';
+      const b = document.createElement('button');
+      b.className = 'ag-linklike';
+      b.type = 'button';
+      if (user()) {
+        b.textContent = `Signed in · sign out`;
+        b.title = user().email || '';
+        b.onclick = signOut;
+      } else {
+        b.textContent = 'Sign in (free)';
+        b.onclick = signIn;
+      }
+      wrap.appendChild(b);
+    };
+    renderChip();
+    listeners.push(renderChip);
+    return wrap;
+  }
+
+  // Signup prompt on the results screen: shown once after the first finished
+  // game, then snoozed. Returns null when not applicable.
+  function signupPrompt(mode) {
+    if (!on || user()) return null;
+    const dismissed = getLS(LS.promptDismissed, 0);
+    if (Date.now() - dismissed < (cfg.promptSnoozeDays || 7) * 864e5) return null;
+    const box = document.createElement('div');
+    box.className = 'ag-auth-prompt';
+    const txt = document.createElement('p');
+    txt.textContent = 'Keep your streak across devices and unlock extra modes with a free account.';
+    const row = document.createElement('div');
+    row.className = 'ag-actions';
+    const go = document.createElement('button');
+    go.className = 'ag-btn is-primary';
+    go.type = 'button';
+    go.textContent = 'Continue with Google';
+    go.onclick = signIn;
+    const no = document.createElement('button');
+    no.className = 'ag-btn is-ghost';
+    no.type = 'button';
+    no.textContent = 'Not now';
+    no.onclick = () => { setLS(LS.promptDismissed, Date.now()); box.remove(); };
+    row.appendChild(go); row.appendChild(no);
+    box.appendChild(txt); box.appendChild(row);
+    return box;
+  }
+
+  // Login wall shown when a guest taps a gated mode. Returns true when the
+  // tap was intercepted (caller should not start the mode).
+  function gateInterception(mode) {
+    if (!needsLogin(mode)) return false;
+    const overlay = document.createElement('div');
+    overlay.className = 'ag-auth-gate';
+    const card = document.createElement('div');
+    card.className = 'ag-auth-gate-card';
+    const t = document.createElement('p');
+    t.textContent = 'This mode is part of the free account. Sign in to play it - your scores stay in sync.';
+    const go = document.createElement('button');
+    go.className = 'ag-btn is-primary';
+    go.type = 'button';
+    go.textContent = 'Continue with Google';
+    go.onclick = signIn;
+    const no = document.createElement('button');
+    no.className = 'ag-btn is-ghost';
+    no.type = 'button';
+    no.textContent = 'Back';
+    no.onclick = () => overlay.remove();
+    card.appendChild(t); card.appendChild(go); card.appendChild(no);
+    overlay.appendChild(card);
+    document.body.appendChild(overlay);
+    return true;
+  }
+
+  if (on) init();
+  return { on, init, user, isGated, needsLogin, signIn, signOut, recordGameEnd, accountControl, signupPrompt, gateInterception, onChange: (fn) => listeners.push(fn) };
+})();
