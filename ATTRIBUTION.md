@@ -124,3 +124,12 @@ All clips are edited excerpts from the [EdAcc corpus](https://huggingface.co/dat
 | vietnamese__EDACC-C62-A__0.mp3 | Vietnamese | EDACC-C62-A | EDACC-C62 | 13.1 |
 | vietnamese__EDACC-C62-A__1.mp3 | Vietnamese | EDACC-C62-A | EDACC-C62 | 13.1 |
 | vietnamese__EDACC-C62-A__2.mp3 | Vietnamese | EDACC-C62-A | EDACC-C62 | 13.1 |
+
+# Map data
+
+Country boundaries in map-data.js are from Natural Earth (1:110m cultural
+country vectors), released into the public domain:
+https://www.naturalearthdata.com/downloads/110m-cultural-vectors/
+
+The reveal map highlights the place an accent label is named after. It is a
+label reference, not a record of where any speaker was born or raised.
