@@ -199,7 +199,7 @@ function pad2(n) { return String(n).padStart(2, '0'); }
 // midnight), so all players get the same voices for the same date. The date
 // string is the selector seed, so each UTC date keeps its established set.
 function todayStr() { const d = new Date(); return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())}`; }
-function prettyDate() { return new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }); }
+function prettyDate() { return new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' }); }
 // Three guesses per voice. Scores 3/2/1/0 (same /15 daily scale as the original game); hard mode scores 3/2/1/0 (solved from less audio = more).
 function squares(p) {
   {
