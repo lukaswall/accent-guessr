@@ -222,7 +222,7 @@ const EMPTY_SHORTS = { s2: { best: 0, runs: 0 }, s3: { best: 0, runs: 0 }, s5: {
 const EMPTY_QUICK = { best: 0, runs: 0 };
 
 const state = {
-  screen: 'home', // home | play | results
+  screen: 'home', // home | modes | progress | play | results
   mode: 'daily',  // daily | practice | endless | hard | short | quick
   set: [],
   index: 0,
@@ -309,6 +309,8 @@ function render() {
   app.innerHTML = '';
   if (state.screen === 'home') renderHome();
   else if (state.screen === 'play') renderRound();
+  else if (state.screen === 'modes') renderModes();
+  else if (state.screen === 'progress') renderProgress();
   else renderResults();
 }
 
@@ -390,24 +392,94 @@ function gateMark(modeKey, btn) {
   btn.classList.add('is-locked');
 }
 
+
+function navIcon(kind) {
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('class', 'ag-nav-ic');
+  s.setAttribute('aria-hidden', 'true');
+  s.innerHTML = kind === 'daily'
+    ? '<circle cx="12" cy="12" r="8.5"/><path d="M10 8.6l5 3.4-5 3.4z" fill="currentColor" stroke="none"/>'
+    : kind === 'modes'
+    ? '<rect x="4" y="4" width="7" height="7" rx="1.6"/><rect x="13" y="4" width="7" height="7" rx="1.6"/><rect x="4" y="13" width="7" height="7" rx="1.6"/><rect x="13" y="13" width="7" height="7" rx="1.6"/>'
+    : '<path d="M4 20h16"/><path d="M7.5 20v-5"/><path d="M12 20V7"/><path d="M16.5 20v-9"/>';
+  return s;
+}
+
+function navBar(active) {
+  const nav = el('nav', 'ag-nav');
+  const brand = el('button', 'ag-nav-brand', 'Accent Guessr');
+  brand.type = 'button';
+  brand.onclick = () => { state.screen = 'home'; render(); };
+  nav.appendChild(brand);
+  const tabs = el('div', 'ag-nav-tabs');
+  [['daily', 'Daily', 'home'], ['modes', 'Modes', 'modes'], ['progress', 'Progress', 'progress']].forEach(([key, lab, scr]) => {
+    const b = el('button', 'ag-nav-tab' + (active === key ? ' is-active' : ''));
+    b.type = 'button';
+    b.appendChild(navIcon(key));
+    b.appendChild(el('span', 'ag-nav-lab', lab));
+    b.onclick = () => {
+      if (key === 'daily' && state.stats.lastDaily !== todayStr()) { startDaily(); return; }
+      state.screen = scr; render();
+    };
+    tabs.appendChild(b);
+  });
+  nav.appendChild(tabs);
+  return nav;
+}
+
+function startDaily() {
+  const today = todayStr();
+  state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3);
+  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+}
+
+function doneBlock() {
+  const done = el('div', 'ag-done');
+  const sq = el('div', 'ag-squares');
+  state.stats.lastRounds.forEach(r => sq.appendChild(el('span', null, squares(r.points))));
+  done.appendChild(sq);
+  done.appendChild(el('p', 'ag-done-score', `Today: ${state.stats.lastRounds.reduce((s, r) => s + r.points, 0)} / ${state.stats.lastRounds.length * (state.stats.scale5 ? 5 : TURNS)}`));
+  done.appendChild(countdownLine());
+  return done;
+}
+
 function renderHome() {
+  app.appendChild(navBar('daily'));
   app.appendChild(header());
   const home = el('div', 'ag-home');
-  const today = todayStr();
-  if (state.stats.lastDaily === today) {
-    const done = el('div', 'ag-done');
-    const sq = el('div', 'ag-squares');
-    state.stats.lastRounds.forEach(r => sq.appendChild(el('span', null, squares(r.points))));
-    done.appendChild(sq);
-    done.appendChild(el('p', 'ag-done-score', `Today: ${state.stats.lastRounds.reduce((s, r) => s + r.points, 0)} / ${state.stats.lastRounds.length * (state.stats.scale5 ? 5 : TURNS)}`));
-    done.appendChild(countdownLine());
-    home.appendChild(done);
+  if (state.stats.lastDaily === todayStr()) {
+    home.appendChild(doneBlock());
   } else {
     const b = el('button', 'ag-btn is-primary is-big', "Play today's set");
-    b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3); state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render(); };
+    b.onclick = startDaily;
     home.appendChild(b);
     home.appendChild(countdownLine());
   }
+  const strip = el('button', 'ag-strip', `${state.stats.streak} day streak · ${state.stats.plays} days played`);
+  strip.type = 'button';
+  strip.onclick = () => { state.screen = 'progress'; render(); };
+  home.appendChild(strip);
+  const aboutBlock = about();
+  aboutBlock.style.display = 'none';
+  const foot = el('div', 'ag-foot');
+  const credBtn = el('button', 'ag-linklike', 'Credits & sources');
+  credBtn.type = 'button';
+  credBtn.onclick = () => {
+    const opening = aboutBlock.style.display === 'none';
+    aboutBlock.style.display = opening ? '' : 'none';
+    credBtn.textContent = opening ? 'Hide credits' : 'Credits & sources';
+  };
+  foot.appendChild(credBtn);
+  if (window.AGAuth) { const ac = AGAuth.accountControl(); if (ac) foot.appendChild(ac); }
+  home.appendChild(foot);
+  app.appendChild(home);
+  app.appendChild(aboutBlock);
+}
+
+function renderModes() {
+  app.appendChild(navBar('modes'));
+  const home = el('div', 'ag-home');
   home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
   const modeRow = el('div', 'ag-mode-row');
   [['Quick pick', startQuick]].forEach(([lab, fn]) => {
@@ -438,6 +510,18 @@ function renderHome() {
   const p = el('button', 'ag-btn is-ghost is-big', 'Practice');
   p.onclick = startPractice;
   home.appendChild(p);
+  app.appendChild(home);
+}
+
+function renderProgress() {
+  app.appendChild(navBar('progress'));
+  const home = el('div', 'ag-home');
+  const h = el('header', 'ag-header');
+  h.appendChild(el('h1', 'ag-title', 'Your progress'));
+  h.appendChild(el('p', 'ag-date', prettyDate()));
+  home.appendChild(h);
+  if (state.stats.lastDaily === todayStr()) home.appendChild(doneBlock());
+  else home.appendChild(countdownLine());
   const stats = el('div', 'ag-stats');
   [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best9 || 0], ...(state.stats.best ? [['best daily (5-voice era /15)', state.stats.best]] : []), ...(state.stats.best5 ? [['best daily (5-guess era /25)', state.stats.best5]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best quick', state.quick.best]].forEach(([label, num]) => {
     const d = el('div');
@@ -446,21 +530,10 @@ function renderHome() {
     stats.appendChild(d);
   });
   home.appendChild(stats);
-  const aboutBlock = about();
-  aboutBlock.style.display = 'none';
   const foot = el('div', 'ag-foot');
-  const credBtn = el('button', 'ag-linklike', 'Credits & sources');
-  credBtn.type = 'button';
-  credBtn.onclick = () => {
-    const opening = aboutBlock.style.display === 'none';
-    aboutBlock.style.display = opening ? '' : 'none';
-    credBtn.textContent = opening ? 'Hide credits' : 'Credits & sources';
-  };
-  foot.appendChild(credBtn);
   if (window.AGAuth) { const ac = AGAuth.accountControl(); if (ac) foot.appendChild(ac); }
   home.appendChild(foot);
   app.appendChild(home);
-  app.appendChild(aboutBlock);
 }
 
 let roundState = null; // { played, wrong[], over, solved, skipped, step }
