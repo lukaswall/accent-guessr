@@ -96,6 +96,7 @@ const MAP_REGION = {
 // Hard mode: the same clip, revealed progressively. You start with 2 seconds;
 // each wrong guess or skip unlocks the next step (3 s, 5 s, then the full
 // clip). Solving earlier scores more.
+const TURNS = 5; // turns per voice outside hard mode: each guess or Next clue uses one
 const HARD_STEPS = [2, 3, 5]; // seconds; anything past the last entry = full clip
 
 // Short modes: the same game, but every voice is capped at one fixed length.
@@ -194,10 +195,11 @@ function buildQueue(seed, excludeIds) {
 function pad2(n) { return String(n).padStart(2, '0'); }
 function todayStr() { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; }
 function prettyDate() { return new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }); }
-// Daily scores 3/2/1/0; hard mode scores 4/3/2/1/0 (solved from less audio = more).
-function squares(p, hard) {
-  if (hard) return p >= 4 ? '🟩' : p === 3 ? '🟨' : p === 2 ? '🟧' : p === 1 ? '🟥' : '⬛';
-  return p === 3 ? '🟩' : p === 2 ? '🟨' : p === 1 ? '🟧' : '⬛';
+// Five turns per voice: each guess or Next clue uses one. Scores 5/4/3/2/1/0; hard mode scores 4/3/2/1/0 (solved from less audio = more).
+function squares(p) {
+  {
+    return p >= 4 ? '🟩' : p === 3 ? '🟨' : p === 2 ? '🟧' : p === 1 ? '🟥' : '⬛';
+  }
 }
 
 const reducedMotion = typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -459,7 +461,7 @@ function renderRound() {
   const isMap = state.mode === 'map';
   const isQuick = state.mode === 'quick';
   const isRun = state.mode === 'endless' || isHard || isShort || isMap || isQuick;
-  roundState = { played: false, wrong: [], taps: [], over: false, solved: false, skipped: false, step: 0 };
+  roundState = { played: false, wrong: [], taps: [], over: false, solved: false, skipped: false, step: 0, clues: 0 };
 
   app.appendChild(header());
   const round = el('div', 'ag-round');
@@ -617,6 +619,7 @@ function renderRound() {
 
   round.appendChild(el('p', 'ag-question', 'Which accent is this?'));
 
+  const hints = el('div', 'ag-hints');
   const tries = el('div', 'ag-tries');
   const tools = el('div', 'ag-tools');
   const skipBtn = el('button', 'ag-skip', 'Skip');
@@ -625,6 +628,20 @@ function renderRound() {
   tools.appendChild(tries);
   tools.appendChild(skipBtn);
 
+  const turnsUsed = () => (isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length) + roundState.clues;
+  const clueList = () => [
+    `Continent: ${clip.continent}`,
+    clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`,
+    clip.gender ? `Speaker: ${clip.gender}` : `Accent label has ${clip.answer.split(' ').length} word(s)`,
+    `Accent starts with "${clip.answer[0]}"`,
+  ];
+  const drawHints = () => {
+    if (isHard) return;
+    const list = clueList();
+    const n = Math.min(turnsUsed(), list.length);
+    hints.innerHTML = '';
+    for (let i = 0; i < n; i++) hints.appendChild(el('span', 'ag-hint', list[i]));
+  };
   const updateSkipLabel = () => {
     if (!isHard) return;
     if (roundState.step < HARD_STEPS.length) {
@@ -644,10 +661,11 @@ function renderRound() {
       updateSkipLabel();
       return;
     }
-    const wrongN = isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length;
-    const left = 3 - wrongN;
-    for (let i = 0; i < 3; i++) tries.appendChild(el('span', 'ag-try' + (i < left ? ' is-left' : '')));
-    tries.appendChild(el('span', null, `${left} ${isMap ? (left === 1 ? 'tap' : 'taps') : (left === 1 ? 'guess' : 'guesses')} left`));
+    const left = TURNS - turnsUsed();
+    for (let i = 0; i < TURNS; i++) tries.appendChild(el('span', 'ag-try' + (i < left ? ' is-left' : '')));
+    tries.appendChild(el('span', null, `${left} ${left === 1 ? 'turn' : 'turns'} left`));
+    skipBtn.textContent = left > 1 ? 'Next clue' : 'Give up';
+    drawHints();
   };
   const advanceStep = () => {
     roundState.step += 1;
@@ -772,7 +790,7 @@ function renderRound() {
   // Map guess: a plain world map (no highlight - no spoilers) that takes tap
   // guesses once the voice has been played.
   if (isMap) {
-    guessWrap.appendChild(el('p', 'ag-map-tip', 'Tap the map where you think this accent belongs. Three taps per voice.'));
+    guessWrap.appendChild(el('p', 'ag-map-tip', 'Tap the map where you think this accent belongs. Five turns per voice: each tap or Next clue uses one.'));
     mapSvgEl = buildMap(null, [], null);
     mapSvgEl.classList.add('is-live', 'is-locked');
     mapSvgEl.addEventListener('click', (e) => {
@@ -790,7 +808,7 @@ function renderRound() {
   drawTries();
 
   const wrongBox = el('div', 'ag-wrong');
-  const hints = el('div', 'ag-hints');
+
 
   // Distance chip with a subtle count-up animation. Color shows closeness:
   // green = close, orange = mid, grey = far. Rough signal between the places
@@ -867,7 +885,7 @@ function renderRound() {
     if (ok) { roundState.solved = true; roundState.over = true; }
     else {
       wrongBox.appendChild(makeTapChip(km));
-      if (roundState.taps.filter((t) => !t.ok).length >= 3) roundState.over = true;
+      if (turnsUsed() >= TURNS) roundState.over = true;
     }
     if (roundState.over) reveal(); else drawTries();
   }
@@ -886,9 +904,7 @@ function renderRound() {
         if (roundState.step >= HARD_STEPS.length) roundState.over = true;
         else advanceStep();
       } else {
-        if (roundState.wrong.length >= 1 && !hints.querySelector('.h1')) { const h = el('span', 'ag-hint h1', `Continent: ${clip.continent}`); hints.appendChild(h); }
-        if (roundState.wrong.length >= 2) { const h = el('span', 'ag-hint h2', clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`); hints.appendChild(h); }
-        if (roundState.wrong.length >= 3) roundState.over = true;
+        if (turnsUsed() >= TURNS) roundState.over = true;
       }
     }
     if (roundState.over) reveal(); else drawTries();
@@ -901,14 +917,19 @@ function renderRound() {
       advanceStep();
       return;
     }
+    if (!isHard && turnsUsed() < TURNS - 1) {
+      // Next clue: one extra clue, and it costs one of the five turns.
+      roundState.clues += 1;
+      drawTries();
+      return;
+    }
     roundState.skipped = true;
     roundState.over = true;
     reveal();
   };
 
   function reveal() {
-    const wrongN = isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length;
-    const points = roundState.solved ? (isHard ? 4 - roundState.step : 3 - wrongN) : 0;
+    const points = roundState.solved ? (isHard ? 4 - roundState.step : TURNS - turnsUsed()) : 0;
     tools.style.display = 'none'; guessWrap.style.display = 'none';
     const box = el('div', 'ag-reveal' + (roundState.solved ? ' is-right' : ' is-missed'));
     const head = el('div', 'ag-reveal-head');
@@ -922,7 +943,7 @@ function renderRound() {
     meta.appendChild(el('span', null, clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`));
     if (clip.gender) meta.appendChild(el('span', null, `Speaker: ${clip.gender}`));
     box.appendChild(meta);
-    if (!roundState.solved) box.appendChild(el('p', 'ag-reveal-note', (roundState.skipped ? 'Skipped. ' : '') + `The answer was ${clip.answer}.`));
+    if (!roundState.solved) box.appendChild(el('p', 'ag-reveal-note', (roundState.skipped ? 'Gave up. ' : '') + `The answer was ${clip.answer}.`));
     const last = state.index + 1 >= total;
     const nextLabel = isRun ? (roundState.solved ? 'Next voice' : 'See run results') : (last ? 'See results' : 'Next voice');
     const next = el('button', 'ag-btn is-primary', nextLabel);
@@ -996,7 +1017,7 @@ function renderResults() {
   const isRun = state.mode === 'endless' || isHard || isShort || isMap || isQuick;
   const runName = isHard ? 'Hard mode' : isShort ? `${SHORT[state.shortMode].label} mode` : isMap ? 'Map guess' : isQuick ? 'Quick pick' : 'Endless';
   const score = state.rounds.reduce((s, r) => s + r.points, 0);
-  const max = state.rounds.length * 3;
+  const max = state.rounds.length * TURNS;
 
   if (isRun) {
     const sc = el('div', 'ag-score');
@@ -1012,14 +1033,14 @@ function renderResults() {
     res.appendChild(sc);
   }
   const sq = el('div', 'ag-squares');
-  state.rounds.forEach(r => sq.appendChild(el('span', null, squares(r.points, isHard))));
+  state.rounds.forEach(r => sq.appendChild(el('span', null, squares(r.points))));
   res.appendChild(sq);
 
   const recap = el('div', 'ag-recap');
   state.rounds.forEach(r => {
     const row = el('div', 'ag-recap-row');
     row.appendChild(el('span', 'ag-recap-name', PLACE[r.answer] || r.answer));
-    row.appendChild(el('span', 'ag-recap-pts', r.points > 0 ? `+${r.points}` : (r.skipped ? 'skipped' : '0')));
+    row.appendChild(el('span', 'ag-recap-pts', r.points > 0 ? `+${r.points}` : (r.skipped ? 'gave up' : '0')));
     recap.appendChild(row);
   });
   res.appendChild(recap);
@@ -1028,7 +1049,7 @@ function renderResults() {
   const copy = el('button', 'ag-btn is-primary', 'Copy result');
   copy.onclick = () => {
     const text = isRun
-      ? `Accent Guessr · ${runName}\n${state.cleared} voices in a row · ${score} points\n${state.rounds.map(r => squares(r.points, isHard)).join('')}`
+      ? `Accent Guessr · ${runName}\n${state.cleared} voices in a row · ${score} points\n${state.rounds.map(r => squares(r.points)).join('')}`
       : `Accent Guessr · ${prettyDate()}\n${score}/${max}\n${state.rounds.map(r => squares(r.points)).join('')}`;
     const done = () => { copy.textContent = 'Copied'; setTimeout(() => { copy.textContent = 'Copy result'; }, 2000); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
