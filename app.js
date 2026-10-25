@@ -9,23 +9,65 @@ const ADS = { enabled: false, client: '', resultsSlot: '' };
 const FLAGS = {
   'England': '🏴󠁧󠁢󠁥󠁮󠁧󠁿', 'Scotland': '🏴󠁧󠁢󠁳󠁣󠁴󠁿', 'Wales': '🏴󠁧󠁢󠁷󠁬󠁳󠁿', 'Northern Ireland': '🇬🇧', 'Ireland': '🇮🇪',
   'Australia': '🇦🇺', 'New Zealand': '🇳🇿', 'South Africa': '🇿🇦', 'United States': '🇺🇸', 'Canada': '🇨🇦', 'Jamaica': '🇯🇲',
-  'Germany': '🇩🇪', 'Austria': '🇦🇹', 'Liechtenstein': '🇱🇮', 'France': '🇫🇷', 'Spain': '🇪🇸', 'Mexico': '🇲🇽',
-  'Argentina': '🇦🇷', 'Colombia': '🇨🇴', 'Cuba': '🇨🇺', 'Peru': '🇵🇪', 'Venezuela': '🇻🇪', 'Italy': '🇮🇹', 'Portugal': '🇵🇹',
+  'Germany': '🇩🇪', 'Austria': '🇦🇹', 'France': '🇫🇷', 'Spain': '🇪🇸', 'Mexico': '🇲🇽',
+  'Argentina': '🇦🇷', 'Colombia': '🇨🇴', 'Peru': '🇵🇪', 'Venezuela': '🇻🇪', 'Italy': '🇮🇹', 'Portugal': '🇵🇹',
   'Brazil': '🇧🇷', 'Netherlands': '🇳🇱', 'Belgium': '🇧🇪', 'Sweden': '🇸🇪', 'Norway': '🇳🇴', 'Denmark': '🇩🇰', 'Finland': '🇫🇮',
   'Poland': '🇵🇱', 'Czech Republic': '🇨🇿', 'Hungary': '🇭🇺', 'Romania': '🇷🇴', 'Russia': '🇷🇺', 'Ukraine': '🇺🇦',
   'Greece': '🇬🇷', 'Turkey': '🇹🇷', 'Egypt': '🇪🇬', 'Morocco': '🇲🇦', 'Saudi Arabia': '🇸🇦', 'Israel': '🇮🇱', 'Iran': '🇮🇷',
-  'India': '🇮🇳', 'Pakistan': '🇵🇰', 'Bangladesh': '🇧🇩', 'China': '🇨🇳', 'Hong Kong': '🇭🇰', 'Japan': '🇯🇵',
+  'India': '🇮🇳', 'Pakistan': '🇵🇰', 'Bangladesh': '🇧🇩', 'China': '🇨🇳', 'Japan': '🇯🇵',
   'South Korea': '🇰🇷', 'Vietnam': '🇻🇳', 'Thailand': '🇹🇭', 'Indonesia': '🇮🇩', 'Philippines': '🇵🇭', 'Nigeria': '🇳🇬',
-  'Ethiopia': '🇪🇹', 'Switzerland': '🇨🇭',
+  'Ethiopia': '🇪🇹', 'Switzerland': '🇨🇭', 'Bulgaria': '🇧🇬',
 };
+
+// Coarse country reference points for the "how far off" hint. Centroid-level
+// accuracy only: this is a regional signal, not a precise location.
+// Reference points for the places the accent labels are named after, used only
+// for the coarse "how far off" hint. Region labels without a single namesake
+// place (Eastern European) have no anchor and get continent-level text instead.
+const COORDS = {
+  'Southern British English': [51.5, -0.8], 'Scottish English': [56.8, -4.2], 'Irish English': [53.3, -8.2],
+  'French': [46.6, 2.4], 'German': [51.1, 10.4], 'Dutch': [52.2, 5.3], 'Spanish': [40.3, -3.7],
+  'Catalan': [41.6, 1.7], 'Italian': [42.8, 12.8], 'Bulgarian': [42.7, 25.5],
+  'Mainstream US English': [39.8, -98.6], 'Jamaican English': [18.1, -77.3], 'Brazilian': [-10.8, -52.9],
+  'Egyptian': [26.8, 30.8], 'South African English': [-30.6, 22.9],
+  'Chinese': [35.9, 104.2], 'Japanese': [36.2, 138.3], 'Vietnamese': [14.1, 108.3],
+  'Indian English': [21.0, 78.0], 'Indonesian English': [-2.2, 113.9],
+};
+// Continent per answer option, for honest proximity text when an answer has no
+// precise anchor (e.g. "Eastern Europe" is a documented corpus label, not a point).
+const GUESS_CONTINENT = {
+  'Southern British English': 'Europe', 'Scottish English': 'Europe', 'Irish English': 'Europe',
+  'French': 'Europe', 'German': 'Europe', 'Dutch': 'Europe', 'Spanish': 'Europe', 'Catalan': 'Europe',
+  'Italian': 'Europe', 'Bulgarian': 'Europe', 'Eastern European': 'Europe',
+  'Mainstream US English': 'North America', 'Jamaican English': 'North America', 'Brazilian': 'South America',
+  'Egyptian': 'Africa', 'South African English': 'Africa',
+  'Chinese': 'Asia', 'Japanese': 'Asia', 'Vietnamese': 'Asia', 'Indian English': 'Asia', 'Indonesian English': 'Asia',
+};
+function kmOff(guess, answer) {
+  const g = COORDS[guess], a = COORDS[answer];
+  if (!g || !a) return null;
+  const rad = Math.PI / 180, dLat = (a[0] - g[0]) * rad, dLon = (a[1] - g[1]) * rad;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(g[0] * rad) * Math.cos(a[0] * rad) * Math.sin(dLon / 2) ** 2;
+  return Math.round(6371 * 2 * Math.asin(Math.sqrt(h)));
+}
+function fmtKm(km) {
+  if (km < 100) return 'under 100 km';
+  const rounded = km < 1000 ? Math.round(km / 50) * 50 : Math.round(km / 100) * 100;
+  return `about ${rounded.toLocaleString('en-US')} km`;
+}
 
 const ANSWERS = Array.from(new Set(CLIPS.map(c => c.answer))).sort((a, b) => a.localeCompare(b));
 const ALIASES = {
-  'usa': ['United States'], 'america': ['United States'], 'united states of america': ['United States'], 'us': ['United States'],
-  'uk': ['England', 'Scotland', 'Wales', 'Northern Ireland'], 'united kingdom': ['England', 'Scotland', 'Wales', 'Northern Ireland'],
-  'britain': ['England', 'Scotland', 'Wales', 'Northern Ireland'], 'great britain': ['England', 'Scotland', 'Wales', 'Northern Ireland'],
-  'british': ['England', 'Scotland', 'Wales', 'Northern Ireland'], 'holland': ['Netherlands'], 'korea': ['South Korea'],
-  'czechia': ['Czech Republic'], 'turkiye': ['Turkey'], 'persia': ['Iran'], 'nz': ['New Zealand'],
+  'usa': ['Mainstream US English'], 'america': ['Mainstream US English'], 'american': ['Mainstream US English'], 'us': ['Mainstream US English'],
+  'uk': ['Southern British English', 'Scottish English'], 'united kingdom': ['Southern British English', 'Scottish English'],
+  'britain': ['Southern British English'], 'british': ['Southern British English', 'Scottish English'],
+  'england': ['Southern British English'], 'english': ['Southern British English'],
+  'scotland': ['Scottish English'], 'ireland': ['Irish English'], 'irish': ['Irish English'],
+  'india': ['Indian English'], 'indonesia': ['Indonesian English'], 'jamaica': ['Jamaican English'],
+  'south africa': ['South African English'], 'holland': ['Dutch'], 'netherlands': ['Dutch'],
+  'italy': ['Italian'], 'spain': ['Spanish', 'Catalan'], 'catalonia': ['Catalan'], 'romania': ['Eastern European'],
+  'eastern europe': ['Eastern European'], 'china': ['Chinese'], 'japan': ['Japanese'], 'vietnam': ['Vietnamese'],
+  'brazil': ['Brazilian'], 'egypt': ['Egyptian'], 'france': ['French'], 'germany': ['German'], 'bulgaria': ['Bulgarian'],
 };
 
 function filterAnswers(q) {
@@ -46,12 +88,16 @@ function mulberry32(a) {
     return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
   };
 }
+function shuffleArr(arr, rnd) {
+  const s = arr.slice();
+  for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = s[i]; s[i] = s[j]; s[j] = t; }
+  return s;
+}
 function pickSet(seed, excludeIds) {
   const rnd = mulberry32(seed);
   const pool = CLIPS.filter(c => !excludeIds.has(c.id));
   const source = pool.length >= 5 ? pool : CLIPS.slice();
-  const shuffled = source.slice();
-  for (let i = shuffled.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = shuffled[i]; shuffled[i] = shuffled[j]; shuffled[j] = t; }
+  const shuffled = shuffleArr(source, rnd);
   const picked = [], cont = {};
   for (const c of shuffled) {
     if (picked.length >= 5) break;
@@ -60,6 +106,18 @@ function pickSet(seed, excludeIds) {
     picked.push(c); cont[c.continent] = (cont[c.continent] || 0) + 1;
   }
   return picked;
+}
+// Endless queue: shuffled pool, no immediate same-answer or same-speaker repeats.
+function buildQueue(seed, excludeIds) {
+  const rnd = mulberry32(seed);
+  const pool = shuffleArr(CLIPS.filter(c => !excludeIds.has(c.id)), rnd);
+  const queue = [];
+  for (const c of pool) {
+    const last = queue[queue.length - 1];
+    if (last && (last.answer === c.answer || last.speaker === c.speaker)) continue;
+    queue.push(c);
+  }
+  return queue;
 }
 function pad2(n) { return String(n).padStart(2, '0'); }
 function todayStr() { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; }
@@ -73,14 +131,17 @@ const store = {
   set(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} },
 };
 const EMPTY_STATS = { plays: 0, best: 0, streak: 0, lastDaily: null, lastRounds: [] };
+const EMPTY_ENDLESS = { best: 0, runs: 0 };
 
 const state = {
   screen: 'home', // home | play | results
-  mode: 'daily',
+  mode: 'daily',  // daily | practice | endless
   set: [],
   index: 0,
   rounds: [],
+  cleared: 0,
   stats: store.get('accent-guessr.stats.v1', EMPTY_STATS),
+  endless: store.get('accent-guessr.endless.v1', EMPTY_ENDLESS),
   seen: store.get('accent-guessr.practice-seen.v1', []),
 };
 
@@ -110,14 +171,14 @@ function header() {
   const h = el('header', 'ag-header');
   h.appendChild(el('h1', 'ag-title', 'Accent Guessr'));
   h.appendChild(el('p', 'ag-date', prettyDate()));
-  h.appendChild(el('p', 'ag-intro', 'Five real voices a day. Listen, then guess where each speaker is from.'));
+  h.appendChild(el('p', 'ag-intro', 'Real voices. Listen, then guess which accent each speaker has.'));
   return h;
 }
 function about() {
   const g = el('section', 'ag-about-block');
   g.appendChild(el('h2', 'ag-about-title', 'About the voices'));
   const p = el('p', 'ag-about');
-  p.innerHTML = 'Every clip is a real person reading the same short paragraph, recorded for the <a href="https://accent.gmu.edu/" target="_blank" rel="noopener">Speech Accent Archive</a> at George Mason University. Clips are shortened excerpts shared under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a>. The answer is the speaker\'s birthplace, and each reveal also names their first language. An accent is shaped by more than a birthplace, so treat it as the speaker\'s origin, not a verdict on how anyone sounds.';
+  p.innerHTML = 'Every clip is a real person in a recorded conversation, from the <a href="https://huggingface.co/datasets/edinburghcstr/edacc" target="_blank" rel="noopener">EdAcc corpus</a> (University of Edinburgh), shared under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. These clips are shortened excerpts; this edited set is shared under the same license, with <a href="https://github.com/lukaswall/accent-guessr/blob/main/ATTRIBUTION.md" target="_blank" rel="noopener">per-clip credits and the edited set</a> in the source repository. The answer is the corpus\'s own accent label for that recording, and each reveal also names the speaker\'s first language. An accent label is a description of speech, not a fact about where someone was born or raised, so treat it as that, not a verdict on anyone.';
   g.appendChild(p);
   const c = el('p', 'ag-closing', 'Your streaks and scores stay on this device.');
   g.appendChild(c);
@@ -136,6 +197,20 @@ function countdownLine() {
   return p;
 }
 
+function startPractice() {
+  const excl = new Set(state.seen);
+  const set = pickSet(hashStr(`practice:${Date.now()}`), excl);
+  state.seen = state.seen.concat(set.map(c => c.id));
+  if (state.seen.length >= CLIPS.length - 4) state.seen = [];
+  store.set('accent-guessr.practice-seen.v1', state.seen);
+  state.mode = 'practice'; state.set = set; state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+}
+function startEndless() {
+  state.mode = 'endless';
+  state.set = buildQueue(hashStr(`endless:${Date.now()}`), new Set());
+  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+}
+
 function renderHome() {
   app.appendChild(header());
   const home = el('div', 'ag-home');
@@ -150,21 +225,17 @@ function renderHome() {
     home.appendChild(done);
   } else {
     const b = el('button', 'ag-btn is-primary is-big', "Play today's set");
-    b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set()); state.index = 0; state.rounds = []; state.screen = 'play'; render(); };
+    b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set()); state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render(); };
     home.appendChild(b);
   }
+  const e = el('button', 'ag-btn is-primary is-big', 'Endless');
+  e.onclick = startEndless;
+  home.appendChild(e);
   const p = el('button', 'ag-btn is-ghost is-big', 'Practice');
-  p.onclick = () => {
-    const excl = new Set(state.seen);
-    const set = pickSet(hashStr(`practice:${Date.now()}`), excl);
-    state.seen = state.seen.concat(set.map(c => c.id));
-    if (state.seen.length >= CLIPS.length - 4) state.seen = [];
-    store.set('accent-guessr.practice-seen.v1', state.seen);
-    state.mode = 'practice'; state.set = set; state.index = 0; state.rounds = []; state.screen = 'play'; render();
-  };
+  p.onclick = startPractice;
   home.appendChild(p);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best score', state.stats.best]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best], ['best endless', state.endless.best]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -180,14 +251,19 @@ let roundState = null; // { played, wrong[], over, solved }
 function renderRound() {
   const clip = state.set[state.index];
   const total = state.set.length;
+  const isEndless = state.mode === 'endless';
   roundState = { played: false, wrong: [], over: false, solved: false };
 
   app.appendChild(header());
   const round = el('div', 'ag-round');
 
   const prog = el('div', 'ag-progress');
-  for (let i = 0; i < total; i++) prog.appendChild(el('span', 'ag-dot' + (i === state.index ? ' is-now' : i < state.index ? ' is-done' : '')));
-  prog.appendChild(el('span', 'ag-round-no', `${state.mode === 'daily' ? 'Daily' : 'Practice'} · ${state.index + 1} of ${total}`));
+  if (isEndless) {
+    prog.appendChild(el('span', 'ag-round-no', `Endless · voice ${state.index + 1} · streak ${state.cleared}`));
+  } else {
+    for (let i = 0; i < total; i++) prog.appendChild(el('span', 'ag-dot' + (i === state.index ? ' is-now' : i < state.index ? ' is-done' : '')));
+    prog.appendChild(el('span', 'ag-round-no', `${state.mode === 'daily' ? 'Daily' : 'Practice'} · ${state.index + 1} of ${total}`));
+  }
   round.appendChild(prog);
 
   // Player
@@ -196,7 +272,8 @@ function renderRound() {
   player.setAttribute('aria-label', 'Play voice');
   const ring = el('span', 'ag-player-ring');
   const core = el('span', 'ag-player-core');
-  core.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4.8v14.4c0 .9 1 1.5 1.8 1L19 13a1.2 1.2 0 0 0 0-2L7.8 3.9c-.8-.5-1.8 0-1.8.9Z"/></svg>';
+  const playSvg = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4.8v14.4c0 .9 1 1.5 1.8 1L19 13a1.2 1.2 0 0 0 0-2L7.8 3.9c-.8-.5-1.8 0-1.8.9Z"/></svg>';
+  core.innerHTML = playSvg;
   ring.appendChild(core);
   player.appendChild(ring);
   const playerLabel = el('span', 'ag-player-label', 'Play the voice');
@@ -216,20 +293,20 @@ function renderRound() {
     player.setAttribute('aria-label', 'Pause voice');
     core.innerHTML = '<span class="ag-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>';
     input.disabled = false;
-    input.placeholder = 'Type a country…';
+    input.placeholder = 'Type a country or region…';
   });
   const stopped = () => {
     player.classList.remove('is-playing');
     playerLabel.textContent = 'Play the voice';
     player.setAttribute('aria-label', 'Play voice');
-    core.innerHTML = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4.8v14.4c0 .9 1 1.5 1.8 1L19 13a1.2 1.2 0 0 0 0-2L7.8 3.9c-.8-.5-1.8 0-1.8.9Z"/></svg>';
+    core.innerHTML = playSvg;
   };
   audio.addEventListener('pause', stopped);
   audio.addEventListener('ended', () => { stopped(); ring.style.background = ''; });
   player.onclick = () => { if (audio.paused) audio.play().catch(() => {}); else audio.pause(); };
   round.appendChild(player);
 
-  round.appendChild(el('p', 'ag-question', 'Where is this speaker from?'));
+  round.appendChild(el('p', 'ag-question', 'Which accent is this?'));
 
   const tries = el('div', 'ag-tries');
   const guessWrap = el('div', 'ag-guess');
@@ -251,7 +328,7 @@ function renderRound() {
   const drawOptions = () => {
     const opts = filterAnswers(input.value);
     optionsBox.innerHTML = '';
-    if (opts.length === 0) optionsBox.appendChild(el('div', 'ag-option-empty', 'No country matches that.'));
+    if (opts.length === 0) optionsBox.appendChild(el('div', 'ag-option-empty', 'No place matches that.'));
     opts.forEach(a => {
       const b = el('button', 'ag-option' + (roundState.wrong.includes(a) ? ' is-taken' : ''));
       b.type = 'button'; b.setAttribute('role', 'option');
@@ -281,9 +358,15 @@ function renderRound() {
     if (a === clip.answer) { roundState.solved = true; roundState.over = true; }
     else {
       roundState.wrong.push(a);
-      const chip = el('span', 'ag-chip', a); wrongBox.appendChild(chip);
+      const km = kmOff(a, clip.answer);
+      let chipText;
+      if (km !== null) chipText = `${a} · ${fmtKm(km)} off`;
+      else if (clip.continent && GUESS_CONTINENT[a] && GUESS_CONTINENT[a] !== clip.continent) chipText = `${a} · wrong continent`;
+      else if (clip.continent && GUESS_CONTINENT[a] === clip.continent) chipText = `${a} · right continent`;
+      else chipText = a;
+      wrongBox.appendChild(el('span', 'ag-chip', chipText));
       if (roundState.wrong.length >= 1 && !hints.querySelector('.h1')) { const h = el('span', 'ag-hint h1', `Continent: ${clip.continent}`); hints.appendChild(h); }
-      if (roundState.wrong.length >= 2) { const h = el('span', 'ag-hint h2', `First language: ${clip.language}`); hints.appendChild(h); }
+      if (roundState.wrong.length >= 2) { const h = el('span', 'ag-hint h2', clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`); hints.appendChild(h); }
       if (roundState.wrong.length >= 3) roundState.over = true;
     }
     if (roundState.over) reveal(); else drawTries();
@@ -299,16 +382,22 @@ function renderRound() {
     head.appendChild(el('span', 'ag-reveal-pts', roundState.solved ? `+${points}` : '0'));
     box.appendChild(head);
     const meta = el('div', 'ag-reveal-meta');
-    meta.appendChild(el('span', null, clip.city));
+    meta.appendChild(el('span', null, `Accent: ${clip.region}`));
     meta.appendChild(el('span', null, clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`));
-    meta.appendChild(el('span', null, `Speaker: ${clip.agesex}`));
+    if (clip.gender) meta.appendChild(el('span', null, `Speaker: ${clip.gender}`));
     box.appendChild(meta);
     if (!roundState.solved) box.appendChild(el('p', 'ag-reveal-note', `The answer was ${clip.answer}.`));
-    const next = el('button', 'ag-btn is-primary', state.index + 1 < total ? 'Next voice' : 'See results');
+    const last = state.index + 1 >= total;
+    const nextLabel = isEndless ? (roundState.solved ? 'Next voice' : 'See run results') : (last ? 'See results' : 'Next voice');
+    const next = el('button', 'ag-btn is-primary', nextLabel);
     next.onclick = () => {
-      state.rounds.push({ answer: clip.answer, city: clip.city, flag: FLAGS[clip.answer] || '', points, wrong: roundState.wrong.slice() });
-      if (state.index + 1 < total) { state.index += 1; render(); }
-      else { finishRun(); }
+      state.rounds.push({ answer: clip.answer, region: clip.region, flag: FLAGS[clip.answer] || '', points, wrong: roundState.wrong.slice() });
+      if (roundState.solved) state.cleared += 1;
+      if (isEndless) {
+        if (roundState.solved && state.index + 1 < total) { state.index += 1; render(); }
+        else finishRun();
+      } else if (!last) { state.index += 1; render(); }
+      else finishRun();
     };
     box.appendChild(next);
     round.appendChild(box);
@@ -337,6 +426,10 @@ function finishRun() {
     };
     store.set('accent-guessr.stats.v1', state.stats);
   }
+  if (state.mode === 'endless') {
+    state.endless = { best: Math.max(state.endless.best, state.cleared), runs: state.endless.runs + 1 };
+    store.set('accent-guessr.endless.v1', state.endless);
+  }
   state.screen = 'results';
   render();
 }
@@ -344,13 +437,22 @@ function finishRun() {
 function renderResults() {
   app.appendChild(header());
   const res = el('div', 'ag-results');
+  const isEndless = state.mode === 'endless';
   const score = state.rounds.reduce((s, r) => s + r.points, 0);
   const max = state.rounds.length * 3;
 
-  const sc = el('div', 'ag-score');
-  sc.appendChild(el('span', 'ag-score-num', String(score)));
-  sc.appendChild(el('span', 'ag-score-max', `/ ${max}`));
-  res.appendChild(sc);
+  if (isEndless) {
+    const sc = el('div', 'ag-score');
+    sc.appendChild(el('span', 'ag-score-num', String(state.cleared)));
+    sc.appendChild(el('span', 'ag-score-max', state.cleared === 1 ? ' voice' : ' voices'));
+    res.appendChild(sc);
+    res.appendChild(el('p', 'ag-done-score', `${score} points · best ${state.endless.best}`));
+  } else {
+    const sc = el('div', 'ag-score');
+    sc.appendChild(el('span', 'ag-score-num', String(score)));
+    sc.appendChild(el('span', 'ag-score-max', `/ ${max}`));
+    res.appendChild(sc);
+  }
   const sq = el('div', 'ag-squares');
   state.rounds.forEach(r => sq.appendChild(el('span', null, squares(r.points))));
   res.appendChild(sq);
@@ -368,22 +470,17 @@ function renderResults() {
   const actions = el('div', 'ag-actions');
   const copy = el('button', 'ag-btn is-primary', 'Copy result');
   copy.onclick = () => {
-    const text = `Accent Guessr · ${prettyDate()}\n${score}/${max}\n${state.rounds.map(r => squares(r.points)).join('')}`;
+    const text = isEndless
+      ? `Accent Guessr · Endless\n${state.cleared} voices in a row · ${score} points\n${state.rounds.map(r => squares(r.points)).join('')}`
+      : `Accent Guessr · ${prettyDate()}\n${score}/${max}\n${state.rounds.map(r => squares(r.points)).join('')}`;
     const done = () => { copy.textContent = 'Copied'; setTimeout(() => { copy.textContent = 'Copy result'; }, 2000); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
     else done();
   };
   actions.appendChild(copy);
-  const prac = el('button', 'ag-btn is-ghost', 'Practice more');
-  prac.onclick = () => {
-    const excl = new Set(state.seen);
-    const set = pickSet(hashStr(`practice:${Date.now()}`), excl);
-    state.seen = state.seen.concat(set.map(c => c.id));
-    if (state.seen.length >= CLIPS.length - 4) state.seen = [];
-    store.set('accent-guessr.practice-seen.v1', state.seen);
-    state.mode = 'practice'; state.set = set; state.index = 0; state.rounds = []; state.screen = 'play'; render();
-  };
-  actions.appendChild(prac);
+  const again = el('button', 'ag-btn is-ghost', isEndless ? 'Play again' : 'Practice more');
+  again.onclick = isEndless ? startEndless : startPractice;
+  actions.appendChild(again);
   res.appendChild(actions);
 
   if (ADS.enabled && ADS.client) res.appendChild(el('div', 'ad-slot'));
