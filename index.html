@@ -141,6 +141,31 @@ body {
 .ag-closing { margin: 18px 0 0; font-size: 13px; color: var(--ds-ink-2); }
 .ad-slot { width: 100%; min-height: 90px; border-radius: 14px; background: var(--ds-hairline); }
 
+
+.ag-tools { display: flex; align-items: center; justify-content: center; gap: 14px; }
+.ag-skip { background: none; border: 0; font: inherit; font-size: 14px; color: var(--ds-ink-2); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 8px 4px; }
+.ag-skip:disabled { opacity: 0.4; cursor: default; text-decoration: none; }
+.ag-input-wrap { position: relative; }
+.ag-input-wrap .ag-input { padding-right: 46px; }
+.ag-caret { position: absolute; right: 4px; top: 50%; transform: translateY(-50%); display: flex; align-items: center; background: none; border: 0; padding: 10px; cursor: pointer; color: var(--ds-ink-2); }
+.ag-opt-group { padding: 10px 16px 2px; font-size: 12px; font-weight: 620; letter-spacing: 0.02em; color: var(--ds-ink-2); }
+.ag-option { flex-direction: column; align-items: flex-start; gap: 1px; }
+.ag-opt-place { font-weight: 560; }
+.ag-opt-label { font-size: 13px; color: var(--ds-ink-2); }
+.ag-option.is-active { background: var(--ag-acc-soft); }
+.ag-chip-in { animation: ag-chip-in 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+@keyframes ag-chip-in { from { opacity: 0; transform: translateY(8px) scale(0.92); } }
+.ag-chip.is-close { background: rgba(21, 128, 61, 0.14); color: var(--ag-good); }
+.ag-chip.is-mid { background: var(--ag-acc-soft); color: var(--ag-acc); }
+.ag-chip-km { font-variant-numeric: tabular-nums; }
+.ag-reveal-img { width: 100%; border-radius: 12px; display: block; aspect-ratio: 3 / 2; object-fit: cover; background: var(--ds-hairline); margin: 0; }
+.ag-reveal-cap { margin: -4px 0 0; font-size: 12px; color: var(--ds-ink-2); }
+@media (prefers-reduced-motion: reduce) {
+  .ag-chip-in { animation: none; }
+  .ag-eq i { animation: none; }
+  .ag-btn { transition: none; }
+}
+
 @media (min-width: 640px) {
   .ag-player-core { width: 112px; height: 112px; }
   .ag-round { gap: 20px; }
@@ -162,6 +187,7 @@ body {
 <script src="clips-8.js"></script>
 <script src="clips-9.js"></script>
 <script>const CLIPS = CLIPS_PARTS.flat();</script>
-<script src="app.js"></script>
+<script src="img-data.js?v=2"></script>
+<script src="app.js?v=2"></script>
 </body>
-</html>
+                                                                                    </html>
