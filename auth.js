@@ -196,7 +196,11 @@ window.AGAuth = (() => {
     setLS(LS.account, user().id);
     setSyncState('saving');
     try {
-      await db.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
+      // supabase-js resolves HTTP-level failures (401/403/RLS) as
+      // { error } instead of throwing - check it or a rejected save looks
+      // exactly like a saved one.
+      const { error } = await db.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
+      if (error) throw new Error(error.message || 'save rejected');
       removeLS(LS.pending);
       setSyncState('saved');
     } catch (e) {
@@ -220,14 +224,16 @@ window.AGAuth = (() => {
       // Unsynced leftovers belong to their owner only.
       const stalePend = getLS(LS.pending, null);
       if (stalePend && stalePend.owner !== user().id) removeLS(LS.pending);
-      const { data } = await db.from('progress').select('data').eq('user_id', user().id).maybeSingle();
+      const { data, error: readError } = await db.from('progress').select('data').eq('user_id', user().id).maybeSingle();
+      if (readError) throw new Error(readError.message || 'download rejected');
       const remote = data && data.data;
       let mergedData;
       if (!remote) { await pushProgress(); mergedData = localProgress(); } // first-ever login: upload guest progress as is
       else {
         mergedData = mergeProgress(localProgress(), remote);
         applyMerged(mergedData);
-        await db.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
+        const { error: upError } = await db.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
+        if (upError) throw new Error(upError.message || 'save rejected');
         setSyncState('saved');
       }
       // Recover this account's unsynced changes from a previous session.
@@ -235,7 +241,8 @@ window.AGAuth = (() => {
       if (pend && pend.owner === user().id && pend.data) {
         const recovered = mergeProgress(pend.data, mergedData);
         applyMerged(recovered);
-        await db.from('progress').upsert({ user_id: user().id, data: recovered, updated_at: new Date().toISOString() });
+        const { error: recError } = await db.from('progress').upsert({ user_id: user().id, data: recovered, updated_at: new Date().toISOString() });
+        if (recError) throw new Error(recError.message || 'save rejected');
         removeLS(LS.pending);
         setSyncState('saved');
       }
