@@ -107,11 +107,8 @@ const SHORT = {
   s5: { sec: 5, label: '5 seconds' },
 };
 
-// Map guess mode: hear the voice, then tap the world map where you think the
-// accent's namesake place is; proximity to the answer decides, like a
-// geography game. Quick pick mode: the same listening game with four written
-// options instead of the search box.
-const MAP_OK_KM = 750; // a tap this close to the answer's anchor counts as correct
+// Quick pick mode: the same listening game with four written options instead
+// of the search box.
 
 function kmBetween(p, q) {
   const rad = Math.PI / 180, dLat = (q[0] - p[0]) * rad, dLon = (q[1] - p[1]) * rad;
@@ -214,12 +211,11 @@ const EMPTY_STATS = { plays: 0, best: 0, streak: 0, lastDaily: null, lastRounds:
 const EMPTY_ENDLESS = { best: 0, runs: 0 };
 const EMPTY_HARD = { best: 0, runs: 0 };
 const EMPTY_SHORTS = { s2: { best: 0, runs: 0 }, s3: { best: 0, runs: 0 }, s5: { best: 0, runs: 0 } };
-const EMPTY_MAP = { best: 0, runs: 0 };
 const EMPTY_QUICK = { best: 0, runs: 0 };
 
 const state = {
   screen: 'home', // home | play | results
-  mode: 'daily',  // daily | practice | endless | hard
+  mode: 'daily',  // daily | practice | endless | hard | short | quick
   set: [],
   index: 0,
   rounds: [],
@@ -229,7 +225,6 @@ const state = {
   hard: store.get('accent-guessr.hard.v1', EMPTY_HARD),
   short: store.get('accent-guessr.shorts.v1', EMPTY_SHORTS),
   shortMode: 's2',
-  mapg: store.get('accent-guessr.map.v1', EMPTY_MAP),
   quick: store.get('accent-guessr.quick.v1', EMPTY_QUICK),
   seen: store.get('accent-guessr.practice-seen.v1', []),
 };
@@ -238,7 +233,7 @@ const state = {
 for (const k of Object.keys(SHORT)) {
   if (!state.short[k] || typeof state.short[k].best !== 'number') state.short[k] = { best: 0, runs: 0 };
 }
-for (const k of ['mapg', 'quick']) {
+for (const k of ['quick']) {
   if (!state[k] || typeof state[k].best !== 'number') state[k] = { best: 0, runs: 0 };
 }
 
@@ -255,7 +250,7 @@ function el(tag, cls, text) {
 // World map (Natural Earth boundaries) shown only after the reveal. The answer
 // highlight marks the place the accent label is named after - never a claim
 // about where the speaker is from. Wrong guesses are shown in grey.
-function buildMap(answer, wrongs, taps) {
+function buildMap(answer, wrongs) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('viewBox', `0 0 ${MAP.w} ${MAP.h}`);
@@ -265,15 +260,12 @@ function buildMap(answer, wrongs, taps) {
   const answerSet = new Set(MAP_ISO[answer] || []);
   const wrongSet = new Set();
   wrongs.forEach(w => (MAP_ISO[w] || []).forEach(c => wrongSet.add(c)));
-  const pathByCode = {};
   for (const code of Object.keys(MAP.c)) {
     const p = document.createElementNS(NS, 'path');
     p.setAttribute('d', MAP.c[code]);
     p.setAttribute('class', 'ag-map-c' + (answerSet.has(code) ? ' is-answer' : wrongSet.has(code) ? ' is-wrong' : ''));
-    pathByCode[code] = p;
     svg.appendChild(p);
   }
-  svg._paths = pathByCode;
   const drawRegion = (lbl, cls) => {
     const r = MAP_REGION[lbl];
     if (!r) return;
@@ -285,26 +277,7 @@ function buildMap(answer, wrongs, taps) {
   };
   wrongs.forEach(w => { if (MAP_REGION[w]) drawRegion(w, 'ag-map-region is-wrong'); });
   if (MAP_REGION[answer]) drawRegion(answer, 'ag-map-region is-answer');
-  if (taps) taps.forEach((t) => {
-    const m = document.createElementNS(NS, 'circle');
-    m.setAttribute('cx', t.x); m.setAttribute('cy', t.y); m.setAttribute('r', 6);
-    m.setAttribute('class', 'ag-map-tap' + (t.ok ? ' is-ok' : ''));
-    svg.appendChild(m);
-  });
   return svg;
-}
-
-// Equirectangular projection helpers for tap guessing. Matches the map-data
-// generator exactly: poles cropped at lat 84 / -58, then rounded to pixels.
-const MAP_LAT_TOP = 84, MAP_LAT_SPAN = 142;
-function llToXY(lat, lon) { return [(lon + 180) / 360 * MAP.w, (MAP_LAT_TOP - lat) / MAP_LAT_SPAN * MAP.h]; }
-function xyToLL(x, y) { return [MAP_LAT_TOP - y / MAP.h * MAP_LAT_SPAN, x / MAP.w * 360 - 180]; }
-// Anchor point per answer: the documented anchor for country-named labels; for
-// region labels, the centre of the region marker drawn over that area.
-function anchorOf(answer) {
-  if (COORDS[answer]) return COORDS[answer];
-  const r = MAP_REGION[answer];
-  return r ? xyToLL(r.cx, r.cy) : null;
 }
 
 const app = document.getElementById('app');
@@ -330,7 +303,7 @@ function about() {
   const g = el('section', 'ag-about-block');
   g.appendChild(el('h2', 'ag-about-title', 'About the voices'));
   const p = el('p', 'ag-about');
-  p.innerHTML = 'Every clip is a real person in a recorded conversation, from the <a href="https://huggingface.co/datasets/edinburghcstr/edacc" target="_blank" rel="noopener">EdAcc corpus</a> (University of Edinburgh), shared under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. These clips are shortened excerpts; this edited set is shared under the same license, with <a href="https://github.com/lukaswall/accent-guessr/blob/main/ATTRIBUTION.md" target="_blank" rel="noopener">per-clip credits and the edited set</a> in the source repository. The answer is the corpus\'s own accent label for that recording, and each reveal also names the speaker\'s first language. An accent label is a description of speech, not a fact about where someone was born or raised, so treat it as that, not a verdict on anyone. The map after each reveal highlights the place a label is named after (country boundaries: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>, public domain) - not where the speaker is from.';
+  p.innerHTML = 'Every clip is a real person in a recorded conversation, from the <a href="https://huggingface.co/datasets/edinburghcstr/edacc" target="_blank" rel="noopener">EdAcc corpus</a> (University of Edinburgh), shared under <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>. These clips are shortened excerpts; this edited set is shared under the same license, with <a href="https://github.com/lukaswall/accent-guessr/blob/main/ATTRIBUTION.md" target="_blank" rel="noopener">per-clip credits and the edited set</a> in the source repository. The answer is the corpus\'s own accent label for that recording. An accent label is a description of speech, not a fact about where someone was born or raised, so treat it as that, not a verdict on anyone. The map after each reveal highlights the place a label is named after (country boundaries: <a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener">Natural Earth</a>, public domain) - not where the speaker is from.';
   g.appendChild(p);
   const c = el('p', 'ag-closing', 'Your streaks and scores stay on this device.');
   g.appendChild(c);
@@ -373,11 +346,6 @@ function startShort(key) {
   state.set = buildQueue(hashStr(`short:${key}:${Date.now()}`), new Set());
   state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
 }
-function startMap() {
-  state.mode = 'map';
-  state.set = buildQueue(hashStr(`map:${Date.now()}`), new Set());
-  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
-}
 function startQuick() {
   state.mode = 'quick';
   state.set = buildQueue(hashStr(`quick:${Date.now()}`), new Set());
@@ -403,7 +371,7 @@ function renderHome() {
   }
   home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
   const modeRow = el('div', 'ag-mode-row');
-  [['Map guess', startMap], ['Quick pick', startQuick]].forEach(([lab, fn]) => {
+  [['Quick pick', startQuick]].forEach(([lab, fn]) => {
     const b = el('button', 'ag-btn is-primary', lab);
     b.onclick = fn;
     modeRow.appendChild(b);
@@ -428,7 +396,7 @@ function renderHome() {
   p.onclick = startPractice;
   home.appendChild(p);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best5 || 0], ...(state.stats.best ? [['best daily (old /15)', state.stats.best]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best map', state.mapg.best], ['best quick', state.quick.best]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best5 || 0], ...(state.stats.best ? [['best daily (old /15)', state.stats.best]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best quick', state.quick.best]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -458,17 +426,16 @@ function renderRound() {
   const total = state.set.length;
   const isHard = state.mode === 'hard';
   const isShort = state.mode === 'short';
-  const isMap = state.mode === 'map';
   const isQuick = state.mode === 'quick';
-  const isRun = state.mode === 'endless' || isHard || isShort || isMap || isQuick;
-  roundState = { played: false, wrong: [], taps: [], over: false, solved: false, skipped: false, step: 0, clues: 0 };
+  const isRun = state.mode === 'endless' || isHard || isShort || isQuick;
+  roundState = { played: false, wrong: [], over: false, solved: false, skipped: false, step: 0, clues: 0 };
 
   app.appendChild(header());
   const round = el('div', 'ag-round');
 
   const prog = el('div', 'ag-progress');
   if (isRun) {
-    const runName = isHard ? 'Hard' : isShort ? SHORT[state.shortMode].label : isMap ? 'Map guess' : isQuick ? 'Quick pick' : 'Endless';
+    const runName = isHard ? 'Hard' : isShort ? SHORT[state.shortMode].label : isQuick ? 'Quick pick' : 'Endless';
     prog.appendChild(el('span', 'ag-round-no', `${runName} · voice ${state.index + 1} · streak ${state.cleared}`));
   } else {
     for (let i = 0; i < total; i++) prog.appendChild(el('span', 'ag-dot' + (i === state.index ? ' is-now' : i < state.index ? ' is-done' : '')));
@@ -491,7 +458,7 @@ function renderRound() {
     return 'Replay as much as you like';
   };
 
-  let input = null; let quickBtns = null; let mapSvgEl = null;
+  let input = null; let quickBtns = null;
 
   // Player: a clear play/pause toggle, a replay-from-start button, a live
   // time readout and a progress bar. The clock and bar always cover the
@@ -601,7 +568,6 @@ function renderRound() {
     playBtn.setAttribute('aria-label', 'Pause voice');
     if (input) { input.disabled = false; input.placeholder = 'Search accents or countries…'; }
     if (quickBtns) quickBtns.forEach((b) => { b.disabled = false; });
-    if (mapSvgEl) mapSvgEl.classList.remove('is-locked');
     skipBtn.disabled = false;
   });
   const stopped = () => {
@@ -629,7 +595,7 @@ function renderRound() {
   tools.appendChild(tries);
   tools.appendChild(skipBtn);
 
-  const turnsUsed = () => (isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length) + roundState.clues;
+  const turnsUsed = () => roundState.wrong.length + roundState.clues;
   // Clues come only from the accent label itself (the answer set), never from
   // per-speaker metadata: the world region the label belongs to, then its letters.
   const clueList = () => [
@@ -679,7 +645,7 @@ function renderRound() {
 
   const guessWrap = el('div', 'ag-guess');
   let closeOptions = () => {};
-  if (!isMap && !isQuick) {
+  if (!isQuick) {
   const inputWrap = el('div', 'ag-input-wrap');
   input = el('input', 'ag-input');
   input.type = 'text'; input.placeholder = 'Play the voice first'; input.disabled = true;
@@ -790,24 +756,6 @@ function renderRound() {
     guessWrap.appendChild(pickWrap);
   }
 
-  // Map guess: a plain world map (no highlight - no spoilers) that takes tap
-  // guesses once the voice has been played.
-  if (isMap) {
-    guessWrap.appendChild(el('p', 'ag-map-tip', 'Tap the map where you think this accent belongs. Five turns per voice: each tap or Next clue uses one.'));
-    mapSvgEl = buildMap(null, [], null);
-    mapSvgEl.classList.add('is-live', 'is-locked');
-    mapSvgEl.addEventListener('click', (e) => {
-      if (roundState.over || !roundState.played) return;
-      const m = mapSvgEl.getScreenCTM();
-      if (!m) return;
-      const pt = mapSvgEl.createSVGPoint();
-      pt.x = e.clientX; pt.y = e.clientY;
-      const p = pt.matrixTransform(m.inverse());
-      chooseTap(p.x, p.y);
-    });
-    guessWrap.appendChild(mapSvgEl);
-  }
-
   drawTries();
 
   const wrongBox = el('div', 'ag-wrong');
@@ -841,56 +789,6 @@ function renderRound() {
     };
     requestAnimationFrame(step);
     return chip;
-  }
-
-  // Map guess: a tap scores by proximity to the answer's anchor. Inside the
-  // namesake country path or the region marker, or within MAP_OK_KM of the
-  // anchor, counts as correct; anything else is a miss with a distance chip.
-  const addTapMarker = (x, y, ok) => {
-    if (!mapSvgEl) return;
-    const NS = 'http://www.w3.org/2000/svg';
-    const m = document.createElementNS(NS, 'circle');
-    m.setAttribute('cx', x); m.setAttribute('cy', y); m.setAttribute('r', 6);
-    m.setAttribute('class', 'ag-map-tap' + (ok ? ' is-ok' : ''));
-    mapSvgEl.appendChild(m);
-  };
-  function makeTapChip(km) {
-    const chip = el('span', 'ag-chip' + (reducedMotion ? '' : ' ag-chip-in'));
-    if (km === null) { chip.textContent = 'Your tap'; return chip; }
-    chip.appendChild(document.createTextNode('Your tap · '));
-    chip.appendChild(el('span', 'ag-chip-km', `${fmtKm(km)} off`));
-    if (km < 1500) chip.classList.add('is-close');
-    else if (km < 6000) chip.classList.add('is-mid');
-    return chip;
-  }
-  function chooseTap(x, y) {
-    if (roundState.over || !roundState.played) return;
-    const [lat, lon] = xyToLL(x, y);
-    const anchor = anchorOf(clip.answer);
-    const km = anchor ? kmBetween([lat, lon], anchor) : null;
-    let ok = false;
-    const codes = MAP_ISO[clip.answer] || [];
-    if (codes.length && mapSvgEl && mapSvgEl._paths) {
-      const pt = mapSvgEl.createSVGPoint(); pt.x = x; pt.y = y;
-      ok = codes.some((c) => {
-        const pth = mapSvgEl._paths[c];
-        try { return pth ? pth.isPointInFill(pt) : false; } catch (e) { return false; }
-      });
-    }
-    const reg = MAP_REGION[clip.answer];
-    if (!ok && reg) {
-      const dx = (x - reg.cx) / (reg.rx * 1.4), dy = (y - reg.cy) / (reg.ry * 1.4);
-      ok = dx * dx + dy * dy <= 1;
-    }
-    if (!ok && km !== null && km <= MAP_OK_KM) ok = true;
-    roundState.taps.push({ x, y, ok });
-    addTapMarker(x, y, ok);
-    if (ok) { roundState.solved = true; roundState.over = true; }
-    else {
-      wrongBox.appendChild(makeTapChip(km));
-      if (turnsUsed() >= TURNS) roundState.over = true;
-    }
-    if (roundState.over) reveal(); else drawTries();
   }
 
   function choose(a) {
@@ -939,7 +837,7 @@ function renderRound() {
     head.appendChild(el('span', 'ag-reveal-country', PLACE[clip.answer] || clip.answer));
     head.appendChild(el('span', 'ag-reveal-pts', roundState.solved ? `+${points}` : '0'));
     box.appendChild(head);
-    box.appendChild(isMap ? buildMap(clip.answer, [], roundState.taps) : buildMap(clip.answer, roundState.wrong));
+    box.appendChild(buildMap(clip.answer, roundState.wrong));
     box.appendChild(el('p', 'ag-reveal-cap', `The map highlights ${PLACE[clip.answer] || clip.answer} - the place this accent label is named after, not where the speaker is from.`));
     const meta = el('div', 'ag-reveal-meta');
     meta.appendChild(el('span', null, `Accent: ${clip.region}`));
@@ -998,10 +896,6 @@ function finishRun() {
     state.short[state.shortMode] = { best: Math.max(cur.best, state.cleared), runs: cur.runs + 1 };
     store.set('accent-guessr.shorts.v1', state.short);
   }
-  if (state.mode === 'map') {
-    state.mapg = { best: Math.max(state.mapg.best, state.cleared), runs: state.mapg.runs + 1 };
-    store.set('accent-guessr.map.v1', state.mapg);
-  }
   if (state.mode === 'quick') {
     state.quick = { best: Math.max(state.quick.best, state.cleared), runs: state.quick.runs + 1 };
     store.set('accent-guessr.quick.v1', state.quick);
@@ -1015,10 +909,9 @@ function renderResults() {
   const res = el('div', 'ag-results');
   const isHard = state.mode === 'hard';
   const isShort = state.mode === 'short';
-  const isMap = state.mode === 'map';
   const isQuick = state.mode === 'quick';
-  const isRun = state.mode === 'endless' || isHard || isShort || isMap || isQuick;
-  const runName = isHard ? 'Hard mode' : isShort ? `${SHORT[state.shortMode].label} mode` : isMap ? 'Map guess' : isQuick ? 'Quick pick' : 'Endless';
+  const isRun = state.mode === 'endless' || isHard || isShort || isQuick;
+  const runName = isHard ? 'Hard mode' : isShort ? `${SHORT[state.shortMode].label} mode` : isQuick ? 'Quick pick' : 'Endless';
   const score = state.rounds.reduce((s, r) => s + r.points, 0);
   const max = state.rounds.length * TURNS;
 
@@ -1027,7 +920,7 @@ function renderResults() {
     sc.appendChild(el('span', 'ag-score-num', String(state.cleared)));
     sc.appendChild(el('span', 'ag-score-max', state.cleared === 1 ? ' voice' : ' voices'));
     res.appendChild(sc);
-    const best = isHard ? state.hard.best : isShort ? (state.short[state.shortMode] || { best: 0 }).best : isMap ? state.mapg.best : isQuick ? state.quick.best : state.endless.best;
+    const best = isHard ? state.hard.best : isShort ? (state.short[state.shortMode] || { best: 0 }).best : isQuick ? state.quick.best : state.endless.best;
     res.appendChild(el('p', 'ag-done-score', `${score} points · best ${best}`));
   } else {
     const sc = el('div', 'ag-score');
@@ -1060,7 +953,7 @@ function renderResults() {
   };
   actions.appendChild(copy);
   const again = el('button', 'ag-btn is-ghost', isRun ? 'Play again' : 'Practice more');
-  again.onclick = isHard ? startHard : isShort ? () => startShort(state.shortMode) : isMap ? startMap : isQuick ? startQuick : (state.mode === 'endless' ? startEndless : startPractice);
+  again.onclick = isHard ? startHard : isShort ? () => startShort(state.shortMode) : isQuick ? startQuick : (state.mode === 'endless' ? startEndless : startPractice);
   actions.appendChild(again);
   res.appendChild(actions);
 
