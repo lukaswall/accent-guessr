@@ -1,6 +1,6 @@
 # Accent Guessr
 
-A daily accent-guessing game. Five real voices a day: listen, then guess which accent each speaker has. Three guesses per voice with progressive hints, an endless mode, a practice mode, and a hard mode that starts you with 2 seconds of audio and unlocks more of the same clip (3 s, 5 s, full) as you guess or skip. After each reveal a world map highlights the place the answer label is named after. Streaks and a shareable score.
+A daily accent-guessing game. Five real voices a day: listen, then guess which accent each speaker has. Three guesses per voice with progressive hints, an endless mode, a practice mode, fixed-length short modes (2, 3 or 5 seconds of every voice), and a hard mode that starts you with 2 seconds of audio and unlocks more of the same clip (3 s, 5 s, full) as you guess or skip. The player shows the unlocked time, playback progress, and has play/pause and replay-from-start controls. After each reveal a world map highlights the place the answer label is named after. Streaks and a shareable score.
 
 Play it: https://lukaswall.github.io/accent-guessr/
 
