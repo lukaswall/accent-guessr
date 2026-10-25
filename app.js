@@ -96,8 +96,8 @@ const MAP_REGION = {
 // Hard mode: the same clip, revealed progressively. You start with 2 seconds;
 // each wrong guess or skip unlocks the next step (3 s, 5 s, then the full
 // clip). Solving earlier scores more.
-const TURNS = 5; // turns per voice outside hard mode: each guess or Next clue uses one
-const HARD_STEPS = [2, 3, 5]; // seconds; anything past the last entry = full clip
+const TURNS = 3; // guesses per voice outside hard mode; there are no text clues anymore
+const HARD_STEPS = [2, 5]; // seconds; anything past the last entry = full clip
 
 // Short modes: the same game, but every voice is capped at one fixed length.
 // Each length is its own mode with its own saved best.
@@ -197,10 +197,10 @@ function buildQueue(seed, excludeIds) {
 function pad2(n) { return String(n).padStart(2, '0'); }
 function todayStr() { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; }
 function prettyDate() { return new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }); }
-// Five turns per voice: each guess or Next clue uses one. Scores 5/4/3/2/1/0; hard mode scores 4/3/2/1/0 (solved from less audio = more).
+// Three guesses per voice. Scores 3/2/1/0 (same /15 daily scale as the original game); hard mode scores 3/2/1/0 (solved from less audio = more).
 function squares(p) {
   {
-    return p >= 4 ? '🟩' : p === 3 ? '🟨' : p === 2 ? '🟧' : p === 1 ? '🟥' : '⬛';
+    return p >= 3 ? '🟩' : p === 2 ? '🟨' : p === 1 ? '🟧' : '⬛';
   }
 }
 
@@ -395,7 +395,7 @@ function renderHome() {
     const sq = el('div', 'ag-squares');
     state.stats.lastRounds.forEach(r => sq.appendChild(el('span', null, squares(r.points))));
     done.appendChild(sq);
-    done.appendChild(el('p', 'ag-done-score', `Today: ${state.stats.lastRounds.reduce((s, r) => s + r.points, 0)} / ${state.stats.scale5 ? state.stats.lastRounds.length * TURNS : 15}`));
+    done.appendChild(el('p', 'ag-done-score', `Today: ${state.stats.lastRounds.reduce((s, r) => s + r.points, 0)} / ${state.stats.lastRounds.length * (state.stats.scale5 ? 5 : TURNS)}`));
     done.appendChild(countdownLine());
     home.appendChild(done);
   } else {
@@ -434,7 +434,7 @@ function renderHome() {
   p.onclick = startPractice;
   home.appendChild(p);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best5 || 0], ...(state.stats.best ? [['best daily (old /15)', state.stats.best]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best quick', state.quick.best]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best || 0], ...(state.stats.best5 ? [['best daily (5-guess era /25)', state.stats.best5]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best quick', state.quick.best]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -635,22 +635,10 @@ function renderRound() {
   tools.appendChild(tries);
   tools.appendChild(skipBtn);
 
-  const turnsUsed = () => roundState.wrong.length + roundState.clues;
-  // Clues come only from the accent label itself (the answer set), never from
-  // per-speaker metadata: the world region the label belongs to, then its letters.
-  const clueList = () => [
-    `Region: ${clip.continent}`,
-    `Accent starts with "${clip.answer[0]}"`,
-    `Accent name has ${clip.answer.replace(/ /g, '').length} letters`,
-    `Accent starts with "${clip.answer.slice(0, 3)}"`,
-  ];
-  const drawHints = () => {
-    if (isHard) return;
-    const list = clueList();
-    const n = Math.min(turnsUsed(), list.length);
-    hints.innerHTML = '';
-    for (let i = 0; i < n; i++) hints.appendChild(el('span', 'ag-hint', list[i]));
-  };
+  const turnsUsed = () => roundState.wrong.length;
+  // No text clues: region and letter hints gave the answer away. Help is only
+  // ever more audio (hard mode's ladder); elsewhere the full clip is already
+  // unlocked, so the only way forward is listening again.
   const updateSkipLabel = () => {
     if (!isHard) return;
     if (roundState.step < HARD_STEPS.length) {
@@ -664,7 +652,7 @@ function renderRound() {
   const drawTries = () => {
     tries.innerHTML = '';
     if (isHard) {
-      ['2 s', '3 s', '5 s', 'Full'].forEach((lab, i) => {
+      HARD_STEPS.map(s2 => `${s2} s`).concat(['Full']).forEach((lab, i) => {
         tries.appendChild(el('span', 'ag-step' + (i < roundState.step ? ' is-done' : i === roundState.step ? ' is-now' : ''), lab));
       });
       updateSkipLabel();
@@ -672,9 +660,8 @@ function renderRound() {
     }
     const left = TURNS - turnsUsed();
     for (let i = 0; i < TURNS; i++) tries.appendChild(el('span', 'ag-try' + (i < left ? ' is-left' : '')));
-    tries.appendChild(el('span', null, `${left} ${left === 1 ? 'turn' : 'turns'} left`));
-    skipBtn.textContent = left > 1 ? 'Next clue' : 'Give up';
-    drawHints();
+    tries.appendChild(el('span', null, `${left} ${left === 1 ? 'guess' : 'guesses'} left`));
+    skipBtn.textContent = 'Give up';
   };
   const advanceStep = () => {
     roundState.step += 1;
@@ -858,19 +845,13 @@ function renderRound() {
       advanceStep();
       return;
     }
-    if (!isHard && turnsUsed() < TURNS - 1) {
-      // Next clue: one extra clue, and it costs one of the five turns.
-      roundState.clues += 1;
-      drawTries();
-      return;
-    }
     roundState.skipped = true;
     roundState.over = true;
     reveal();
   };
 
   function reveal() {
-    const points = roundState.solved ? (isHard ? 4 - roundState.step : TURNS - turnsUsed()) : 0;
+    const points = roundState.solved ? (isHard ? HARD_STEPS.length + 1 - roundState.step : TURNS - turnsUsed()) : 0;
     tools.style.display = 'none'; guessWrap.style.display = 'none';
     const box = el('div', 'ag-reveal' + (roundState.solved ? ' is-right' : ' is-missed'));
     const head = el('div', 'ag-reveal-head');
@@ -914,9 +895,9 @@ function finishRun() {
     const yesterday = `${y.getFullYear()}-${pad2(y.getMonth() + 1)}-${pad2(y.getDate())}`;
     state.stats = {
       plays: state.stats.plays + 1,
-      best: state.stats.best, // legacy best on the old 3-per-voice (/15) scale, kept as is
-      best5: Math.max(state.stats.best5 || 0, score), // best on the current 5-per-voice (/25) scale
-      scale5: true,
+      best: Math.max(state.stats.best, score), // current scale is back to the original 3-per-voice (/15)
+      best5: state.stats.best5 || 0, // frozen: 5-guess era (/25), shown as its own legacy stat
+      scale5: false,
       streak: state.stats.lastDaily === yesterday ? state.stats.streak + 1 : 1,
       lastDaily: today,
       lastRounds: state.rounds.slice(),
