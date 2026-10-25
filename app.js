@@ -395,7 +395,7 @@ function renderRound() {
 
   const drawOptions = () => {
     const list = filterAnswers(input.value);
-    visibleOpts = list;
+    visibleOpts = [];
     activeIdx = -1;
     input.removeAttribute('aria-activedescendant');
     optionsBox.innerHTML = '';
@@ -406,6 +406,7 @@ function renderRound() {
       if (!inGroup.length) continue;
       optionsBox.appendChild(el('div', 'ag-opt-group', grp));
       inGroup.forEach(a => {
+        visibleOpts.push(a);
         const b = el('button', 'ag-option' + (roundState.wrong.includes(a) ? ' is-taken' : ''));
         b.type = 'button'; b.setAttribute('role', 'option');
         b.id = `ag-opt-${optId++}`;
