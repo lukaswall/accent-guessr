@@ -45,8 +45,6 @@ body {
 .ag-foot { margin-top: 28px; display: flex; justify-content: center; }
 .ag-round, .ag-home, .ag-results { animation: ag-enter 0.28s ease-out both; }
 @keyframes ag-enter { from { opacity: 0; transform: translateY(8px); } }
-.ag-map-tap { transform-box: fill-box; transform-origin: center; animation: ag-tap-in 0.3s ease-out both; }
-@keyframes ag-tap-in { from { transform: scale(0.3); opacity: 0.4; } }
 .ag-mode-row { display: flex; gap: 10px; }
 .ag-mode-row .ag-btn { flex: 1; padding: 14px 10px; }
 .ag-pick-wrap { display: flex; flex-direction: column; gap: 8px; }
@@ -54,11 +52,6 @@ body {
 .ag-pick:active { background: var(--ag-acc-soft); }
 .ag-pick:disabled { opacity: 0.45; cursor: default; }
 .ag-pick.is-taken { text-decoration: line-through; }
-.ag-map-tip { margin: 0; font-size: 13px; color: var(--ds-ink-2); text-align: center; }
-svg.ag-map.is-live { cursor: crosshair; }
-svg.ag-map.is-locked { opacity: 0.55; cursor: default; }
-.ag-map-tap { fill: var(--ds-ink-2); stroke: var(--ds-page); stroke-width: 2; }
-.ag-map-tap.is-ok { fill: var(--ag-acc); }
 
 .ag-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 .ag-stats > div { flex: 1 1 28%; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 6px; border-radius: 14px; background: var(--ag-acc-soft); }
@@ -190,7 +183,7 @@ svg.ag-map.is-locked { opacity: 0.55; cursor: default; }
 .ag-reveal-cap { margin: -4px 0 0; font-size: 12px; color: var(--ds-ink-2); }
 @media (prefers-reduced-motion: reduce) {
   .ag-chip-in { animation: none; }
-  .ag-round, .ag-home, .ag-results, .ag-map-tap { animation: none; }
+  .ag-round, .ag-home, .ag-results { animation: none; }
   .ag-btn { transition: none; }
 }
 
@@ -216,6 +209,6 @@ svg.ag-map.is-locked { opacity: 0.55; cursor: default; }
 <script src="clips-9.js"></script>
 <script>const CLIPS = CLIPS_PARTS.flat();</script>
 <script src="map-data.js?v=1"></script>
-<script src="app.js?v=11"></script>
+<script src="app.js?v=12"></script>
 </body>
 </html>
