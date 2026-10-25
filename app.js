@@ -106,12 +106,21 @@ const SHORT = {
   s5: { sec: 5, label: '5 seconds' },
 };
 
+// Map guess mode: hear the voice, then tap the world map where you think the
+// accent's namesake place is; proximity to the answer decides, like a
+// geography game. Quick pick mode: the same listening game with four written
+// options instead of the search box.
+const MAP_OK_KM = 750; // a tap this close to the answer's anchor counts as correct
+
+function kmBetween(p, q) {
+  const rad = Math.PI / 180, dLat = (q[0] - p[0]) * rad, dLon = (q[1] - p[1]) * rad;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(p[0] * rad) * Math.cos(q[0] * rad) * Math.sin(dLon / 2) ** 2;
+  return Math.round(6371 * 2 * Math.asin(Math.sqrt(h)));
+}
 function kmOff(guess, answer) {
   const g = COORDS[guess], a = COORDS[answer];
   if (!g || !a) return null;
-  const rad = Math.PI / 180, dLat = (a[0] - g[0]) * rad, dLon = (a[1] - g[1]) * rad;
-  const h = Math.sin(dLat / 2) ** 2 + Math.cos(g[0] * rad) * Math.cos(a[0] * rad) * Math.sin(dLon / 2) ** 2;
-  return Math.round(6371 * 2 * Math.asin(Math.sqrt(h)));
+  return kmBetween(g, a);
 }
 function fmtKm(km) {
   if (km < 100) return 'under 100 km';
@@ -203,6 +212,8 @@ const EMPTY_STATS = { plays: 0, best: 0, streak: 0, lastDaily: null, lastRounds:
 const EMPTY_ENDLESS = { best: 0, runs: 0 };
 const EMPTY_HARD = { best: 0, runs: 0 };
 const EMPTY_SHORTS = { s2: { best: 0, runs: 0 }, s3: { best: 0, runs: 0 }, s5: { best: 0, runs: 0 } };
+const EMPTY_MAP = { best: 0, runs: 0 };
+const EMPTY_QUICK = { best: 0, runs: 0 };
 
 const state = {
   screen: 'home', // home | play | results
@@ -216,12 +227,17 @@ const state = {
   hard: store.get('accent-guessr.hard.v1', EMPTY_HARD),
   short: store.get('accent-guessr.shorts.v1', EMPTY_SHORTS),
   shortMode: 's2',
+  mapg: store.get('accent-guessr.map.v1', EMPTY_MAP),
+  quick: store.get('accent-guessr.quick.v1', EMPTY_QUICK),
   seen: store.get('accent-guessr.practice-seen.v1', []),
 };
 
 // Tolerate older/partial saved shapes for the short-mode stats.
 for (const k of Object.keys(SHORT)) {
   if (!state.short[k] || typeof state.short[k].best !== 'number') state.short[k] = { best: 0, runs: 0 };
+}
+for (const k of ['mapg', 'quick']) {
+  if (!state[k] || typeof state[k].best !== 'number') state[k] = { best: 0, runs: 0 };
 }
 
 let audio = null;
@@ -237,22 +253,25 @@ function el(tag, cls, text) {
 // World map (Natural Earth boundaries) shown only after the reveal. The answer
 // highlight marks the place the accent label is named after - never a claim
 // about where the speaker is from. Wrong guesses are shown in grey.
-function buildMap(answer, wrongs) {
+function buildMap(answer, wrongs, taps) {
   const NS = 'http://www.w3.org/2000/svg';
   const svg = document.createElementNS(NS, 'svg');
   svg.setAttribute('viewBox', `0 0 ${MAP.w} ${MAP.h}`);
   svg.setAttribute('class', 'ag-map');
   svg.setAttribute('role', 'img');
-  svg.setAttribute('aria-label', `World map highlighting ${PLACE[answer] || answer}`);
+  svg.setAttribute('aria-label', answer ? `World map highlighting ${PLACE[answer] || answer}` : 'World map');
   const answerSet = new Set(MAP_ISO[answer] || []);
   const wrongSet = new Set();
   wrongs.forEach(w => (MAP_ISO[w] || []).forEach(c => wrongSet.add(c)));
+  const pathByCode = {};
   for (const code of Object.keys(MAP.c)) {
     const p = document.createElementNS(NS, 'path');
     p.setAttribute('d', MAP.c[code]);
     p.setAttribute('class', 'ag-map-c' + (answerSet.has(code) ? ' is-answer' : wrongSet.has(code) ? ' is-wrong' : ''));
+    pathByCode[code] = p;
     svg.appendChild(p);
   }
+  svg._paths = pathByCode;
   const drawRegion = (lbl, cls) => {
     const r = MAP_REGION[lbl];
     if (!r) return;
@@ -264,7 +283,24 @@ function buildMap(answer, wrongs) {
   };
   wrongs.forEach(w => { if (MAP_REGION[w]) drawRegion(w, 'ag-map-region is-wrong'); });
   if (MAP_REGION[answer]) drawRegion(answer, 'ag-map-region is-answer');
+  if (taps) taps.forEach((t) => {
+    const m = document.createElementNS(NS, 'circle');
+    m.setAttribute('cx', t.x); m.setAttribute('cy', t.y); m.setAttribute('r', 6);
+    m.setAttribute('class', 'ag-map-tap' + (t.ok ? ' is-ok' : ''));
+    svg.appendChild(m);
+  });
   return svg;
+}
+
+// Equirectangular projection helpers (matches the map data) for tap guessing.
+function llToXY(lat, lon) { return [(lon + 180) / 360 * MAP.w, (90 - lat) / 180 * MAP.h]; }
+function xyToLL(x, y) { return [90 - y / MAP.h * 180, x / MAP.w * 360 - 180]; }
+// Anchor point per answer: the documented anchor for country-named labels; for
+// region labels, the centre of the region marker drawn over that area.
+function anchorOf(answer) {
+  if (COORDS[answer]) return COORDS[answer];
+  const r = MAP_REGION[answer];
+  return r ? xyToLL(r.cx, r.cy) : null;
 }
 
 const app = document.getElementById('app');
@@ -333,6 +369,16 @@ function startShort(key) {
   state.set = buildQueue(hashStr(`short:${key}:${Date.now()}`), new Set());
   state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
 }
+function startMap() {
+  state.mode = 'map';
+  state.set = buildQueue(hashStr(`map:${Date.now()}`), new Set());
+  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+}
+function startQuick() {
+  state.mode = 'quick';
+  state.set = buildQueue(hashStr(`quick:${Date.now()}`), new Set());
+  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+}
 
 function renderHome() {
   app.appendChild(header());
@@ -351,25 +397,34 @@ function renderHome() {
     b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set()); state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render(); };
     home.appendChild(b);
   }
-  const hd = el('button', 'ag-btn is-primary is-big', 'Hard mode · 2-second start');
-  hd.onclick = startHard;
-  home.appendChild(hd);
-  const e = el('button', 'ag-btn is-primary is-big', 'Endless');
-  e.onclick = startEndless;
-  home.appendChild(e);
-  const p = el('button', 'ag-btn is-ghost is-big', 'Practice');
-  p.onclick = startPractice;
-  home.appendChild(p);
+  home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
+  const modeRow = el('div', 'ag-mode-row');
+  [['Map guess', startMap], ['Quick pick', startQuick]].forEach(([lab, fn]) => {
+    const b = el('button', 'ag-btn is-primary', lab);
+    b.onclick = fn;
+    modeRow.appendChild(b);
+  });
+  home.appendChild(modeRow);
+  const runRow = el('div', 'ag-mode-row');
+  [['Endless', startEndless], ['Hard · 2 s start', startHard]].forEach(([lab, fn]) => {
+    const b = el('button', 'ag-btn is-primary', lab);
+    b.onclick = fn;
+    runRow.appendChild(b);
+  });
+  home.appendChild(runRow);
   home.appendChild(el('p', 'ag-home-sub', 'Short clips - pick how much of each voice you hear'));
-  const shortRow = el('div', 'ag-short-row');
+  const shortRow = el('div', 'ag-mode-row');
   Object.keys(SHORT).forEach((key) => {
     const b = el('button', 'ag-btn is-ghost', SHORT[key].label);
     b.onclick = () => startShort(key);
     shortRow.appendChild(b);
   });
   home.appendChild(shortRow);
+  const p = el('button', 'ag-btn is-ghost is-big', 'Practice');
+  p.onclick = startPractice;
+  home.appendChild(p);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best], ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best], ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best map', state.mapg.best], ['best quick', state.quick.best]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -387,15 +442,17 @@ function renderRound() {
   const total = state.set.length;
   const isHard = state.mode === 'hard';
   const isShort = state.mode === 'short';
-  const isRun = state.mode === 'endless' || isHard || isShort;
-  roundState = { played: false, wrong: [], over: false, solved: false, skipped: false, step: 0 };
+  const isMap = state.mode === 'map';
+  const isQuick = state.mode === 'quick';
+  const isRun = state.mode === 'endless' || isHard || isShort || isMap || isQuick;
+  roundState = { played: false, wrong: [], taps: [], over: false, solved: false, skipped: false, step: 0 };
 
   app.appendChild(header());
   const round = el('div', 'ag-round');
 
   const prog = el('div', 'ag-progress');
   if (isRun) {
-    const runName = isHard ? 'Hard' : isShort ? SHORT[state.shortMode].label : 'Endless';
+    const runName = isHard ? 'Hard' : isShort ? SHORT[state.shortMode].label : isMap ? 'Map guess' : isQuick ? 'Quick pick' : 'Endless';
     prog.appendChild(el('span', 'ag-round-no', `${runName} · voice ${state.index + 1} · streak ${state.cleared}`));
   } else {
     for (let i = 0; i < total; i++) prog.appendChild(el('span', 'ag-dot' + (i === state.index ? ' is-now' : i < state.index ? ' is-done' : '')));
@@ -416,6 +473,8 @@ function renderRound() {
     if (isFinite(lim)) return `First ${lim} seconds unlocked · replay as much as you like`;
     return 'Replay as much as you like';
   };
+
+  let input = null; let quickBtns = null; let mapSvgEl = null;
 
   // Player: a clear play/pause toggle, a replay-from-start button, a live
   // time readout and a progress bar. The clock and bar always cover the
@@ -479,8 +538,9 @@ function renderRound() {
     roundState.played = true;
     core.innerHTML = pauseSvg;
     playBtn.setAttribute('aria-label', 'Pause voice');
-    input.disabled = false;
-    input.placeholder = 'Search accents or countries…';
+    if (input) { input.disabled = false; input.placeholder = 'Search accents or countries…'; }
+    if (quickBtns) quickBtns.forEach((b) => { b.disabled = false; });
+    if (mapSvgEl) mapSvgEl.classList.remove('is-locked');
     skipBtn.disabled = false;
   });
   const stopped = () => {
@@ -507,26 +567,6 @@ function renderRound() {
   tools.appendChild(tries);
   tools.appendChild(skipBtn);
 
-  const guessWrap = el('div', 'ag-guess');
-  const inputWrap = el('div', 'ag-input-wrap');
-  const input = el('input', 'ag-input');
-  input.type = 'text'; input.placeholder = 'Play the voice first'; input.disabled = true;
-  input.autocomplete = 'off'; input.autocapitalize = 'off'; input.spellcheck = false;
-  input.setAttribute('role', 'combobox');
-  input.setAttribute('aria-expanded', 'false');
-  input.setAttribute('aria-label', 'Search accents or countries');
-  const caret = el('button', 'ag-caret');
-  caret.type = 'button';
-  caret.setAttribute('aria-label', 'Show all options');
-  caret.tabIndex = -1;
-  caret.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
-  const optionsBox = el('div', 'ag-options');
-  optionsBox.setAttribute('role', 'listbox');
-  optionsBox.style.display = 'none';
-
-  let visibleOpts = [];
-  let activeIdx = -1;
-
   const updateSkipLabel = () => {
     if (!isHard) return;
     if (roundState.step < HARD_STEPS.length) {
@@ -546,18 +586,39 @@ function renderRound() {
       updateSkipLabel();
       return;
     }
-    const left = 3 - roundState.wrong.length;
+    const wrongN = isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length;
+    const left = 3 - wrongN;
     for (let i = 0; i < 3; i++) tries.appendChild(el('span', 'ag-try' + (i < left ? ' is-left' : '')));
-    tries.appendChild(el('span', null, `${left} ${left === 1 ? 'guess' : 'guesses'} left`));
+    tries.appendChild(el('span', null, `${left} ${isMap ? (left === 1 ? 'tap' : 'taps') : (left === 1 ? 'guess' : 'guesses')} left`));
   };
-  drawTries();
-
   const advanceStep = () => {
     roundState.step += 1;
     playerHint.textContent = hintText();
     drawTime();
     drawTries();
   };
+
+  const guessWrap = el('div', 'ag-guess');
+  let closeOptions = () => {};
+  if (!isMap && !isQuick) {
+  const inputWrap = el('div', 'ag-input-wrap');
+  input = el('input', 'ag-input');
+  input.type = 'text'; input.placeholder = 'Play the voice first'; input.disabled = true;
+  input.autocomplete = 'off'; input.autocapitalize = 'off'; input.spellcheck = false;
+  input.setAttribute('role', 'combobox');
+  input.setAttribute('aria-expanded', 'false');
+  input.setAttribute('aria-label', 'Search accents or countries');
+  const caret = el('button', 'ag-caret');
+  caret.type = 'button';
+  caret.setAttribute('aria-label', 'Show all options');
+  caret.tabIndex = -1;
+  caret.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+  const optionsBox = el('div', 'ag-options');
+  optionsBox.setAttribute('role', 'listbox');
+  optionsBox.style.display = 'none';
+
+  let visibleOpts = [];
+  let activeIdx = -1;
 
   const setActive = (idx) => {
     activeIdx = idx;
@@ -575,7 +636,7 @@ function renderRound() {
   };
 
   const openOptions = () => { optionsBox.style.display = ''; input.setAttribute('aria-expanded', 'true'); drawOptions(); };
-  const closeOptions = () => { optionsBox.style.display = 'none'; input.setAttribute('aria-expanded', 'false'); };
+  closeOptions = () => { optionsBox.style.display = 'none'; input.setAttribute('aria-expanded', 'false'); };
 
   const drawOptions = () => {
     const list = filterAnswers(input.value);
@@ -626,6 +687,49 @@ function renderRound() {
   inputWrap.appendChild(caret);
   guessWrap.appendChild(inputWrap);
   guessWrap.appendChild(optionsBox);
+  }
+
+  // Quick pick: four written options per voice - the answer plus three
+  // distractors - instead of the search box. Taps are locked until the voice
+  // has been played.
+  if (isQuick) {
+    const rndQ = mulberry32(hashStr(`quick:${clip.id}`));
+    const distract = shuffleArr(ANSWERS.filter(a => a !== clip.answer), rndQ).slice(0, 3);
+    const opts = shuffleArr([clip.answer].concat(distract), rndQ);
+    const pickWrap = el('div', 'ag-pick-wrap');
+    quickBtns = opts.map((a) => {
+      const b = el('button', 'ag-pick');
+      b.type = 'button';
+      b.disabled = true;
+      b.dataset.answer = a;
+      b.appendChild(el('span', 'ag-opt-place', PLACE[a] || a));
+      b.appendChild(el('span', 'ag-opt-label', a === PLACE[a] ? 'Accent label' : `${a} accent`));
+      b.onclick = () => choose(a);
+      pickWrap.appendChild(b);
+      return b;
+    });
+    guessWrap.appendChild(pickWrap);
+  }
+
+  // Map guess: a plain world map (no highlight - no spoilers) that takes tap
+  // guesses once the voice has been played.
+  if (isMap) {
+    guessWrap.appendChild(el('p', 'ag-map-tip', 'Tap the map where you think this accent belongs. Three taps per voice.'));
+    mapSvgEl = buildMap(null, [], null);
+    mapSvgEl.classList.add('is-live', 'is-locked');
+    mapSvgEl.addEventListener('click', (e) => {
+      if (roundState.over || !roundState.played) return;
+      const m = mapSvgEl.getScreenCTM();
+      if (!m) return;
+      const pt = mapSvgEl.createSVGPoint();
+      pt.x = e.clientX; pt.y = e.clientY;
+      const p = pt.matrixTransform(m.inverse());
+      chooseTap(p.x, p.y);
+    });
+    guessWrap.appendChild(mapSvgEl);
+  }
+
+  drawTries();
 
   const wrongBox = el('div', 'ag-wrong');
   const hints = el('div', 'ag-hints');
@@ -660,13 +764,64 @@ function renderRound() {
     return chip;
   }
 
+  // Map guess: a tap scores by proximity to the answer's anchor. Inside the
+  // namesake country path or the region marker, or within MAP_OK_KM of the
+  // anchor, counts as correct; anything else is a miss with a distance chip.
+  const addTapMarker = (x, y, ok) => {
+    if (!mapSvgEl) return;
+    const NS = 'http://www.w3.org/2000/svg';
+    const m = document.createElementNS(NS, 'circle');
+    m.setAttribute('cx', x); m.setAttribute('cy', y); m.setAttribute('r', 6);
+    m.setAttribute('class', 'ag-map-tap' + (ok ? ' is-ok' : ''));
+    mapSvgEl.appendChild(m);
+  };
+  function makeTapChip(km) {
+    const chip = el('span', 'ag-chip' + (reducedMotion ? '' : ' ag-chip-in'));
+    if (km === null) { chip.textContent = 'Your tap'; return chip; }
+    chip.appendChild(document.createTextNode('Your tap · '));
+    chip.appendChild(el('span', 'ag-chip-km', `${fmtKm(km)} off`));
+    if (km < 1500) chip.classList.add('is-close');
+    else if (km < 6000) chip.classList.add('is-mid');
+    return chip;
+  }
+  function chooseTap(x, y) {
+    if (roundState.over || !roundState.played) return;
+    const [lat, lon] = xyToLL(x, y);
+    const anchor = anchorOf(clip.answer);
+    const km = anchor ? kmBetween([lat, lon], anchor) : null;
+    let ok = false;
+    const codes = MAP_ISO[clip.answer] || [];
+    if (codes.length && mapSvgEl && mapSvgEl._paths) {
+      const pt = mapSvgEl.createSVGPoint(); pt.x = x; pt.y = y;
+      ok = codes.some((c) => {
+        const pth = mapSvgEl._paths[c];
+        try { return pth ? pth.isPointInFill(pt) : false; } catch (e) { return false; }
+      });
+    }
+    const reg = MAP_REGION[clip.answer];
+    if (!ok && reg) {
+      const dx = (x - reg.cx) / (reg.rx * 1.4), dy = (y - reg.cy) / (reg.ry * 1.4);
+      ok = dx * dx + dy * dy <= 1;
+    }
+    if (!ok && km !== null && km <= MAP_OK_KM) ok = true;
+    roundState.taps.push({ x, y, ok });
+    addTapMarker(x, y, ok);
+    if (ok) { roundState.solved = true; roundState.over = true; }
+    else {
+      wrongBox.appendChild(makeTapChip(km));
+      if (roundState.taps.filter((t) => !t.ok).length >= 3) roundState.over = true;
+    }
+    if (roundState.over) reveal(); else drawTries();
+  }
+
   function choose(a) {
     if (roundState.over || !roundState.played || roundState.wrong.includes(a)) return;
-    input.value = ''; closeOptions();
+    if (input) { input.value = ''; closeOptions(); }
     if (a === clip.answer) { roundState.solved = true; roundState.over = true; }
     else {
       roundState.wrong.push(a);
       wrongBox.appendChild(makeChip(a));
+      if (quickBtns) { const qb = quickBtns.find((b) => b.dataset.answer === a); if (qb) { qb.disabled = true; qb.classList.add('is-taken'); } }
       if (isHard) {
         // A wrong guess unlocks the next chunk of the same clip; a wrong guess
         // on the full clip ends the round.
@@ -694,14 +849,15 @@ function renderRound() {
   };
 
   function reveal() {
-    const points = roundState.solved ? (isHard ? 4 - roundState.step : 3 - roundState.wrong.length) : 0;
+    const wrongN = isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length;
+    const points = roundState.solved ? (isHard ? 4 - roundState.step : 3 - wrongN) : 0;
     tools.style.display = 'none'; guessWrap.style.display = 'none';
     const box = el('div', 'ag-reveal' + (roundState.solved ? ' is-right' : ' is-missed'));
     const head = el('div', 'ag-reveal-head');
     head.appendChild(el('span', 'ag-reveal-country', PLACE[clip.answer] || clip.answer));
     head.appendChild(el('span', 'ag-reveal-pts', roundState.solved ? `+${points}` : '0'));
     box.appendChild(head);
-    box.appendChild(buildMap(clip.answer, roundState.wrong));
+    box.appendChild(isMap ? buildMap(clip.answer, [], roundState.taps) : buildMap(clip.answer, roundState.wrong));
     box.appendChild(el('p', 'ag-reveal-cap', `The map highlights ${PLACE[clip.answer] || clip.answer} - the place this accent label is named after, not where the speaker is from.`));
     const meta = el('div', 'ag-reveal-meta');
     meta.appendChild(el('span', null, `Accent: ${clip.region}`));
@@ -761,6 +917,14 @@ function finishRun() {
     state.short[state.shortMode] = { best: Math.max(cur.best, state.cleared), runs: cur.runs + 1 };
     store.set('accent-guessr.shorts.v1', state.short);
   }
+  if (state.mode === 'map') {
+    state.mapg = { best: Math.max(state.mapg.best, state.cleared), runs: state.mapg.runs + 1 };
+    store.set('accent-guessr.map.v1', state.mapg);
+  }
+  if (state.mode === 'quick') {
+    state.quick = { best: Math.max(state.quick.best, state.cleared), runs: state.quick.runs + 1 };
+    store.set('accent-guessr.quick.v1', state.quick);
+  }
   state.screen = 'results';
   render();
 }
@@ -770,8 +934,10 @@ function renderResults() {
   const res = el('div', 'ag-results');
   const isHard = state.mode === 'hard';
   const isShort = state.mode === 'short';
-  const isRun = state.mode === 'endless' || isHard || isShort;
-  const runName = isHard ? 'Hard mode' : isShort ? `${SHORT[state.shortMode].label} mode` : 'Endless';
+  const isMap = state.mode === 'map';
+  const isQuick = state.mode === 'quick';
+  const isRun = state.mode === 'endless' || isHard || isShort || isMap || isQuick;
+  const runName = isHard ? 'Hard mode' : isShort ? `${SHORT[state.shortMode].label} mode` : isMap ? 'Map guess' : isQuick ? 'Quick pick' : 'Endless';
   const score = state.rounds.reduce((s, r) => s + r.points, 0);
   const max = state.rounds.length * 3;
 
@@ -780,7 +946,7 @@ function renderResults() {
     sc.appendChild(el('span', 'ag-score-num', String(state.cleared)));
     sc.appendChild(el('span', 'ag-score-max', state.cleared === 1 ? ' voice' : ' voices'));
     res.appendChild(sc);
-    const best = isHard ? state.hard.best : isShort ? (state.short[state.shortMode] || { best: 0 }).best : state.endless.best;
+    const best = isHard ? state.hard.best : isShort ? (state.short[state.shortMode] || { best: 0 }).best : isMap ? state.mapg.best : isQuick ? state.quick.best : state.endless.best;
     res.appendChild(el('p', 'ag-done-score', `${score} points · best ${best}`));
   } else {
     const sc = el('div', 'ag-score');
@@ -813,7 +979,7 @@ function renderResults() {
   };
   actions.appendChild(copy);
   const again = el('button', 'ag-btn is-ghost', isRun ? 'Play again' : 'Practice more');
-  again.onclick = isHard ? startHard : isShort ? () => startShort(state.shortMode) : (state.mode === 'endless' ? startEndless : startPractice);
+  again.onclick = isHard ? startHard : isShort ? () => startShort(state.shortMode) : isMap ? startMap : isQuick ? startQuick : (state.mode === 'endless' ? startEndless : startPractice);
   actions.appendChild(again);
   res.appendChild(actions);
 
