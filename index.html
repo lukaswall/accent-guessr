@@ -86,8 +86,12 @@ svg.ag-map.is-locked { opacity: 0.55; cursor: default; }
 }
 .ag-playbtn:active .ag-player-core { transform: scale(0.95); }
 .ag-time { min-width: 78px; text-align: left; font-size: 14px; color: var(--ds-ink-2); font-variant-numeric: tabular-nums; }
-.ag-track { width: min(280px, 78%); height: 4px; border-radius: 999px; background: var(--ds-hairline); overflow: hidden; }
+.ag-track { position: relative; width: min(320px, 86%); height: 28px; cursor: pointer; touch-action: none; user-select: none; display: flex; align-items: center; }
+.ag-rail { width: 100%; height: 4px; border-radius: 999px; background: var(--ds-hairline); overflow: hidden; }
 .ag-track-fill { height: 100%; width: 0%; background: var(--ag-acc); border-radius: 999px; }
+.ag-thumb { position: absolute; top: 50%; left: 0%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: var(--ag-acc); box-shadow: 0 0 0 3px var(--ds-page); transition: transform .1s; }
+.ag-track.is-drag .ag-thumb { transform: scale(1.25); }
+.ag-track:focus-visible { outline: 2px solid var(--ag-acc); outline-offset: 2px; border-radius: 8px; }
 .ag-player-hint { font-size: 12px; color: var(--ds-ink-2); }
 
 .ag-question { margin: 0; font-size: 18px; font-weight: 620; text-align: center; }
@@ -212,6 +216,6 @@ svg.ag-map.is-locked { opacity: 0.55; cursor: default; }
 <script src="clips-9.js"></script>
 <script>const CLIPS = CLIPS_PARTS.flat();</script>
 <script src="map-data.js?v=1"></script>
-<script src="app.js?v=8"></script>
+<script src="app.js?v=9"></script>
 </body>
 </html>
