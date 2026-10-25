@@ -195,7 +195,10 @@ function buildQueue(seed, excludeIds) {
   return queue;
 }
 function pad2(n) { return String(n).padStart(2, '0'); }
-function todayStr() { const d = new Date(); return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`; }
+// The daily set changes at 00:00 UTC for everyone, worldwide (not local
+// midnight), so all players get the same voices for the same date. The date
+// string is the selector seed, so each UTC date keeps its established set.
+function todayStr() { const d = new Date(); return `${d.getUTCFullYear()}-${pad2(d.getUTCMonth() + 1)}-${pad2(d.getUTCDate())}`; }
 function prettyDate() { return new Date().toLocaleDateString(undefined, { day: 'numeric', month: 'long', year: 'numeric' }); }
 // Three guesses per voice. Scores 3/2/1/0 (same /15 daily scale as the original game); hard mode scores 3/2/1/0 (solved from less audio = more).
 function squares(p) {
@@ -330,9 +333,10 @@ function about() {
 function countdownLine() {
   const p = el('p', 'ag-countdown');
   const tick = () => {
-    const now = new Date(); const mid = new Date(now); mid.setHours(24, 0, 0, 0);
+    const now = new Date();
+    const mid = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1, 0, 0, 0));
     const s = Math.max(0, Math.floor((mid - now) / 1000));
-    p.textContent = `New voices in ${Math.floor(s / 3600)}h ${pad2(Math.floor((s % 3600) / 60))}m ${pad2(s % 60)}s`;
+    p.textContent = `New voices at 00:00 UTC - in ${Math.floor(s / 3600)}h ${pad2(Math.floor((s % 3600) / 60))}m ${pad2(s % 60)}s`;
   };
   tick();
   countdownTimer = setInterval(tick, 1000);
@@ -402,6 +406,7 @@ function renderHome() {
     const b = el('button', 'ag-btn is-primary is-big', "Play today's set");
     b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3); state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render(); };
     home.appendChild(b);
+    home.appendChild(countdownLine());
   }
   home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
   const modeRow = el('div', 'ag-mode-row');
@@ -891,8 +896,8 @@ function finishRun() {
   if (state.mode === 'daily') {
     const today = todayStr();
     const score = state.rounds.reduce((s, r) => s + r.points, 0);
-    const y = new Date(); y.setDate(y.getDate() - 1);
-    const yesterday = `${y.getFullYear()}-${pad2(y.getMonth() + 1)}-${pad2(y.getDate())}`;
+    const y = new Date(); y.setUTCDate(y.getUTCDate() - 1);
+    const yesterday = `${y.getUTCFullYear()}-${pad2(y.getUTCMonth() + 1)}-${pad2(y.getUTCDate())}`;
     state.stats = {
       plays: state.stats.plays + 1,
       best: state.stats.best, // frozen: original 5-voice era (/15), shown as its own legacy stat

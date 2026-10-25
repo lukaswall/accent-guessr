@@ -23,6 +23,10 @@ window.AGAuth = (() => {
     // shared device from importing account A's synced progress into
     // unrelated account B as if it were B's guest progress.
     account: 'accent-guessr.account.v1',
+    // Unsynced account-owned changes, kept across sign-out so they can be
+    // uploaded on the next sign-in by the SAME account. Never read by the
+    // guest UI, and discarded if a different account signs in.
+    pending: 'accent-guessr.pending-sync.v1',
     promptDismissed: 'accent-guessr.auth-prompt-dismissed.v1',
   };
 
@@ -36,7 +40,19 @@ window.AGAuth = (() => {
   // account's progress never leaks into the next account or guest session
   // on a shared device. Server-side progress is unaffected.
   function clearLocalProgress() {
+    // LS.pending deliberately survives: it holds unsynced changes owned by a
+    // specific account, invisible to guests, recovered only by that account.
     for (const k of ['stats', 'endless', 'hard', 'short', 'quick', 'seen', 'account']) removeLS(LS[k]);
+  }
+
+  // Visible sync state, shown next to the account button: players must be
+  // able to SEE when progress did not reach their account (console-only is
+  // not a sync promise). null = nothing to report yet.
+  let syncState = null; // 'saving' | 'saved' | 'failed'
+  function setSyncState(v) {
+    if (syncState === v) return;
+    syncState = v;
+    listeners.forEach((fn) => { try { fn(); } catch (e) {} });
   }
 
   // Load clerk-js and supabase-js from CDNs only when accounts are actually on.
@@ -94,6 +110,11 @@ window.AGAuth = (() => {
         listeners.forEach((fn) => { try { fn(); } catch (e) {} });
       });
       if (window.Clerk.user) syncAfterLogin();
+      // Retry a failed upload as soon as connectivity returns.
+      window.addEventListener('online', () => {
+        const pend = getLS(LS.pending, null);
+        if (user() && pend && pend.owner === user().id) pushProgress();
+      });
     })().catch((e) => { console.warn('AGAuth init failed:', e); });
     return readyPromise;
   }
@@ -173,9 +194,18 @@ window.AGAuth = (() => {
   async function pushProgress() {
     if (!on || !db || !user()) return;
     setLS(LS.account, user().id);
+    setSyncState('saving');
     try {
       await db.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
-    } catch (e) { console.warn('AGAuth sync failed (kept locally):', e); }
+      removeLS(LS.pending);
+      setSyncState('saved');
+    } catch (e) {
+      // Keep the unsynced snapshot durably: it survives sign-out and is
+      // recovered by this account's next sign-in (or by the online retry).
+      setLS(LS.pending, { owner: user().id, data: localProgress(), failedAt: new Date().toISOString() });
+      setSyncState('failed');
+      console.warn('AGAuth sync failed (kept locally, will retry):', e);
+    }
   }
   async function syncAfterLogin() {
     if (merged || !user()) return;
@@ -187,13 +217,29 @@ window.AGAuth = (() => {
       const owner = getLS(LS.account, null);
       if (owner && owner !== user().id) clearLocalProgress();
       setLS(LS.account, user().id);
+      // Unsynced leftovers belong to their owner only.
+      const stalePend = getLS(LS.pending, null);
+      if (stalePend && stalePend.owner !== user().id) removeLS(LS.pending);
       const { data } = await db.from('progress').select('data').eq('user_id', user().id).maybeSingle();
       const remote = data && data.data;
-      if (!remote) { await pushProgress(); return; } // first-ever login: upload guest progress as is
-      const mergedData = mergeProgress(localProgress(), remote);
-      applyMerged(mergedData);
-      await db.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
-    } catch (e) { console.warn('AGAuth merge failed (local progress kept):', e); }
+      let mergedData;
+      if (!remote) { await pushProgress(); mergedData = localProgress(); } // first-ever login: upload guest progress as is
+      else {
+        mergedData = mergeProgress(localProgress(), remote);
+        applyMerged(mergedData);
+        await db.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
+        setSyncState('saved');
+      }
+      // Recover this account's unsynced changes from a previous session.
+      const pend = getLS(LS.pending, null);
+      if (pend && pend.owner === user().id && pend.data) {
+        const recovered = mergeProgress(pend.data, mergedData);
+        applyMerged(recovered);
+        await db.from('progress').upsert({ user_id: user().id, data: recovered, updated_at: new Date().toISOString() });
+        removeLS(LS.pending);
+        setSyncState('saved');
+      }
+    } catch (e) { console.warn('AGAuth merge failed (local progress kept):', e); setSyncState('failed'); }
   }
   // Called by app.js (finishRun) when a game ends.
   function recordGameEnd() { if (on && user()) pushProgress(); }
@@ -211,11 +257,20 @@ window.AGAuth = (() => {
         b.textContent = `Signed in · sign out`;
         b.title = userEmail();
         b.onclick = signOut;
+        wrap.appendChild(b);
+        if (syncState) {
+          const note = document.createElement('span');
+          note.className = 'ag-sync-note' + (syncState === 'failed' ? ' is-failed' : '');
+          note.textContent = syncState === 'saving' ? 'Saving to account...'
+            : syncState === 'saved' ? 'Progress saved to account'
+            : 'Not saved yet - will retry automatically';
+          wrap.appendChild(note);
+        }
       } else {
         b.textContent = 'Sign in (free)';
         b.onclick = signIn;
+        wrap.appendChild(b);
       }
-      wrap.appendChild(b);
     };
     renderChip();
     listeners.push(renderChip);
