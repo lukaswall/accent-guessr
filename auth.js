@@ -27,10 +27,11 @@ window.AGAuth = (() => {
   function setLS(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
 
   // Load clerk-js and supabase-js from CDNs only when accounts are actually on.
-  function loadScript(src, label) {
+  function loadScript(src, label, attrs) {
     return new Promise((resolve, reject) => {
       const s = document.createElement('script');
       s.src = src;
+      if (attrs) for (const k in attrs) s.setAttribute(k, attrs[k]);
       s.onload = () => resolve();
       s.onerror = () => reject(new Error(label + ' failed to load'));
       document.head.appendChild(s);
@@ -41,7 +42,9 @@ window.AGAuth = (() => {
     if (!(window.supabase && window.supabase.createClient))
       jobs.push(loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js', 'supabase-js'));
     if (!window.Clerk)
-      jobs.push(loadScript('https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js', 'clerk-js'));
+      // clerk-js v5 only creates window.Clerk when the publishable key rides
+      // on the script tag; without the attribute the bundle stays inert.
+      jobs.push(loadScript('https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js', 'clerk-js', { 'data-clerk-publishable-key': cfg.clerkPublishableKey }));
     await Promise.all(jobs);
   }
 
@@ -50,7 +53,10 @@ window.AGAuth = (() => {
     if (readyPromise) return readyPromise;
     readyPromise = (async () => {
       await loadLibs();
-      await window.Clerk.load({ publishableKey: cfg.clerkPublishableKey });
+      if (!window.Clerk.loaded) {
+        try { await window.Clerk.load({ publishableKey: cfg.clerkPublishableKey }); }
+        catch (e) { /* tag-attr bootstrap may already be loading with the same key */ }
+      }
       // Supabase client that authenticates every request with the Clerk
       // session token (Clerk is registered as a third-party auth provider in
       // the Supabase project; see supabase/SETUP.md).
