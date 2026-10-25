@@ -11,7 +11,7 @@
 const AG_AUTH = {
   enabled: false,
   // Clerk publishable key (pk_live_... or pk_test_...), safe for browsers.
-  clerkPublishableKey: '',
+  clerkPublishableKey: 'pk_test_bGl2ZS1veC0zMDQ3LmNsZXJrLmFjY291bnRzLmRldiQ', // DEV instance key; replace with pk_live_ when going to prod
   // Supabase project the progress rows live in (publishable key is safe for
   // browsers; row-level security enforces access).
   supabaseUrl: 'https://moquhqdqabdlurmomtxf.supabase.co',
