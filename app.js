@@ -986,6 +986,9 @@ function renderResults() {
   res.appendChild(actions);
 
   if (window.AGAuth) { const prompt = AGAuth.signupPrompt(state.mode); if (prompt) res.appendChild(prompt); }
+  // Sync status must be visible exactly when a save happens: the account
+  // chip (with its saving/saved/not-saved note) lives on results too.
+  if (window.AGAuth) { const ac = AGAuth.accountControl(); if (ac) res.appendChild(ac); }
   if (ADS.enabled && ADS.client) res.appendChild(el('div', 'ad-slot'));
   if (state.mode === 'daily') res.appendChild(countdownLine());
   const back = el('button', 'ag-linklike', 'Back to start');
