@@ -8,8 +8,8 @@
 // supabase/SETUP.md for the steps.
 const AG_AUTH = {
   enabled: false,
-  url: '',        // e.g. https://abcdefgh.supabase.co
-  anonKey: '',    // the project's public anon key (safe for browsers; RLS enforces access)
+  url: 'https://moquhqdqabdlurmomtxf.supabase.co',
+  anonKey: 'sb_publishable_VEZbDJtSpAejpi5KQVVKRw_WMExWw9L', // publishable key (safe for browsers; RLS enforces access)
   // Modes that need a free account once accounts are on. Daily and Practice
   // always stay open to guests. This gate is honest friction, not security:
   // the game is static files, so a determined player can bypass it. Real
