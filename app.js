@@ -168,14 +168,14 @@ function shuffleArr(arr, rnd) {
   for (let i = s.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); const t = s[i]; s[i] = s[j]; s[j] = t; }
   return s;
 }
-function pickSet(seed, excludeIds) {
+function pickSet(seed, excludeIds, count = 5) {
   const rnd = mulberry32(seed);
   const pool = CLIPS.filter(c => !excludeIds.has(c.id));
-  const source = pool.length >= 5 ? pool : CLIPS.slice();
+  const source = pool.length >= count ? pool : CLIPS.slice();
   const shuffled = shuffleArr(source, rnd);
   const picked = [], cont = {};
   for (const c of shuffled) {
-    if (picked.length >= 5) break;
+    if (picked.length >= count) break;
     if (picked.some(p => p.answer === c.answer)) continue;
     if ((cont[c.continent] || 0) >= 2) continue;
     picked.push(c); cont[c.continent] = (cont[c.continent] || 0) + 1;
@@ -400,7 +400,7 @@ function renderHome() {
     home.appendChild(done);
   } else {
     const b = el('button', 'ag-btn is-primary is-big', "Play today's set");
-    b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set()); state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render(); };
+    b.onclick = () => { state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3); state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render(); };
     home.appendChild(b);
   }
   home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
@@ -434,7 +434,7 @@ function renderHome() {
   p.onclick = startPractice;
   home.appendChild(p);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best || 0], ...(state.stats.best5 ? [['best daily (5-guess era /25)', state.stats.best5]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best quick', state.quick.best]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best9 || 0], ...(state.stats.best ? [['best daily (5-voice era /15)', state.stats.best]] : []), ...(state.stats.best5 ? [['best daily (5-guess era /25)', state.stats.best5]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best quick', state.quick.best]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -895,8 +895,9 @@ function finishRun() {
     const yesterday = `${y.getFullYear()}-${pad2(y.getMonth() + 1)}-${pad2(y.getDate())}`;
     state.stats = {
       plays: state.stats.plays + 1,
-      best: Math.max(state.stats.best, score), // current scale is back to the original 3-per-voice (/15)
+      best: state.stats.best, // frozen: original 5-voice era (/15), shown as its own legacy stat
       best5: state.stats.best5 || 0, // frozen: 5-guess era (/25), shown as its own legacy stat
+      best9: Math.max(state.stats.best9 || 0, score), // current: 3 voices x 3 guesses (/9)
       scale5: false,
       streak: state.stats.lastDaily === yesterday ? state.stats.streak + 1 : 1,
       lastDaily: today,
