@@ -9,7 +9,7 @@
 // to true until clerkPublishableKey is filled in and the Clerk <-> Supabase
 // connection is verified end-to-end - otherwise the sign-in UI would be fake.
 const AG_AUTH = {
-  enabled: false,
+  enabled: true,
   // Clerk publishable key (pk_live_... or pk_test_...), safe for browsers.
   clerkPublishableKey: 'pk_test_bGl2ZS1veC0zMDQ3LmNsZXJrLmFjY291bnRzLmRldiQ', // DEV instance key; replace with pk_live_ when going to prod
   // Supabase project the progress rows live in (publishable key is safe for
