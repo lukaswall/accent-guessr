@@ -18,6 +18,11 @@ window.AGAuth = (() => {
     short: 'accent-guessr.shorts.v1',
     quick: 'accent-guessr.quick.v1',
     seen: 'accent-guessr.practice-seen.v1',
+    // Which account the local progress belongs to. Absent means genuine
+    // guest progress (never signed in, or signed out since). Used to stop a
+    // shared device from importing account A's synced progress into
+    // unrelated account B as if it were B's guest progress.
+    account: 'accent-guessr.account.v1',
     promptDismissed: 'accent-guessr.auth-prompt-dismissed.v1',
   };
 
@@ -25,6 +30,14 @@ window.AGAuth = (() => {
     try { const v = localStorage.getItem(key); return v ? JSON.parse(v) : fallback; } catch (e) { return fallback; }
   }
   function setLS(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
+  function removeLS(key) { try { localStorage.removeItem(key); } catch (e) {} }
+  // Drop all locally stored progress. Called when the owning account signs
+  // out (or when another account signs in over stale leftovers), so one
+  // account's progress never leaks into the next account or guest session
+  // on a shared device. Server-side progress is unaffected.
+  function clearLocalProgress() {
+    for (const k of ['stats', 'endless', 'hard', 'short', 'quick', 'seen', 'account']) removeLS(LS[k]);
+  }
 
   // Load clerk-js and supabase-js from CDNs only when accounts are actually on.
   function loadScript(src, label, attrs) {
@@ -69,6 +82,14 @@ window.AGAuth = (() => {
       window.Clerk.addListener(({ user }) => {
         const isSignedIn = !!user;
         if (isSignedIn && !wasSignedIn) syncAfterLogin();
+        if (!isSignedIn && wasSignedIn) {
+          // Sign-out (or expired session): remove this account's progress
+          // from the device and reload so the UI, module state and the
+          // one-merge-per-session flag all start clean for whoever is next.
+          clearLocalProgress();
+          location.reload();
+          return;
+        }
         wasSignedIn = isSignedIn;
         listeners.forEach((fn) => { try { fn(); } catch (e) {} });
       });
@@ -151,6 +172,7 @@ window.AGAuth = (() => {
   }
   async function pushProgress() {
     if (!on || !db || !user()) return;
+    setLS(LS.account, user().id);
     try {
       await db.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
     } catch (e) { console.warn('AGAuth sync failed (kept locally):', e); }
@@ -159,6 +181,12 @@ window.AGAuth = (() => {
     if (merged || !user()) return;
     merged = true;
     try {
+      // Shared-device guard: local progress marked as belonging to a
+      // DIFFERENT account is not guest data - never import it into this
+      // account. Genuine guest progress (no marker) still merges as before.
+      const owner = getLS(LS.account, null);
+      if (owner && owner !== user().id) clearLocalProgress();
+      setLS(LS.account, user().id);
       const { data } = await db.from('progress').select('data').eq('user_id', user().id).maybeSingle();
       const remote = data && data.data;
       if (!remote) { await pushProgress(); return; } // first-ever login: upload guest progress as is
