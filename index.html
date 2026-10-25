@@ -42,8 +42,18 @@ body {
 .ag-btn.is-big { font-size: 17px; padding: 16px 30px; width: 100%; }
 .ag-linklike { background: none; border: 0; font: inherit; font-size: 14px; color: var(--ds-ink-2); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 8px; align-self: center; }
 .ag-home-sub { margin: 14px 0 -6px; font-size: 13px; font-weight: 620; color: var(--ds-ink-2); text-align: center; }
-.ag-short-row { display: flex; gap: 10px; }
-.ag-short-row .ag-btn { flex: 1; padding: 12px 8px; }
+.ag-mode-row { display: flex; gap: 10px; }
+.ag-mode-row .ag-btn { flex: 1; padding: 14px 10px; }
+.ag-pick-wrap { display: flex; flex-direction: column; gap: 8px; }
+.ag-pick { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; width: 100%; text-align: left; padding: 12px 16px; background: #fff; border: 1.5px solid var(--ds-hairline); border-radius: 14px; font: inherit; font-size: 16px; color: inherit; cursor: pointer; }
+.ag-pick:active { background: var(--ag-acc-soft); }
+.ag-pick:disabled { opacity: 0.45; cursor: default; }
+.ag-pick.is-taken { text-decoration: line-through; }
+.ag-map-tip { margin: 0; font-size: 13px; color: var(--ds-ink-2); text-align: center; }
+svg.ag-map.is-live { cursor: crosshair; }
+svg.ag-map.is-locked { opacity: 0.55; cursor: default; }
+.ag-map-tap { fill: var(--ds-ink-2); stroke: var(--ds-page); stroke-width: 2; }
+.ag-map-tap.is-ok { fill: var(--ag-acc); }
 
 .ag-stats { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 6px; }
 .ag-stats > div { flex: 1 1 28%; display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 14px 6px; border-radius: 14px; background: var(--ag-acc-soft); }
@@ -196,6 +206,6 @@ body {
 <script src="clips-9.js"></script>
 <script>const CLIPS = CLIPS_PARTS.flat();</script>
 <script src="map-data.js?v=1"></script>
-<script src="app.js?v=6"></script>
+<script src="app.js?v=7"></script>
 </body>
 </html>
