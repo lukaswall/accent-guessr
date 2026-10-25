@@ -518,8 +518,15 @@ function renderRound() {
   playerRow.appendChild(playBtn);
   playerRow.appendChild(timeEl);
   const track = el('div', 'ag-track');
+  const rail = el('div', 'ag-rail');
   const trackFill = el('div', 'ag-track-fill');
-  track.appendChild(trackFill);
+  const thumb = el('div', 'ag-thumb');
+  rail.appendChild(trackFill);
+  track.appendChild(rail);
+  track.appendChild(thumb);
+  track.setAttribute('role', 'slider');
+  track.setAttribute('aria-label', 'Audio position');
+  track.tabIndex = 0;
   const playerHint = el('span', 'ag-player-hint', hintText());
   playerBox.appendChild(playerRow);
   playerBox.appendChild(track);
@@ -534,8 +541,45 @@ function renderRound() {
   const drawTime = () => {
     const base = windowLen();
     timeEl.textContent = `${fmtT(audio.currentTime)} / ${base ? fmtT(base) : '–:––'}`;
-    trackFill.style.width = base ? `${Math.min(100, (audio.currentTime / base) * 100)}%` : '0%';
+    const pct = base ? Math.min(100, (audio.currentTime / base) * 100) : 0;
+    trackFill.style.width = `${pct}%`;
+    thumb.style.left = `${pct}%`;
+    track.setAttribute('aria-valuemin', '0');
+    track.setAttribute('aria-valuemax', String(Math.round(base)));
+    track.setAttribute('aria-valuenow', String(Math.round(audio.currentTime)));
+    track.setAttribute('aria-valuetext', `${fmtT(audio.currentTime)} of ${base ? fmtT(base) : 'unknown'}`);
   };
+  // Scrubbing: drag or tap the bar to jump. Never past the unlocked window.
+  const seekTo = (t) => {
+    const base = windowLen();
+    if (!base) return;
+    audio.currentTime = Math.max(0, Math.min(t, base - 0.05));
+    drawTime();
+  };
+  let dragging = false;
+  const seekFromEvent = (e) => {
+    const r = track.getBoundingClientRect();
+    seekTo(Math.min(1, Math.max(0, (e.clientX - r.left) / r.width)) * windowLen());
+  };
+  track.addEventListener('pointerdown', (e) => {
+    dragging = true;
+    track.classList.add('is-drag');
+    try { track.setPointerCapture(e.pointerId); } catch (_) {}
+    seekFromEvent(e);
+    e.preventDefault();
+  });
+  track.addEventListener('pointermove', (e) => { if (dragging) seekFromEvent(e); });
+  const endDrag = () => { dragging = false; track.classList.remove('is-drag'); };
+  track.addEventListener('pointerup', endDrag);
+  track.addEventListener('pointercancel', endDrag);
+  track.addEventListener('keydown', (e) => {
+    const step = e.key === 'ArrowLeft' ? -2 : e.key === 'ArrowRight' ? 2 : 0;
+    if (e.key === 'Home') seekTo(0);
+    else if (e.key === 'End') seekTo(windowLen());
+    else if (step) seekTo(audio.currentTime + step);
+    else return;
+    e.preventDefault();
+  });
   audio.addEventListener('loadedmetadata', drawTime);
   audio.addEventListener('durationchange', drawTime);
   drawTime();
