@@ -1,13 +1,12 @@
 'use strict';
-/* Accent Guessr accounts: free sign-in (Google via Supabase), one-time guest
- * progress merge, then save-once-per-game sync. Everything in this file is
- * inert unless AG_AUTH.enabled is true and configured (see auth-config.js).
+/* Accent Guessr accounts: free sign-in (Clerk), one-time guest progress
+ * merge, then save-once-per-game sync to Supabase. Everything in this file
+ * is inert unless AG_AUTH.enabled is true and configured (see auth-config.js).
  * When disabled, nothing here runs and no network requests are made. */
 window.AGAuth = (() => {
   const cfg = typeof AG_AUTH !== 'undefined' ? AG_AUTH : { enabled: false, gatedModes: [] };
-  const on = !!(cfg.enabled && cfg.url && cfg.anonKey && typeof window !== 'undefined');
-  let client = null;      // supabase-js client, created lazily
-  let session = null;     // current auth session, or null
+  const on = !!(cfg.enabled && cfg.clerkPublishableKey && cfg.supabaseUrl && cfg.supabasePublishableKey && typeof window !== 'undefined');
+  let db = null;          // supabase-js client, created lazily
   let merged = false;     // guest progress already merged this session
   let readyPromise = null;
   const listeners = [];
@@ -27,48 +26,66 @@ window.AGAuth = (() => {
   }
   function setLS(key, value) { try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {} }
 
-  // Load supabase-js from the CDN only when accounts are actually on.
-  function loadLib() {
+  // Load clerk-js and supabase-js from CDNs only when accounts are actually on.
+  function loadScript(src, label) {
     return new Promise((resolve, reject) => {
-      if (window.supabase && window.supabase.createClient) return resolve();
       const s = document.createElement('script');
-      s.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+      s.src = src;
       s.onload = () => resolve();
-      s.onerror = () => reject(new Error('supabase-js failed to load'));
+      s.onerror = () => reject(new Error(label + ' failed to load'));
       document.head.appendChild(s);
     });
+  }
+  async function loadLibs() {
+    const jobs = [];
+    if (!(window.supabase && window.supabase.createClient))
+      jobs.push(loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js', 'supabase-js'));
+    if (!window.Clerk)
+      jobs.push(loadScript('https://cdn.jsdelivr.net/npm/@clerk/clerk-js@5/dist/clerk.browser.js', 'clerk-js'));
+    await Promise.all(jobs);
   }
 
   async function init() {
     if (!on) return;
     if (readyPromise) return readyPromise;
     readyPromise = (async () => {
-      await loadLib();
-      client = window.supabase.createClient(cfg.url, cfg.anonKey);
-      const { data } = await client.auth.getSession();
-      session = data.session || null;
-      client.auth.onAuthStateChange((_event, s) => {
-        const wasLoggedOut = !session;
-        session = s;
-        if (session && wasLoggedOut) syncAfterLogin();
+      await loadLibs();
+      await window.Clerk.load({ publishableKey: cfg.clerkPublishableKey });
+      // Supabase client that authenticates every request with the Clerk
+      // session token (Clerk is registered as a third-party auth provider in
+      // the Supabase project; see supabase/SETUP.md).
+      db = window.supabase.createClient(cfg.supabaseUrl, cfg.supabasePublishableKey, {
+        accessToken: async () => {
+          try { return (await window.Clerk.session?.getToken()) ?? null; } catch (e) { return null; }
+        },
+      });
+      let wasSignedIn = !!window.Clerk.user;
+      window.Clerk.addListener(({ user }) => {
+        const isSignedIn = !!user;
+        if (isSignedIn && !wasSignedIn) syncAfterLogin();
+        wasSignedIn = isSignedIn;
         listeners.forEach((fn) => { try { fn(); } catch (e) {} });
       });
-      if (session) syncAfterLogin();
+      if (window.Clerk.user) syncAfterLogin();
     })().catch((e) => { console.warn('AGAuth init failed:', e); });
     return readyPromise;
   }
 
-  function user() { return session && session.user ? session.user : null; }
+  function user() { return on && window.Clerk && window.Clerk.user ? window.Clerk.user : null; }
+  function userEmail() {
+    const u = user();
+    return (u && u.primaryEmailAddress && u.primaryEmailAddress.emailAddress) || '';
+  }
   function isGated(mode) { return on && cfg.gatedModes.includes(mode); }
   function needsLogin(mode) { return isGated(mode) && !user(); }
 
   function signIn() {
-    if (!on || !client) return;
-    client.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: location.origin + location.pathname } });
+    if (!on || !window.Clerk) return;
+    window.Clerk.openSignIn();
   }
   function signOut() {
-    if (!on || !client) return;
-    client.auth.signOut().then(() => { session = null; listeners.forEach((fn) => { try { fn(); } catch (e) {} }); });
+    if (!on || !window.Clerk) return;
+    window.Clerk.signOut();
   }
 
   // --- Progress sync -------------------------------------------------------
@@ -127,21 +144,21 @@ window.AGAuth = (() => {
     listeners.forEach((fn) => { try { fn(); } catch (e) {} });
   }
   async function pushProgress() {
-    if (!on || !client || !user()) return;
+    if (!on || !db || !user()) return;
     try {
-      await client.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
+      await db.from('progress').upsert({ user_id: user().id, data: localProgress(), updated_at: new Date().toISOString() });
     } catch (e) { console.warn('AGAuth sync failed (kept locally):', e); }
   }
   async function syncAfterLogin() {
     if (merged || !user()) return;
     merged = true;
     try {
-      const { data } = await client.from('progress').select('data').eq('user_id', user().id).maybeSingle();
+      const { data } = await db.from('progress').select('data').eq('user_id', user().id).maybeSingle();
       const remote = data && data.data;
       if (!remote) { await pushProgress(); return; } // first-ever login: upload guest progress as is
       const mergedData = mergeProgress(localProgress(), remote);
       applyMerged(mergedData);
-      await client.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
+      await db.from('progress').upsert({ user_id: user().id, data: mergedData, updated_at: new Date().toISOString() });
     } catch (e) { console.warn('AGAuth merge failed (local progress kept):', e); }
   }
   // Called by app.js (finishRun) when a game ends.
@@ -158,7 +175,7 @@ window.AGAuth = (() => {
       b.type = 'button';
       if (user()) {
         b.textContent = `Signed in · sign out`;
-        b.title = user().email || '';
+        b.title = userEmail();
         b.onclick = signOut;
       } else {
         b.textContent = 'Sign in (free)';
@@ -186,7 +203,7 @@ window.AGAuth = (() => {
     const go = document.createElement('button');
     go.className = 'ag-btn is-primary';
     go.type = 'button';
-    go.textContent = 'Continue with Google';
+    go.textContent = 'Sign up free';
     go.onclick = signIn;
     const no = document.createElement('button');
     no.className = 'ag-btn is-ghost';
@@ -211,7 +228,7 @@ window.AGAuth = (() => {
     const go = document.createElement('button');
     go.className = 'ag-btn is-primary';
     go.type = 'button';
-    go.textContent = 'Continue with Google';
+    go.textContent = 'Sign in (free)';
     go.onclick = signIn;
     const no = document.createElement('button');
     no.className = 'ag-btn is-ghost';
@@ -225,5 +242,5 @@ window.AGAuth = (() => {
   }
 
   if (on) init();
-  return { on, init, user, isGated, needsLogin, signIn, signOut, recordGameEnd, accountControl, signupPrompt, gateInterception, onChange: (fn) => listeners.push(fn) };
+  return { on, init, user, userEmail, isGated, needsLogin, signIn, signOut, recordGameEnd, accountControl, signupPrompt, gateInterception, onChange: (fn) => listeners.push(fn) };
 })();

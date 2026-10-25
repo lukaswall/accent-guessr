@@ -10,7 +10,7 @@ Clip metadata lives in `clips.json` (~32 KB) and each voice is one small MP3 in 
 
 ## Accounts (off by default)
 
-Free sign-in with Google (Supabase Auth) can sync streaks and scores across devices and gate extra modes. It is **disabled** until a Supabase project is configured: with `auth-config.js` set to `enabled: false` there is no sign-in UI, no mode gate and no third-party requests. To turn it on, see `supabase/SETUP.md`; the database schema is `supabase/schema.sql`.
+Free sign-in (Clerk) can sync streaks and scores across devices and gate extra modes. It is **disabled** until configured: with `auth-config.js` set to `enabled: false` there is no sign-in UI, no mode gate and no third-party requests. To turn it on, see `supabase/SETUP.md`; the database schema is `supabase/schema.sql`.
 
 ## Audio
 

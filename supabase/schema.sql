@@ -1,12 +1,29 @@
 -- Accent Guessr - Supabase schema (run once in the Supabase SQL editor).
+-- Auth provider: Clerk (https://clerk.com), connected as a Supabase
+-- "third-party auth" provider. The game never uses Supabase Auth users;
+-- the player identity is the Clerk user id from the session JWT
+-- (auth.jwt() ->> 'sub', e.g. "user_2abc...").
+--
+-- PREREQUISITE (see supabase/SETUP.md): Clerk must be activated as a
+-- third-party auth provider in Authentication -> Sign In / Up ->
+-- Third Party Auth, or every request with a Clerk token is rejected.
+--
 -- Design: one JSONB progress row per user, written only when a game ends.
 -- Row-level security: every user reads and writes only their own rows.
+--
+-- NOTE: this file drops and recreates the earlier Supabase-Auth variant of
+-- these objects. That variant was applied to this project before any user
+-- data existed, so the drops lose nothing.
+
+drop function if exists public.submit_daily_result(jsonb, integer);
+drop table if exists public.game_results;
+drop table if exists public.progress;
 
 -- ---------------------------------------------------------------------------
 -- 1. Progress sync (used by auth.js today)
 -- ---------------------------------------------------------------------------
-create table if not exists public.progress (
-  user_id uuid primary key references auth.users (id) on delete cascade,
+create table public.progress (
+  user_id text primary key default auth.jwt()->>'sub',
   data jsonb not null default '{}'::jsonb,
   updated_at timestamptz not null default now()
 );
@@ -14,11 +31,14 @@ create table if not exists public.progress (
 alter table public.progress enable row level security;
 
 create policy "progress: read own" on public.progress
-  for select using (auth.uid() = user_id);
+  for select to authenticated
+  using ((select auth.jwt()->>'sub') = user_id);
 create policy "progress: insert own" on public.progress
-  for insert with check (auth.uid() = user_id);
+  for insert to authenticated
+  with check ((select auth.jwt()->>'sub') = user_id);
 create policy "progress: update own" on public.progress
-  for update using (auth.uid() = user_id);
+  for update to authenticated
+  using ((select auth.jwt()->>'sub') = user_id);
 
 -- ---------------------------------------------------------------------------
 -- 2. Game results + validated daily scores (phase 3: leaderboards)
@@ -27,9 +47,9 @@ create policy "progress: update own" on public.progress
 --    leaderboard-worthy records go through submit_daily_result, which
 --    re-checks the score arithmetic and rejects impossible timing.
 -- ---------------------------------------------------------------------------
-create table if not exists public.game_results (
+create table public.game_results (
   id bigint generated always as identity primary key,
-  user_id uuid not null references auth.users (id) on delete cascade,
+  user_id text not null default auth.jwt()->>'sub',
   mode text not null check (mode in ('daily', 'endless', 'hard', 'short', 'quick')),
   played_on date not null default current_date,
   score integer not null,
@@ -43,7 +63,8 @@ create table if not exists public.game_results (
 alter table public.game_results enable row level security;
 
 create policy "results: read own" on public.game_results
-  for select using (auth.uid() = user_id);
+  for select to authenticated
+  using ((select auth.jwt()->>'sub') = user_id);
 -- No direct insert/update/delete policies: writes go only through the
 -- security-definer function below, which validates before inserting.
 
@@ -52,7 +73,7 @@ create policy "results: read own" on public.game_results
 -- in clips.json, so a determined cheater can always fabricate plausible
 -- rounds. This raises the bar to "must fake carefully", it cannot prevent
 -- cheating entirely.
-create or replace function public.submit_daily_result(
+create function public.submit_daily_result(
   p_rounds jsonb,
   p_elapsed_ms integer
 ) returns jsonb
@@ -61,12 +82,13 @@ security definer
 set search_path = public
 as $$
 declare
+  v_user text := auth.jwt()->>'sub';
   v_score integer := 0;
   v_round jsonb;
   v_points integer;
   v_min_ms integer;
 begin
-  if auth.uid() is null then
+  if v_user is null then
     raise exception 'not signed in';
   end if;
   if jsonb_typeof(p_rounds) <> 'array' or jsonb_array_length(p_rounds) <> 5 then
@@ -86,7 +108,7 @@ begin
   end if;
 
   insert into public.game_results (user_id, mode, score, cleared, rounds, elapsed_ms)
-  values (auth.uid(), 'daily', v_score, 0, p_rounds, p_elapsed_ms)
+  values (v_user, 'daily', v_score, 0, p_rounds, p_elapsed_ms)
   on conflict (user_id, mode, played_on) do nothing;
 
   return jsonb_build_object('accepted', true, 'score', v_score);

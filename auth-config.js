@@ -1,15 +1,21 @@
 // Account wiring for Accent Guessr.
 //
+// Auth is Clerk; progress sync is Supabase (Clerk session token is accepted
+// by Supabase as a third-party auth provider - see supabase/SETUP.md).
+//
 // IMPORTANT: while `enabled` is false (the default), the game behaves exactly
 // as if accounts did not exist: no sign-in UI, no mode gates, no third-party
 // scripts are loaded, and no data leaves the browser. Do not flip `enabled`
-// to true until a real Supabase project exists and its URL + anon key are
-// filled in below - otherwise the sign-in UI would be fake. See
-// supabase/SETUP.md for the steps.
+// to true until clerkPublishableKey is filled in and the Clerk <-> Supabase
+// connection is verified end-to-end - otherwise the sign-in UI would be fake.
 const AG_AUTH = {
   enabled: false,
-  url: 'https://moquhqdqabdlurmomtxf.supabase.co',
-  anonKey: 'sb_publishable_VEZbDJtSpAejpi5KQVVKRw_WMExWw9L', // publishable key (safe for browsers; RLS enforces access)
+  // Clerk publishable key (pk_live_... or pk_test_...), safe for browsers.
+  clerkPublishableKey: '',
+  // Supabase project the progress rows live in (publishable key is safe for
+  // browsers; row-level security enforces access).
+  supabaseUrl: 'https://moquhqdqabdlurmomtxf.supabase.co',
+  supabasePublishableKey: 'sb_publishable_VEZbDJtSpAejpi5KQVVKRw_WMExWw9L',
   // Modes that need a free account once accounts are on. Daily and Practice
   // always stay open to guests. This gate is honest friction, not security:
   // the game is static files, so a determined player can bypass it. Real
