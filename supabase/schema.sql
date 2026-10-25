@@ -41,11 +41,14 @@ create policy "progress: update own" on public.progress
   using ((select auth.jwt()->>'sub') = user_id);
 
 -- ---------------------------------------------------------------------------
--- 2. Game results + validated daily scores (phase 3: leaderboards)
---    Not called by the game yet. This is the honest-score foundation:
---    personal progress (table above) is whatever the player's device says;
---    leaderboard-worthy records go through submit_daily_result, which
---    re-checks the score arithmetic and rejects impossible timing.
+-- 2. Game results + daily score submission (phase 3: leaderboards)
+--    NOT called by the game yet, and NOT a trusted leaderboard source as-is.
+--    submit_daily_result only re-checks the arithmetic and range of
+--    client-supplied per-round points; it does not validate answers,
+--    because the correct answers are not stored server-side (they ship in
+--    clips.json). Every score in game_results is therefore client-asserted,
+--    not server-verified. Do not build a public leaderboard on this table
+--    until rounds are validated against server-held answer keys.
 -- ---------------------------------------------------------------------------
 create table public.game_results (
   id bigint generated always as identity primary key,
@@ -68,11 +71,11 @@ create policy "results: read own" on public.game_results
 -- No direct insert/update/delete policies: writes go only through the
 -- security-definer function below, which validates before inserting.
 
--- Recompute the daily score from the submitted rounds and reject impossible
--- submissions. Limits of this check (be honest about them): the answers ship
--- in clips.json, so a determined cheater can always fabricate plausible
--- rounds. This raises the bar to "must fake carefully", it cannot prevent
--- cheating entirely.
+-- Recompute the daily total from the submitted rounds and reject
+-- out-of-range values. This checks arithmetic only: each round's points are
+-- whatever the client claims (the server holds no answer key), and timing
+-- proves nothing about listening. Scores produced here are client-asserted
+-- and must be labeled as such anywhere they are shown.
 create function public.submit_daily_result(
   p_rounds jsonb,
   p_elapsed_ms integer
@@ -86,26 +89,24 @@ declare
   v_score integer := 0;
   v_round jsonb;
   v_points integer;
-  v_min_ms integer;
 begin
   if v_user is null then
     raise exception 'not signed in';
   end if;
-  if jsonb_typeof(p_rounds) <> 'array' or jsonb_array_length(p_rounds) <> 5 then
-    raise exception 'a daily result must have exactly 5 rounds';
+  -- Current daily: 3 voices, 3 guesses each, so 0-3 points per round.
+  if jsonb_typeof(p_rounds) <> 'array' or jsonb_array_length(p_rounds) <> 3 then
+    raise exception 'a daily result must have exactly 3 rounds';
   end if;
   for v_round in select * from jsonb_array_elements(p_rounds) loop
     v_points := coalesce((v_round ->> 'points')::integer, -1);
-    if v_points < 0 or v_points > 5 then
+    if v_points < 0 or v_points > 3 then
       raise exception 'round points out of range';
     end if;
     v_score := v_score + v_points;
   end loop;
-  -- Five clips are ~10-13 s each; a real play-through cannot be faster.
-  v_min_ms := 5 * 8000;
-  if p_elapsed_ms < v_min_ms then
-    raise exception 'impossible timing';
-  end if;
+  -- No minimum-elapsed-time check: a fast play-through is legitimate (short
+  -- clips, quick guesses), and server-side timing cannot prove anyone
+  -- actually listened. p_elapsed_ms is stored for telemetry only.
 
   insert into public.game_results (user_id, mode, score, cleared, rounds, elapsed_ms)
   values (v_user, 'daily', v_score, 0, p_rounds, p_elapsed_ms)
