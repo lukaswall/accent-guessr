@@ -375,8 +375,15 @@ function startQuick() {
 function gated(modeKey, fn) {
   return () => { if (window.AGAuth && AGAuth.gateInterception(modeKey)) return; fn(); };
 }
-function gateMark(modeKey) {
-  return window.AGAuth && AGAuth.needsLogin(modeKey) ? ' 🔒' : '';
+function gateMark(modeKey, btn) {
+  if (!(window.AGAuth && AGAuth.needsLogin(modeKey))) return;
+  const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  s.setAttribute('viewBox', '0 0 24 24');
+  s.setAttribute('class', 'ag-lock');
+  s.setAttribute('aria-hidden', 'true');
+  s.innerHTML = '<rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>';
+  btn.appendChild(s);
+  btn.classList.add('is-locked');
 }
 
 function renderHome() {
@@ -399,7 +406,8 @@ function renderHome() {
   home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
   const modeRow = el('div', 'ag-mode-row');
   [['Quick pick', startQuick]].forEach(([lab, fn]) => {
-    const b = el('button', 'ag-btn is-primary', lab + gateMark('quick'));
+    const b = el('button', 'ag-btn is-primary', lab);
+    gateMark('quick', b);
     b.onclick = gated('quick', fn);
     modeRow.appendChild(b);
   });
@@ -407,7 +415,8 @@ function renderHome() {
   const runRow = el('div', 'ag-mode-row');
   [['Endless', startEndless], ['Hard · 2 s start', startHard]].forEach(([lab, fn]) => {
     const key = fn === startEndless ? 'endless' : 'hard';
-    const b = el('button', 'ag-btn is-primary', lab + gateMark(key));
+    const b = el('button', 'ag-btn is-primary', lab);
+    gateMark(key, b);
     b.onclick = gated(key, fn);
     runRow.appendChild(b);
   });
@@ -415,7 +424,8 @@ function renderHome() {
   home.appendChild(el('p', 'ag-home-sub', 'Short clips - pick how much of each voice you hear'));
   const shortRow = el('div', 'ag-mode-row');
   Object.keys(SHORT).forEach((key) => {
-    const b = el('button', 'ag-btn is-ghost', SHORT[key].label + gateMark('short'));
+    const b = el('button', 'ag-btn is-ghost', SHORT[key].label);
+    gateMark('short', b);
     b.onclick = gated('short', () => startShort(key));
     shortRow.appendChild(b);
   });
