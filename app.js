@@ -98,6 +98,14 @@ const MAP_REGION = {
 // clip). Solving earlier scores more.
 const HARD_STEPS = [2, 3, 5]; // seconds; anything past the last entry = full clip
 
+// Short modes: the same game, but every voice is capped at one fixed length.
+// Each length is its own mode with its own saved best.
+const SHORT = {
+  s2: { sec: 2, label: '2 seconds' },
+  s3: { sec: 3, label: '3 seconds' },
+  s5: { sec: 5, label: '5 seconds' },
+};
+
 function kmOff(guess, answer) {
   const g = COORDS[guess], a = COORDS[answer];
   if (!g || !a) return null;
@@ -194,6 +202,7 @@ const store = {
 const EMPTY_STATS = { plays: 0, best: 0, streak: 0, lastDaily: null, lastRounds: [] };
 const EMPTY_ENDLESS = { best: 0, runs: 0 };
 const EMPTY_HARD = { best: 0, runs: 0 };
+const EMPTY_SHORTS = { s2: { best: 0, runs: 0 }, s3: { best: 0, runs: 0 }, s5: { best: 0, runs: 0 } };
 
 const state = {
   screen: 'home', // home | play | results
@@ -205,8 +214,15 @@ const state = {
   stats: store.get('accent-guessr.stats.v1', EMPTY_STATS),
   endless: store.get('accent-guessr.endless.v1', EMPTY_ENDLESS),
   hard: store.get('accent-guessr.hard.v1', EMPTY_HARD),
+  short: store.get('accent-guessr.shorts.v1', EMPTY_SHORTS),
+  shortMode: 's2',
   seen: store.get('accent-guessr.practice-seen.v1', []),
 };
+
+// Tolerate older/partial saved shapes for the short-mode stats.
+for (const k of Object.keys(SHORT)) {
+  if (!state.short[k] || typeof state.short[k].best !== 'number') state.short[k] = { best: 0, runs: 0 };
+}
 
 let audio = null;
 function stopAudio() { if (audio) { audio.pause(); audio = null; } }
@@ -311,6 +327,12 @@ function startHard() {
   state.set = buildQueue(hashStr(`hard:${Date.now()}`), new Set());
   state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
 }
+function startShort(key) {
+  state.mode = 'short';
+  state.shortMode = key;
+  state.set = buildQueue(hashStr(`short:${key}:${Date.now()}`), new Set());
+  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+}
 
 function renderHome() {
   app.appendChild(header());
@@ -338,8 +360,16 @@ function renderHome() {
   const p = el('button', 'ag-btn is-ghost is-big', 'Practice');
   p.onclick = startPractice;
   home.appendChild(p);
+  home.appendChild(el('p', 'ag-home-sub', 'Short clips - pick how much of each voice you hear'));
+  const shortRow = el('div', 'ag-short-row');
+  Object.keys(SHORT).forEach((key) => {
+    const b = el('button', 'ag-btn is-ghost', SHORT[key].label);
+    b.onclick = () => startShort(key);
+    shortRow.appendChild(b);
+  });
+  home.appendChild(shortRow);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best], ['best endless', state.endless.best], ['best hard', state.hard.best]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best], ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -356,7 +386,8 @@ function renderRound() {
   const clip = state.set[state.index];
   const total = state.set.length;
   const isHard = state.mode === 'hard';
-  const isRun = state.mode === 'endless' || isHard;
+  const isShort = state.mode === 'short';
+  const isRun = state.mode === 'endless' || isHard || isShort;
   roundState = { played: false, wrong: [], over: false, solved: false, skipped: false, step: 0 };
 
   app.appendChild(header());
@@ -364,71 +395,107 @@ function renderRound() {
 
   const prog = el('div', 'ag-progress');
   if (isRun) {
-    prog.appendChild(el('span', 'ag-round-no', `${isHard ? 'Hard' : 'Endless'} · voice ${state.index + 1} · streak ${state.cleared}`));
+    const runName = isHard ? 'Hard' : isShort ? SHORT[state.shortMode].label : 'Endless';
+    prog.appendChild(el('span', 'ag-round-no', `${runName} · voice ${state.index + 1} · streak ${state.cleared}`));
   } else {
     for (let i = 0; i < total; i++) prog.appendChild(el('span', 'ag-dot' + (i === state.index ? ' is-now' : i < state.index ? ' is-done' : '')));
     prog.appendChild(el('span', 'ag-round-no', `${state.mode === 'daily' ? 'Daily' : 'Practice'} · ${state.index + 1} of ${total}`));
   }
   round.appendChild(prog);
 
-  // In hard mode the audio is capped at the current step; the cap lifts as the
-  // player guesses or skips. Replay always restarts from 0 and stops at the cap.
-  const audioLimit = () => (isHard && roundState.step < HARD_STEPS.length) ? HARD_STEPS[roundState.step] : Infinity;
+  // Hard mode caps the audio at the current step (the cap lifts as the player
+  // guesses or skips); short modes cap every voice at one fixed length. Replay
+  // always restarts from 0 and never goes past the unlocked window.
+  const audioLimit = () => {
+    if (isHard) return roundState.step < HARD_STEPS.length ? HARD_STEPS[roundState.step] : Infinity;
+    if (isShort) return SHORT[state.shortMode].sec;
+    return Infinity;
+  };
   const hintText = () => {
-    if (!isHard) return 'Replay as much as you like';
     const lim = audioLimit();
-    return isFinite(lim) ? `First ${lim} seconds only` : 'Full clip unlocked';
+    if (isFinite(lim)) return `First ${lim} seconds unlocked · replay as much as you like`;
+    return 'Replay as much as you like';
   };
 
-  // Player
-  const player = el('button', 'ag-player');
-  player.type = 'button';
-  player.setAttribute('aria-label', 'Play voice');
+  // Player: a clear play/pause toggle, a replay-from-start button, a live
+  // time readout and a progress bar. The clock and bar always cover the
+  // currently unlocked window (fixed cap in short modes, rising cap in hard,
+  // full clip elsewhere), so replay never goes past what has been unlocked.
+  const fmtT = (s) => { const t = Math.max(0, Math.floor(s)); return `${Math.floor(t / 60)}:${pad2(t % 60)}`; };
+  const playSvg = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4.8v14.4c0 .9 1 1.5 1.8 1L19 13a1.2 1.2 0 0 0 0-2L7.8 3.9c-.8-.5-1.8 0-1.8.9Z"/></svg>';
+  const pauseSvg = '<svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6.5" y="4.5" width="3.6" height="15" rx="1.4"/><rect x="13.9" y="4.5" width="3.6" height="15" rx="1.4"/></svg>';
+  const replaySvg = '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 4.5v5h5"/><path d="M4.6 13a8 8 0 1 0 .9-6.6L3.5 9.5"/></svg>';
+
+  const playerBox = el('div', 'ag-player2');
+  const playerRow = el('div', 'ag-player-row');
+  const replayBtn = el('button', 'ag-icon-btn');
+  replayBtn.type = 'button';
+  replayBtn.setAttribute('aria-label', 'Replay from the start');
+  replayBtn.innerHTML = replaySvg;
+  const playBtn = el('button', 'ag-playbtn');
+  playBtn.type = 'button';
+  playBtn.setAttribute('aria-label', 'Play voice');
   const ring = el('span', 'ag-player-ring');
   const core = el('span', 'ag-player-core');
-  const playSvg = '<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4.8v14.4c0 .9 1 1.5 1.8 1L19 13a1.2 1.2 0 0 0 0-2L7.8 3.9c-.8-.5-1.8 0-1.8.9Z"/></svg>';
   core.innerHTML = playSvg;
   ring.appendChild(core);
-  player.appendChild(ring);
-  const playerLabel = el('span', 'ag-player-label', 'Play the voice');
-  player.appendChild(playerLabel);
+  playBtn.appendChild(ring);
+  const timeEl = el('span', 'ag-time', '0:00 / –:––');
+  playerRow.appendChild(replayBtn);
+  playerRow.appendChild(playBtn);
+  playerRow.appendChild(timeEl);
+  const track = el('div', 'ag-track');
+  const trackFill = el('div', 'ag-track-fill');
+  track.appendChild(trackFill);
   const playerHint = el('span', 'ag-player-hint', hintText());
-  player.appendChild(playerHint);
+  playerBox.appendChild(playerRow);
+  playerBox.appendChild(track);
+  playerBox.appendChild(playerHint);
 
   audio = new Audio(clip.src);
   audio.preload = 'auto';
+  const windowLen = () => {
+    const lim = audioLimit();
+    return isFinite(lim) ? lim : (audio.duration || 0);
+  };
+  const drawTime = () => {
+    const base = windowLen();
+    timeEl.textContent = `${fmtT(audio.currentTime)} / ${base ? fmtT(base) : '–:––'}`;
+    trackFill.style.width = base ? `${Math.min(100, (audio.currentTime / base) * 100)}%` : '0%';
+  };
+  audio.addEventListener('loadedmetadata', drawTime);
+  audio.addEventListener('durationchange', drawTime);
+  drawTime();
   audio.addEventListener('timeupdate', () => {
     const lim = audioLimit();
     if (audio.currentTime >= lim) {
+      // Cap reached: stop and rewind so the next play starts from 0 again.
       audio.pause();
       audio.currentTime = 0;
-      ring.style.background = '';
-      return;
     }
-    const base = isFinite(lim) ? lim : audio.duration;
-    const pct = base ? Math.round((audio.currentTime / base) * 360) : 0;
-    ring.style.background = `conic-gradient(var(--ag-acc) ${pct}deg, var(--ds-hairline) 0deg)`;
+    drawTime();
   });
   audio.addEventListener('play', () => {
     roundState.played = true;
-    player.classList.add('is-playing');
-    playerLabel.textContent = 'Listening…';
-    player.setAttribute('aria-label', 'Pause voice');
-    core.innerHTML = '<span class="ag-eq" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>';
+    core.innerHTML = pauseSvg;
+    playBtn.setAttribute('aria-label', 'Pause voice');
     input.disabled = false;
     input.placeholder = 'Search accents or countries…';
     skipBtn.disabled = false;
   });
   const stopped = () => {
-    player.classList.remove('is-playing');
-    playerLabel.textContent = 'Play the voice';
-    player.setAttribute('aria-label', 'Play voice');
     core.innerHTML = playSvg;
+    playBtn.setAttribute('aria-label', 'Play voice');
   };
   audio.addEventListener('pause', stopped);
-  audio.addEventListener('ended', () => { stopped(); ring.style.background = ''; });
-  player.onclick = () => { if (audio.paused) audio.play().catch(() => {}); else audio.pause(); };
-  round.appendChild(player);
+  audio.addEventListener('ended', stopped);
+  playBtn.onclick = () => { if (audio.paused) audio.play().catch(() => {}); else audio.pause(); };
+  replayBtn.onclick = () => {
+    audio.currentTime = 0;
+    audio.play().catch(() => {});
+    drawTime();
+  };
+  round.appendChild(playerBox);
 
   round.appendChild(el('p', 'ag-question', 'Which accent is this?'));
 
@@ -488,6 +555,7 @@ function renderRound() {
   const advanceStep = () => {
     roundState.step += 1;
     playerHint.textContent = hintText();
+    drawTime();
     drawTries();
   };
 
@@ -688,6 +756,11 @@ function finishRun() {
     state.hard = { best: Math.max(state.hard.best, state.cleared), runs: state.hard.runs + 1 };
     store.set('accent-guessr.hard.v1', state.hard);
   }
+  if (state.mode === 'short') {
+    const cur = state.short[state.shortMode] || { best: 0, runs: 0 };
+    state.short[state.shortMode] = { best: Math.max(cur.best, state.cleared), runs: cur.runs + 1 };
+    store.set('accent-guessr.shorts.v1', state.short);
+  }
   state.screen = 'results';
   render();
 }
@@ -696,7 +769,9 @@ function renderResults() {
   app.appendChild(header());
   const res = el('div', 'ag-results');
   const isHard = state.mode === 'hard';
-  const isRun = state.mode === 'endless' || isHard;
+  const isShort = state.mode === 'short';
+  const isRun = state.mode === 'endless' || isHard || isShort;
+  const runName = isHard ? 'Hard mode' : isShort ? `${SHORT[state.shortMode].label} mode` : 'Endless';
   const score = state.rounds.reduce((s, r) => s + r.points, 0);
   const max = state.rounds.length * 3;
 
@@ -705,7 +780,7 @@ function renderResults() {
     sc.appendChild(el('span', 'ag-score-num', String(state.cleared)));
     sc.appendChild(el('span', 'ag-score-max', state.cleared === 1 ? ' voice' : ' voices'));
     res.appendChild(sc);
-    const best = isHard ? state.hard.best : state.endless.best;
+    const best = isHard ? state.hard.best : isShort ? (state.short[state.shortMode] || { best: 0 }).best : state.endless.best;
     res.appendChild(el('p', 'ag-done-score', `${score} points · best ${best}`));
   } else {
     const sc = el('div', 'ag-score');
@@ -730,7 +805,7 @@ function renderResults() {
   const copy = el('button', 'ag-btn is-primary', 'Copy result');
   copy.onclick = () => {
     const text = isRun
-      ? `Accent Guessr · ${isHard ? 'Hard mode' : 'Endless'}\n${state.cleared} voices in a row · ${score} points\n${state.rounds.map(r => squares(r.points, isHard)).join('')}`
+      ? `Accent Guessr · ${runName}\n${state.cleared} voices in a row · ${score} points\n${state.rounds.map(r => squares(r.points, isHard)).join('')}`
       : `Accent Guessr · ${prettyDate()}\n${score}/${max}\n${state.rounds.map(r => squares(r.points)).join('')}`;
     const done = () => { copy.textContent = 'Copied'; setTimeout(() => { copy.textContent = 'Copy result'; }, 2000); };
     if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done).catch(done);
@@ -738,7 +813,7 @@ function renderResults() {
   };
   actions.appendChild(copy);
   const again = el('button', 'ag-btn is-ghost', isRun ? 'Play again' : 'Practice more');
-  again.onclick = isHard ? startHard : (state.mode === 'endless' ? startEndless : startPractice);
+  again.onclick = isHard ? startHard : isShort ? () => startShort(state.shortMode) : (state.mode === 'endless' ? startEndless : startPractice);
   actions.appendChild(again);
   res.appendChild(actions);
 
