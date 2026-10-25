@@ -31,6 +31,18 @@ body {
 .ag-intro { margin: 0; font-size: 16px; }
 
 .ag-home { display: flex; flex-direction: column; gap: 14px; }
+.ag-nav { position: sticky; top: 0; z-index: 20; display: flex; align-items: center; justify-content: space-between; gap: 8px; margin: -20px -4px 20px; padding: 8px 4px; background: var(--ds-page); border-bottom: 1px solid var(--ds-hairline); }
+.ag-nav-brand { background: none; border: 0; padding: 8px 6px; font-family: var(--ag-serif); font-size: 17px; color: var(--ds-ink); cursor: pointer; white-space: nowrap; }
+.ag-nav-tabs { display: flex; gap: 2px; }
+.ag-nav-tab { display: flex; align-items: center; gap: 6px; background: none; border: 0; border-radius: 999px; padding: 8px 12px; font: inherit; font-size: 13px; font-weight: 560; color: var(--ds-ink-2); cursor: pointer; }
+.ag-nav-tab.is-active { background: var(--ag-acc-soft); color: var(--ag-acc); }
+.ag-nav-ic { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.ag-strip { align-self: center; background: var(--ag-acc-soft); border: 0; border-radius: 999px; padding: 10px 18px; font: inherit; font-size: 13.5px; font-weight: 560; color: var(--ag-acc); cursor: pointer; }
+@media (max-width: 460px) {
+  .ag-nav-lab { display: none; }
+  .ag-nav-tab { padding: 9px 11px; }
+}
+
 .ag-btn {
   appearance: none; border: 0; cursor: pointer; border-radius: 999px;
   font: inherit; font-weight: 560; letter-spacing: 0.01em;
