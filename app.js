@@ -393,7 +393,7 @@ function renderHome() {
     const sq = el('div', 'ag-squares');
     state.stats.lastRounds.forEach(r => sq.appendChild(el('span', null, squares(r.points))));
     done.appendChild(sq);
-    done.appendChild(el('p', 'ag-done-score', `Today: ${state.stats.lastRounds.reduce((s, r) => s + r.points, 0)} / 15`));
+    done.appendChild(el('p', 'ag-done-score', `Today: ${state.stats.lastRounds.reduce((s, r) => s + r.points, 0)} / ${state.stats.scale5 ? state.stats.lastRounds.length * TURNS : 15}`));
     done.appendChild(countdownLine());
     home.appendChild(done);
   } else {
@@ -428,7 +428,7 @@ function renderHome() {
   p.onclick = startPractice;
   home.appendChild(p);
   const stats = el('div', 'ag-stats');
-  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best], ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best map', state.mapg.best], ['best quick', state.quick.best]].forEach(([label, num]) => {
+  [['day streak', state.stats.streak], ['days played', state.stats.plays], ['best daily', state.stats.best5 || 0], ...(state.stats.best ? [['best daily (old /15)', state.stats.best]] : []), ['best endless', state.endless.best], ['best hard', state.hard.best], ['best short', Math.max(state.short.s2.best, state.short.s3.best, state.short.s5.best)], ['best map', state.mapg.best], ['best quick', state.quick.best]].forEach(([label, num]) => {
     const d = el('div');
     d.appendChild(el('span', 'ag-stat-num', String(num)));
     d.appendChild(el('span', 'ag-stat-label', label));
@@ -486,6 +486,7 @@ function renderRound() {
   };
   const hintText = () => {
     const lim = audioLimit();
+    if (isHard) return isFinite(lim) ? `Hard mode: first ${lim} seconds unlocked · a wrong guess or skip unlocks more audio` : 'Hard mode: full clip unlocked · a miss now ends the round';
     if (isFinite(lim)) return `First ${lim} seconds unlocked · replay as much as you like`;
     return 'Replay as much as you like';
   };
@@ -629,11 +630,13 @@ function renderRound() {
   tools.appendChild(skipBtn);
 
   const turnsUsed = () => (isMap ? roundState.taps.filter((t) => !t.ok).length : roundState.wrong.length) + roundState.clues;
+  // Clues come only from the accent label itself (the answer set), never from
+  // per-speaker metadata: the world region the label belongs to, then its letters.
   const clueList = () => [
-    `Continent: ${clip.continent}`,
-    clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`,
-    clip.gender ? `Speaker: ${clip.gender}` : `Accent label has ${clip.answer.split(' ').length} word(s)`,
+    `Region: ${clip.continent}`,
     `Accent starts with "${clip.answer[0]}"`,
+    `Accent name has ${clip.answer.replace(/ /g, '').length} letters`,
+    `Accent starts with "${clip.answer.slice(0, 3)}"`,
   ];
   const drawHints = () => {
     if (isHard) return;
@@ -940,8 +943,6 @@ function renderRound() {
     box.appendChild(el('p', 'ag-reveal-cap', `The map highlights ${PLACE[clip.answer] || clip.answer} - the place this accent label is named after, not where the speaker is from.`));
     const meta = el('div', 'ag-reveal-meta');
     meta.appendChild(el('span', null, `Accent: ${clip.region}`));
-    meta.appendChild(el('span', null, clip.language === 'English' ? 'Native English speaker' : `First language: ${clip.language}`));
-    if (clip.gender) meta.appendChild(el('span', null, `Speaker: ${clip.gender}`));
     box.appendChild(meta);
     if (!roundState.solved) box.appendChild(el('p', 'ag-reveal-note', (roundState.skipped ? 'Gave up. ' : '') + `The answer was ${clip.answer}.`));
     const last = state.index + 1 >= total;
@@ -975,7 +976,9 @@ function finishRun() {
     const yesterday = `${y.getFullYear()}-${pad2(y.getMonth() + 1)}-${pad2(y.getDate())}`;
     state.stats = {
       plays: state.stats.plays + 1,
-      best: Math.max(state.stats.best, score),
+      best: state.stats.best, // legacy best on the old 3-per-voice (/15) scale, kept as is
+      best5: Math.max(state.stats.best5 || 0, score), // best on the current 5-per-voice (/25) scale
+      scale5: true,
       streak: state.stats.lastDaily === yesterday ? state.stats.streak + 1 : 1,
       lastDaily: today,
       lastRounds: state.rounds.slice(),
