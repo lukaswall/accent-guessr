@@ -74,7 +74,7 @@ const SEARCH_TERMS = {
 // Map highlight per answer (Natural Earth ADM0_A3 country codes): the country
 // the label is named after. Shown only after the reveal.
 const MAP_ISO = {
-  'Southern British English': ['GBR'], 'Scottish English': ['GBR'], 'Irish English': ['IRL'],
+  'Irish English': ['IRL'],
   'French': ['FRA'], 'German': ['DEU'], 'Dutch': ['NLD'], 'Spanish': ['ESP'],
   'Italian': ['ITA'], 'Bulgarian': ['BGR'],
   'Mainstream US English': ['USA'], 'Jamaican English': ['JAM'], 'Brazilian': ['BRA'],
@@ -87,6 +87,10 @@ const MAP_ISO = {
 const MAP_REGION = {
   'Catalan': { cx: 505, cy: 117, rx: 15, ry: 15 },
   'Eastern European': { cx: 575, cy: 92, rx: 45, ry: 26 },
+  // Scotland and Southern Britain have no single-country shape; shown as
+  // approximate regions (same visual language as Catalan / Eastern European).
+  'Scottish English': { cx: 488, cy: 74, rx: 14, ry: 11 },
+  'Southern British English': { cx: 497, cy: 92, rx: 17, ry: 8 },
 };
 
 // Hard mode: the same clip, revealed progressively. You start with 2 seconds;
