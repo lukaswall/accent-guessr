@@ -433,8 +433,20 @@ function renderHome() {
     stats.appendChild(d);
   });
   home.appendChild(stats);
+  const aboutBlock = about();
+  aboutBlock.style.display = 'none';
+  const foot = el('div', 'ag-foot');
+  const credBtn = el('button', 'ag-linklike', 'Credits & sources');
+  credBtn.type = 'button';
+  credBtn.onclick = () => {
+    const opening = aboutBlock.style.display === 'none';
+    aboutBlock.style.display = opening ? '' : 'none';
+    credBtn.textContent = opening ? 'Hide credits' : 'Credits & sources';
+  };
+  foot.appendChild(credBtn);
+  home.appendChild(foot);
   app.appendChild(home);
-  app.appendChild(about());
+  app.appendChild(aboutBlock);
 }
 
 let roundState = null; // { played, wrong[], over, solved, skipped, step }
@@ -888,7 +900,6 @@ function renderRound() {
   round.appendChild(wrongBox);
   round.appendChild(hints);
   app.appendChild(round);
-  app.appendChild(about());
 }
 
 function finishRun() {
@@ -992,7 +1003,6 @@ function renderResults() {
   res.appendChild(back);
 
   app.appendChild(res);
-  app.appendChild(about());
 }
 
 render();
