@@ -1,0 +1,30 @@
+{
+ "_comment": "EdAcc expansion spec (2026-10-26). Candidates verified via datasets-server parquet + filter API: speaker, accent (linguist-annotated column = game label source), l1, gender. raw_accent is self-reported and noisy (typos like 'Afrian', 'Latin') - never used for labels. Label normalization is explicit below; 'Ghanain English' is misspelled in the dataset itself. Clips enter Endless/Practice/Quick on import; Daily pins only for labels with >=2 manifest speakers (docs/expansion-inventory.md). Provenance for imports: origin_status=pinned_deposit ONLY after verifying the downloaded bytes' relationship to the owner deposit; otherwise record HF revision/checksum and leave deposit-equivalence unknown.",
+ "license": {"license": "CC BY-SA 4.0", "license_url": "https://creativecommons.org/licenses/by-sa/4.0/", "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983", "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/"},
+ "labels": {
+  "Nigerian English": {"region": "Nigeria", "continent": "Africa", "place": "Nigeria", "map_iso": ["NGA"], "coords": [9.1, 8.7], "search": ["nigeria", "nigerian"]},
+  "Kenyan English": {"region": "Kenya", "continent": "Africa", "place": "Kenya", "map_iso": ["KEN"], "coords": [0.5, 37.9], "search": ["kenya", "kenyan"]},
+  "Ghanaian English": {"region": "Ghana", "continent": "Africa", "place": "Ghana", "map_iso": ["GHA"], "coords": [7.9, -1.0], "search": ["ghana", "ghanaian"], "normalized_from": "Ghanain English"},
+  "Lithuanian": {"region": "Lithuania", "continent": "Europe", "place": "Lithuania", "map_iso": ["LTU"], "coords": [55.2, 23.9], "search": ["lithuania", "lithuanian"]},
+  "Romanian": {"region": "Romania", "continent": "Europe", "place": "Romania", "map_iso": ["ROU"], "coords": [45.9, 24.9], "search": ["romania", "romanian"]},
+  "Israeli": {"region": "Israel", "continent": "Asia", "place": "Israel", "map_iso": ["ISR"], "coords": [31.0, 34.9], "search": ["israel", "israeli"]},
+  "Latin American": {"region": "Latin America", "continent": "South America", "place": "Latin America", "map_region": {"cx": 310, "cy": 255, "rx": 80, "ry": 80}, "coords": null, "search": ["latin america", "latin american"], "_note": "Broad corpus label, NOT a country: ellipse on map, no km anchor (continent-level proximity text). Continent bucket 'South America' is the coarsest honest fit for the daily <=2-per-continent rule; speakers' L1 is Spanish, specific countries unrecorded."}
+ },
+ "speakers": [
+  {"speaker": "EDACC-C29-A", "split": "test", "accent": "Nigerian English", "l1": "Nigerian English", "gender": "female"},
+  {"speaker": "EDACC-C29-B", "split": "test", "accent": "Nigerian English", "l1": "Nigerian English", "gender": "male"},
+  {"speaker": "EDACC-C41-A", "split": "test", "accent": "Nigerian English", "l1": "Nigerian English", "gender": "female"},
+  {"speaker": "EDACC-C45-A", "split": "test", "accent": "Nigerian English", "l1": "Nigerian English", "gender": "male"},
+  {"speaker": "EDACC-C45-B", "split": "test", "accent": "Nigerian English", "l1": "Nigerian English", "gender": "male"},
+  {"speaker": "EDACC-C04-A", "split": "validation", "accent": "Latin American", "l1": "Spanish", "gender": "female"},
+  {"speaker": "EDACC-C26-A", "split": "test", "accent": "Latin American", "l1": "Spanish", "gender": "female"},
+  {"speaker": "EDACC-C26-B", "split": "test", "accent": "Latin American", "l1": "Spanish", "gender": "male"},
+  {"speaker": "EDACC-C35-A", "split": "test", "accent": "Kenyan English", "l1": "Kenyan English", "gender": "female"},
+  {"speaker": "EDACC-C35-B", "split": "test", "accent": "Kenyan English", "l1": "Kenyan English", "gender": "male"},
+  {"speaker": "EDACC-C38-A", "split": "test", "accent": "Lithuanian", "l1": "Lithuanian", "gender": "male"},
+  {"speaker": "EDACC-C38-B", "split": "test", "accent": "Lithuanian", "l1": "Lithuanian", "gender": "male"},
+  {"speaker": "EDACC-C36-B", "split": "test", "accent": "Ghanain English", "l1": "Ghanain English", "gender": "female"},
+  {"speaker": "EDACC-C05-A", "split": "test", "accent": "Romanian", "l1": "Romanian", "gender": "female"},
+  {"speaker": "EDACC-C57-B", "split": "test", "accent": "Israeli", "l1": "Hebrew", "gender": "male"}
+ ]
+}
