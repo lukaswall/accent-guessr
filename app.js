@@ -513,7 +513,7 @@ function renderHome() {
     home.appendChild(b);
     home.appendChild(countdownLine());
   }
-  const strip = el('button', 'ag-strip', `${state.stats.streak} day streak · ${state.stats.plays} days played`);
+  const strip = el('button', 'ag-strip', `${state.stats.streak} day streak · ${state.stats.plays} ${state.stats.plays === 1 ? 'day' : 'days'} played`);
   strip.type = 'button';
   strip.onclick = () => { state.screen = 'progress'; render(); };
   home.appendChild(strip);
