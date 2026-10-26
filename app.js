@@ -131,6 +131,7 @@ function fmtKm(km) {
 // per voice, fetched only when that round starts, so the first page load no
 // longer downloads the whole library.
 let CLIPS = [];
+let SCHEDULE = {};  // data/schedule.json: UTC date -> pinned clip ids (immutable once published)
 let ANSWERS = [];
 
 // Ranked search over accent label, display place and per-label terms.
@@ -487,7 +488,9 @@ function navBar(active) {
 
 function startDaily() {
   const today = todayStr();
-  state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3);
+  const pinned = (SCHEDULE[today] || []).map(id => CLIPS.find(c => c.id === id)).filter(Boolean);
+  // Pinned (published) sets win; the seeded pick only covers dates with no pin.
+  state.mode = 'daily'; state.set = pinned.length === 3 ? pinned : pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3);
   state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 
@@ -1141,6 +1144,10 @@ async function boot() {
     const data = await res.json();
     if (!Array.isArray(data) || !data.length) throw new Error('clips.json: empty');
     CLIPS = data;
+    try {
+      const sres = await fetch('data/schedule.json?v=1');
+      if (sres.ok) SCHEDULE = (await sres.json()).sets || {};
+    } catch (e2) { /* no pinned schedule: seeded pick covers all dates */ }
   } catch (e) {
     app.innerHTML = '';
     const box = el('div', 'ag-home');
