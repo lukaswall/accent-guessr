@@ -6,7 +6,11 @@ Play it: https://lukaswall.github.io/accent-guessr/
 
 ## How it loads
 
-Clip metadata lives in `clips.json` (~32 KB) and each voice is one small MP3 in `clips/`, fetched only when that round starts (the next voice is preloaded while you guess). First load is the page plus the manifest - about 170 KB - instead of the whole audio library, so adding more voices no longer makes the page heavier.
+Clip metadata lives in `clips.json` (~115 KB, including per-clip provenance) and each voice is one small MP3 in `clips/`, fetched only when that round starts (the next voice is preloaded while you guess). First load is the page plus the manifest - about 250 KB - instead of the whole audio library, so adding more voices no longer makes the page heavier.
+
+## Daily schedule
+
+The daily set is pinned in `data/schedule.json`: a UTC date maps to its three clip ids, and pinned entries are immutable once published, so adding new voices never changes an already-published or scheduled day. Dates without a pin fall back to a seeded pick over the manifest. `scripts/generate-schedule.mjs` extends the pins ahead (verified identical to the previously published schedule); `scripts/validate.mjs` checks the manifest and schedule before any clip change ships.
 
 ## Accounts (off by default)
 

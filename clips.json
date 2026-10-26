@@ -8,7 +8,28 @@
   "gender": "male",
   "speaker": "EDACC-C55-B",
   "secs": 11.2,
-  "src": "clips/brazilian-edacc-c55-b-0.mp3"
+  "src": "clips/brazilian-edacc-c55-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C55",
+   "speaker_id": "EDACC-C55-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "brazilian-edacc-c55-b-1",
@@ -19,7 +40,28 @@
   "gender": "male",
   "speaker": "EDACC-C55-B",
   "secs": 13.1,
-  "src": "clips/brazilian-edacc-c55-b-1.mp3"
+  "src": "clips/brazilian-edacc-c55-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C55",
+   "speaker_id": "EDACC-C55-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "brazilian-edacc-c55-b-2",
@@ -30,7 +72,28 @@
   "gender": "male",
   "speaker": "EDACC-C55-B",
   "secs": 13.1,
-  "src": "clips/brazilian-edacc-c55-b-2.mp3"
+  "src": "clips/brazilian-edacc-c55-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C55",
+   "speaker_id": "EDACC-C55-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "bulgarian-edacc-c22-b-0",
@@ -41,7 +104,28 @@
   "gender": "male",
   "speaker": "EDACC-C22-B",
   "secs": 13.1,
-  "src": "clips/bulgarian-edacc-c22-b-0.mp3"
+  "src": "clips/bulgarian-edacc-c22-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C22",
+   "speaker_id": "EDACC-C22-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "bulgarian-edacc-c22-b-1",
@@ -52,7 +136,28 @@
   "gender": "male",
   "speaker": "EDACC-C22-B",
   "secs": 9.1,
-  "src": "clips/bulgarian-edacc-c22-b-1.mp3"
+  "src": "clips/bulgarian-edacc-c22-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C22",
+   "speaker_id": "EDACC-C22-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "bulgarian-edacc-c22-b-2",
@@ -63,7 +168,28 @@
   "gender": "male",
   "speaker": "EDACC-C22-B",
   "secs": 13.1,
-  "src": "clips/bulgarian-edacc-c22-b-2.mp3"
+  "src": "clips/bulgarian-edacc-c22-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C22",
+   "speaker_id": "EDACC-C22-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "catalan-edacc-c23-b-0",
@@ -74,7 +200,28 @@
   "gender": "male",
   "speaker": "EDACC-C23-B",
   "secs": 13.1,
-  "src": "clips/catalan-edacc-c23-b-0.mp3"
+  "src": "clips/catalan-edacc-c23-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C23",
+   "speaker_id": "EDACC-C23-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "catalan-edacc-c23-b-1",
@@ -85,7 +232,28 @@
   "gender": "male",
   "speaker": "EDACC-C23-B",
   "secs": 12.9,
-  "src": "clips/catalan-edacc-c23-b-1.mp3"
+  "src": "clips/catalan-edacc-c23-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C23",
+   "speaker_id": "EDACC-C23-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "catalan-edacc-c23-b-2",
@@ -96,7 +264,28 @@
   "gender": "male",
   "speaker": "EDACC-C23-B",
   "secs": 13.1,
-  "src": "clips/catalan-edacc-c23-b-2.mp3"
+  "src": "clips/catalan-edacc-c23-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C23",
+   "speaker_id": "EDACC-C23-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "chinese-edacc-c16-a-0",
@@ -107,7 +296,28 @@
   "gender": "female",
   "speaker": "EDACC-C16-A",
   "secs": 13.1,
-  "src": "clips/chinese-edacc-c16-a-0.mp3"
+  "src": "clips/chinese-edacc-c16-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C16",
+   "speaker_id": "EDACC-C16-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "chinese-edacc-c16-a-1",
@@ -118,7 +328,28 @@
   "gender": "female",
   "speaker": "EDACC-C16-A",
   "secs": 11.2,
-  "src": "clips/chinese-edacc-c16-a-1.mp3"
+  "src": "clips/chinese-edacc-c16-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C16",
+   "speaker_id": "EDACC-C16-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "chinese-edacc-c16-a-2",
@@ -129,7 +360,28 @@
   "gender": "female",
   "speaker": "EDACC-C16-A",
   "secs": 13.1,
-  "src": "clips/chinese-edacc-c16-a-2.mp3"
+  "src": "clips/chinese-edacc-c16-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C16",
+   "speaker_id": "EDACC-C16-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "chinese-edacc-c16-b-0",
@@ -140,7 +392,28 @@
   "gender": "female",
   "speaker": "EDACC-C16-B",
   "secs": 13.1,
-  "src": "clips/chinese-edacc-c16-b-0.mp3"
+  "src": "clips/chinese-edacc-c16-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C16",
+   "speaker_id": "EDACC-C16-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "chinese-edacc-c16-b-1",
@@ -151,7 +424,28 @@
   "gender": "female",
   "speaker": "EDACC-C16-B",
   "secs": 13.1,
-  "src": "clips/chinese-edacc-c16-b-1.mp3"
+  "src": "clips/chinese-edacc-c16-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C16",
+   "speaker_id": "EDACC-C16-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "chinese-edacc-c16-b-2",
@@ -162,7 +456,28 @@
   "gender": "female",
   "speaker": "EDACC-C16-B",
   "secs": 13.1,
-  "src": "clips/chinese-edacc-c16-b-2.mp3"
+  "src": "clips/chinese-edacc-c16-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C16",
+   "speaker_id": "EDACC-C16-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "dutch-edacc-c13-b-0",
@@ -173,7 +488,28 @@
   "gender": "male",
   "speaker": "EDACC-C13-B",
   "secs": 13.1,
-  "src": "clips/dutch-edacc-c13-b-0.mp3"
+  "src": "clips/dutch-edacc-c13-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C13",
+   "speaker_id": "EDACC-C13-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "dutch-edacc-c13-b-1",
@@ -184,7 +520,28 @@
   "gender": "male",
   "speaker": "EDACC-C13-B",
   "secs": 13.1,
-  "src": "clips/dutch-edacc-c13-b-1.mp3"
+  "src": "clips/dutch-edacc-c13-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C13",
+   "speaker_id": "EDACC-C13-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "dutch-edacc-c13-b-2",
@@ -195,7 +552,28 @@
   "gender": "male",
   "speaker": "EDACC-C13-B",
   "secs": 13.1,
-  "src": "clips/dutch-edacc-c13-b-2.mp3"
+  "src": "clips/dutch-edacc-c13-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C13",
+   "speaker_id": "EDACC-C13-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "eastern-european-edacc-c30-a-0",
@@ -206,7 +584,28 @@
   "gender": "female",
   "speaker": "EDACC-C30-A",
   "secs": 13.1,
-  "src": "clips/eastern-european-edacc-c30-a-0.mp3"
+  "src": "clips/eastern-european-edacc-c30-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C30",
+   "speaker_id": "EDACC-C30-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "eastern-european-edacc-c30-a-1",
@@ -217,7 +616,28 @@
   "gender": "female",
   "speaker": "EDACC-C30-A",
   "secs": 13.1,
-  "src": "clips/eastern-european-edacc-c30-a-1.mp3"
+  "src": "clips/eastern-european-edacc-c30-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C30",
+   "speaker_id": "EDACC-C30-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "eastern-european-edacc-c30-a-2",
@@ -228,7 +648,28 @@
   "gender": "female",
   "speaker": "EDACC-C30-A",
   "secs": 13.1,
-  "src": "clips/eastern-european-edacc-c30-a-2.mp3"
+  "src": "clips/eastern-european-edacc-c30-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C30",
+   "speaker_id": "EDACC-C30-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "eastern-european-edacc-c30-b-0",
@@ -239,7 +680,28 @@
   "gender": "male",
   "speaker": "EDACC-C30-B",
   "secs": 12.4,
-  "src": "clips/eastern-european-edacc-c30-b-0.mp3"
+  "src": "clips/eastern-european-edacc-c30-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C30",
+   "speaker_id": "EDACC-C30-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "eastern-european-edacc-c30-b-1",
@@ -250,7 +712,28 @@
   "gender": "male",
   "speaker": "EDACC-C30-B",
   "secs": 13.1,
-  "src": "clips/eastern-european-edacc-c30-b-1.mp3"
+  "src": "clips/eastern-european-edacc-c30-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C30",
+   "speaker_id": "EDACC-C30-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "eastern-european-edacc-c30-b-2",
@@ -261,7 +744,28 @@
   "gender": "male",
   "speaker": "EDACC-C30-B",
   "secs": 13.1,
-  "src": "clips/eastern-european-edacc-c30-b-2.mp3"
+  "src": "clips/eastern-european-edacc-c30-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C30",
+   "speaker_id": "EDACC-C30-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "egyptian-edacc-c40-a-0",
@@ -272,7 +776,28 @@
   "gender": "male",
   "speaker": "EDACC-C40-A",
   "secs": 13.1,
-  "src": "clips/egyptian-edacc-c40-a-0.mp3"
+  "src": "clips/egyptian-edacc-c40-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C40",
+   "speaker_id": "EDACC-C40-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "egyptian-edacc-c40-a-1",
@@ -283,7 +808,28 @@
   "gender": "male",
   "speaker": "EDACC-C40-A",
   "secs": 13.1,
-  "src": "clips/egyptian-edacc-c40-a-1.mp3"
+  "src": "clips/egyptian-edacc-c40-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C40",
+   "speaker_id": "EDACC-C40-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "egyptian-edacc-c40-a-2",
@@ -294,7 +840,28 @@
   "gender": "male",
   "speaker": "EDACC-C40-A",
   "secs": 13.1,
-  "src": "clips/egyptian-edacc-c40-a-2.mp3"
+  "src": "clips/egyptian-edacc-c40-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C40",
+   "speaker_id": "EDACC-C40-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "egyptian-edacc-c40-b-0",
@@ -305,7 +872,28 @@
   "gender": "male",
   "speaker": "EDACC-C40-B",
   "secs": 13.1,
-  "src": "clips/egyptian-edacc-c40-b-0.mp3"
+  "src": "clips/egyptian-edacc-c40-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C40",
+   "speaker_id": "EDACC-C40-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "egyptian-edacc-c40-b-1",
@@ -316,7 +904,28 @@
   "gender": "male",
   "speaker": "EDACC-C40-B",
   "secs": 13.1,
-  "src": "clips/egyptian-edacc-c40-b-1.mp3"
+  "src": "clips/egyptian-edacc-c40-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C40",
+   "speaker_id": "EDACC-C40-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "egyptian-edacc-c40-b-2",
@@ -327,7 +936,28 @@
   "gender": "male",
   "speaker": "EDACC-C40-B",
   "secs": 12.1,
-  "src": "clips/egyptian-edacc-c40-b-2.mp3"
+  "src": "clips/egyptian-edacc-c40-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C40",
+   "speaker_id": "EDACC-C40-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "french-edacc-c18-a-0",
@@ -338,7 +968,28 @@
   "gender": "male",
   "speaker": "EDACC-C18-A",
   "secs": 13.1,
-  "src": "clips/french-edacc-c18-a-0.mp3"
+  "src": "clips/french-edacc-c18-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C18",
+   "speaker_id": "EDACC-C18-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "french-edacc-c18-a-1",
@@ -349,7 +1000,28 @@
   "gender": "male",
   "speaker": "EDACC-C18-A",
   "secs": 11.3,
-  "src": "clips/french-edacc-c18-a-1.mp3"
+  "src": "clips/french-edacc-c18-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C18",
+   "speaker_id": "EDACC-C18-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "french-edacc-c18-a-2",
@@ -360,7 +1032,28 @@
   "gender": "male",
   "speaker": "EDACC-C18-A",
   "secs": 13.1,
-  "src": "clips/french-edacc-c18-a-2.mp3"
+  "src": "clips/french-edacc-c18-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C18",
+   "speaker_id": "EDACC-C18-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "french-edacc-c18-b-0",
@@ -371,7 +1064,28 @@
   "gender": "male",
   "speaker": "EDACC-C18-B",
   "secs": 13.1,
-  "src": "clips/french-edacc-c18-b-0.mp3"
+  "src": "clips/french-edacc-c18-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C18",
+   "speaker_id": "EDACC-C18-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "french-edacc-c18-b-1",
@@ -382,7 +1096,28 @@
   "gender": "male",
   "speaker": "EDACC-C18-B",
   "secs": 13.1,
-  "src": "clips/french-edacc-c18-b-1.mp3"
+  "src": "clips/french-edacc-c18-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C18",
+   "speaker_id": "EDACC-C18-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "french-edacc-c18-b-2",
@@ -393,7 +1128,28 @@
   "gender": "male",
   "speaker": "EDACC-C18-B",
   "secs": 13.1,
-  "src": "clips/french-edacc-c18-b-2.mp3"
+  "src": "clips/french-edacc-c18-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C18",
+   "speaker_id": "EDACC-C18-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "german-edacc-c11-a-0",
@@ -404,7 +1160,28 @@
   "gender": "female",
   "speaker": "EDACC-C11-A",
   "secs": 13.1,
-  "src": "clips/german-edacc-c11-a-0.mp3"
+  "src": "clips/german-edacc-c11-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C11",
+   "speaker_id": "EDACC-C11-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "german-edacc-c11-a-1",
@@ -415,7 +1192,28 @@
   "gender": "female",
   "speaker": "EDACC-C11-A",
   "secs": 12.2,
-  "src": "clips/german-edacc-c11-a-1.mp3"
+  "src": "clips/german-edacc-c11-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C11",
+   "speaker_id": "EDACC-C11-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "german-edacc-c11-a-2",
@@ -426,7 +1224,28 @@
   "gender": "female",
   "speaker": "EDACC-C11-A",
   "secs": 13.1,
-  "src": "clips/german-edacc-c11-a-2.mp3"
+  "src": "clips/german-edacc-c11-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C11",
+   "speaker_id": "EDACC-C11-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indian-english-edacc-c09-a-0",
@@ -437,7 +1256,28 @@
   "gender": "female",
   "speaker": "EDACC-C09-A",
   "secs": 13.1,
-  "src": "clips/indian-english-edacc-c09-a-0.mp3"
+  "src": "clips/indian-english-edacc-c09-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C09",
+   "speaker_id": "EDACC-C09-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indian-english-edacc-c09-a-1",
@@ -448,7 +1288,28 @@
   "gender": "female",
   "speaker": "EDACC-C09-A",
   "secs": 13.1,
-  "src": "clips/indian-english-edacc-c09-a-1.mp3"
+  "src": "clips/indian-english-edacc-c09-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C09",
+   "speaker_id": "EDACC-C09-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indian-english-edacc-c09-a-2",
@@ -459,7 +1320,28 @@
   "gender": "female",
   "speaker": "EDACC-C09-A",
   "secs": 13.1,
-  "src": "clips/indian-english-edacc-c09-a-2.mp3"
+  "src": "clips/indian-english-edacc-c09-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C09",
+   "speaker_id": "EDACC-C09-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indian-english-edacc-c09-b-0",
@@ -470,7 +1352,28 @@
   "gender": "female",
   "speaker": "EDACC-C09-B",
   "secs": 13.1,
-  "src": "clips/indian-english-edacc-c09-b-0.mp3"
+  "src": "clips/indian-english-edacc-c09-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C09",
+   "speaker_id": "EDACC-C09-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indian-english-edacc-c09-b-1",
@@ -481,7 +1384,28 @@
   "gender": "female",
   "speaker": "EDACC-C09-B",
   "secs": 13.1,
-  "src": "clips/indian-english-edacc-c09-b-1.mp3"
+  "src": "clips/indian-english-edacc-c09-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C09",
+   "speaker_id": "EDACC-C09-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indian-english-edacc-c09-b-2",
@@ -492,7 +1416,28 @@
   "gender": "female",
   "speaker": "EDACC-C09-B",
   "secs": 13.1,
-  "src": "clips/indian-english-edacc-c09-b-2.mp3"
+  "src": "clips/indian-english-edacc-c09-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C09",
+   "speaker_id": "EDACC-C09-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indonesian-english-edacc-c39-a-0",
@@ -503,7 +1448,28 @@
   "gender": "male",
   "speaker": "EDACC-C39-A",
   "secs": 13.1,
-  "src": "clips/indonesian-english-edacc-c39-a-0.mp3"
+  "src": "clips/indonesian-english-edacc-c39-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C39",
+   "speaker_id": "EDACC-C39-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indonesian-english-edacc-c39-a-2",
@@ -514,7 +1480,28 @@
   "gender": "male",
   "speaker": "EDACC-C39-A",
   "secs": 11.8,
-  "src": "clips/indonesian-english-edacc-c39-a-2.mp3"
+  "src": "clips/indonesian-english-edacc-c39-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C39",
+   "speaker_id": "EDACC-C39-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indonesian-english-edacc-c39-a-3",
@@ -525,7 +1512,28 @@
   "gender": "male",
   "speaker": "EDACC-C39-A",
   "secs": 11.7,
-  "src": "clips/indonesian-english-edacc-c39-a-3.mp3"
+  "src": "clips/indonesian-english-edacc-c39-a-3.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C39",
+   "speaker_id": "EDACC-C39-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indonesian-english-edacc-c39-b-0",
@@ -536,7 +1544,28 @@
   "gender": "female",
   "speaker": "EDACC-C39-B",
   "secs": 13.1,
-  "src": "clips/indonesian-english-edacc-c39-b-0.mp3"
+  "src": "clips/indonesian-english-edacc-c39-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C39",
+   "speaker_id": "EDACC-C39-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indonesian-english-edacc-c39-b-1",
@@ -547,7 +1576,28 @@
   "gender": "female",
   "speaker": "EDACC-C39-B",
   "secs": 10.8,
-  "src": "clips/indonesian-english-edacc-c39-b-1.mp3"
+  "src": "clips/indonesian-english-edacc-c39-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C39",
+   "speaker_id": "EDACC-C39-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "indonesian-english-edacc-c39-b-2",
@@ -558,7 +1608,28 @@
   "gender": "female",
   "speaker": "EDACC-C39-B",
   "secs": 12.3,
-  "src": "clips/indonesian-english-edacc-c39-b-2.mp3"
+  "src": "clips/indonesian-english-edacc-c39-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C39",
+   "speaker_id": "EDACC-C39-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c50-a-0",
@@ -569,7 +1640,28 @@
   "gender": "male",
   "speaker": "EDACC-C50-A",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c50-a-0.mp3"
+  "src": "clips/irish-english-edacc-c50-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C50",
+   "speaker_id": "EDACC-C50-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c50-a-1",
@@ -580,7 +1672,28 @@
   "gender": "male",
   "speaker": "EDACC-C50-A",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c50-a-1.mp3"
+  "src": "clips/irish-english-edacc-c50-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C50",
+   "speaker_id": "EDACC-C50-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c50-a-2",
@@ -591,7 +1704,28 @@
   "gender": "male",
   "speaker": "EDACC-C50-A",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c50-a-2.mp3"
+  "src": "clips/irish-english-edacc-c50-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C50",
+   "speaker_id": "EDACC-C50-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c50-b-0",
@@ -602,7 +1736,28 @@
   "gender": "male",
   "speaker": "EDACC-C50-B",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c50-b-0.mp3"
+  "src": "clips/irish-english-edacc-c50-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C50",
+   "speaker_id": "EDACC-C50-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c50-b-1",
@@ -613,7 +1768,28 @@
   "gender": "male",
   "speaker": "EDACC-C50-B",
   "secs": 12.8,
-  "src": "clips/irish-english-edacc-c50-b-1.mp3"
+  "src": "clips/irish-english-edacc-c50-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C50",
+   "speaker_id": "EDACC-C50-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c50-b-2",
@@ -624,7 +1800,28 @@
   "gender": "male",
   "speaker": "EDACC-C50-B",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c50-b-2.mp3"
+  "src": "clips/irish-english-edacc-c50-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C50",
+   "speaker_id": "EDACC-C50-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c61-a-0",
@@ -635,7 +1832,28 @@
   "gender": "female",
   "speaker": "EDACC-C61-A",
   "secs": 11.9,
-  "src": "clips/irish-english-edacc-c61-a-0.mp3"
+  "src": "clips/irish-english-edacc-c61-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C61",
+   "speaker_id": "EDACC-C61-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c61-a-1",
@@ -646,7 +1864,28 @@
   "gender": "female",
   "speaker": "EDACC-C61-A",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c61-a-1.mp3"
+  "src": "clips/irish-english-edacc-c61-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C61",
+   "speaker_id": "EDACC-C61-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "irish-english-edacc-c61-a-2",
@@ -657,7 +1896,28 @@
   "gender": "female",
   "speaker": "EDACC-C61-A",
   "secs": 13.1,
-  "src": "clips/irish-english-edacc-c61-a-2.mp3"
+  "src": "clips/irish-english-edacc-c61-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C61",
+   "speaker_id": "EDACC-C61-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c01-a-0",
@@ -667,8 +1927,29 @@
   "continent": "Europe",
   "gender": "male",
   "speaker": "EDACC-C01-A",
-  "secs": 11.0,
-  "src": "clips/italian-edacc-c01-a-0.mp3"
+  "secs": 11,
+  "src": "clips/italian-edacc-c01-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C01",
+   "speaker_id": "EDACC-C01-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c01-a-1",
@@ -679,7 +1960,28 @@
   "gender": "male",
   "speaker": "EDACC-C01-A",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c01-a-1.mp3"
+  "src": "clips/italian-edacc-c01-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C01",
+   "speaker_id": "EDACC-C01-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c01-a-2",
@@ -690,7 +1992,28 @@
   "gender": "male",
   "speaker": "EDACC-C01-A",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c01-a-2.mp3"
+  "src": "clips/italian-edacc-c01-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C01",
+   "speaker_id": "EDACC-C01-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c01-b-0",
@@ -701,7 +2024,28 @@
   "gender": "female",
   "speaker": "EDACC-C01-B",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c01-b-0.mp3"
+  "src": "clips/italian-edacc-c01-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C01",
+   "speaker_id": "EDACC-C01-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c01-b-1",
@@ -712,7 +2056,28 @@
   "gender": "female",
   "speaker": "EDACC-C01-B",
   "secs": 8.6,
-  "src": "clips/italian-edacc-c01-b-1.mp3"
+  "src": "clips/italian-edacc-c01-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C01",
+   "speaker_id": "EDACC-C01-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c01-b-2",
@@ -723,7 +2088,28 @@
   "gender": "female",
   "speaker": "EDACC-C01-B",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c01-b-2.mp3"
+  "src": "clips/italian-edacc-c01-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C01",
+   "speaker_id": "EDACC-C01-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c44-b-0",
@@ -734,7 +2120,28 @@
   "gender": "female",
   "speaker": "EDACC-C44-B",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c44-b-0.mp3"
+  "src": "clips/italian-edacc-c44-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C44",
+   "speaker_id": "EDACC-C44-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c44-b-1",
@@ -745,7 +2152,28 @@
   "gender": "female",
   "speaker": "EDACC-C44-B",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c44-b-1.mp3"
+  "src": "clips/italian-edacc-c44-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C44",
+   "speaker_id": "EDACC-C44-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "italian-edacc-c44-b-2",
@@ -756,7 +2184,28 @@
   "gender": "female",
   "speaker": "EDACC-C44-B",
   "secs": 13.1,
-  "src": "clips/italian-edacc-c44-b-2.mp3"
+  "src": "clips/italian-edacc-c44-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C44",
+   "speaker_id": "EDACC-C44-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "jamaican-english-edacc-c49-a-0",
@@ -767,7 +2216,28 @@
   "gender": "female",
   "speaker": "EDACC-C49-A",
   "secs": 13.1,
-  "src": "clips/jamaican-english-edacc-c49-a-0.mp3"
+  "src": "clips/jamaican-english-edacc-c49-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C49",
+   "speaker_id": "EDACC-C49-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "jamaican-english-edacc-c49-a-1",
@@ -777,8 +2247,29 @@
   "continent": "North America",
   "gender": "female",
   "speaker": "EDACC-C49-A",
-  "secs": 12.0,
-  "src": "clips/jamaican-english-edacc-c49-a-1.mp3"
+  "secs": 12,
+  "src": "clips/jamaican-english-edacc-c49-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C49",
+   "speaker_id": "EDACC-C49-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "jamaican-english-edacc-c49-a-2",
@@ -789,7 +2280,28 @@
   "gender": "female",
   "speaker": "EDACC-C49-A",
   "secs": 13.1,
-  "src": "clips/jamaican-english-edacc-c49-a-2.mp3"
+  "src": "clips/jamaican-english-edacc-c49-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C49",
+   "speaker_id": "EDACC-C49-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "jamaican-english-edacc-c49-b-0",
@@ -800,7 +2312,28 @@
   "gender": "female",
   "speaker": "EDACC-C49-B",
   "secs": 13.1,
-  "src": "clips/jamaican-english-edacc-c49-b-0.mp3"
+  "src": "clips/jamaican-english-edacc-c49-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C49",
+   "speaker_id": "EDACC-C49-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "jamaican-english-edacc-c49-b-1",
@@ -811,7 +2344,28 @@
   "gender": "female",
   "speaker": "EDACC-C49-B",
   "secs": 13.1,
-  "src": "clips/jamaican-english-edacc-c49-b-1.mp3"
+  "src": "clips/jamaican-english-edacc-c49-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C49",
+   "speaker_id": "EDACC-C49-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "jamaican-english-edacc-c49-b-2",
@@ -822,7 +2376,28 @@
   "gender": "female",
   "speaker": "EDACC-C49-B",
   "secs": 13.1,
-  "src": "clips/jamaican-english-edacc-c49-b-2.mp3"
+  "src": "clips/jamaican-english-edacc-c49-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C49",
+   "speaker_id": "EDACC-C49-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "japanese-edacc-c14-b-0",
@@ -833,7 +2408,28 @@
   "gender": "female",
   "speaker": "EDACC-C14-B",
   "secs": 13.1,
-  "src": "clips/japanese-edacc-c14-b-0.mp3"
+  "src": "clips/japanese-edacc-c14-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C14",
+   "speaker_id": "EDACC-C14-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "japanese-edacc-c14-b-1",
@@ -844,7 +2440,28 @@
   "gender": "female",
   "speaker": "EDACC-C14-B",
   "secs": 11.4,
-  "src": "clips/japanese-edacc-c14-b-1.mp3"
+  "src": "clips/japanese-edacc-c14-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C14",
+   "speaker_id": "EDACC-C14-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "japanese-edacc-c14-b-2",
@@ -855,7 +2472,28 @@
   "gender": "female",
   "speaker": "EDACC-C14-B",
   "secs": 13.1,
-  "src": "clips/japanese-edacc-c14-b-2.mp3"
+  "src": "clips/japanese-edacc-c14-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C14",
+   "speaker_id": "EDACC-C14-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c03-a-0",
@@ -866,7 +2504,28 @@
   "gender": "female",
   "speaker": "EDACC-C03-A",
   "secs": 13.1,
-  "src": "clips/mainstream-us-english-edacc-c03-a-0.mp3"
+  "src": "clips/mainstream-us-english-edacc-c03-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C03",
+   "speaker_id": "EDACC-C03-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c03-a-1",
@@ -877,7 +2536,28 @@
   "gender": "female",
   "speaker": "EDACC-C03-A",
   "secs": 12.9,
-  "src": "clips/mainstream-us-english-edacc-c03-a-1.mp3"
+  "src": "clips/mainstream-us-english-edacc-c03-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C03",
+   "speaker_id": "EDACC-C03-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c03-a-2",
@@ -888,7 +2568,28 @@
   "gender": "female",
   "speaker": "EDACC-C03-A",
   "secs": 13.1,
-  "src": "clips/mainstream-us-english-edacc-c03-a-2.mp3"
+  "src": "clips/mainstream-us-english-edacc-c03-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C03",
+   "speaker_id": "EDACC-C03-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c06-b-0",
@@ -899,7 +2600,28 @@
   "gender": "male",
   "speaker": "EDACC-C06-B",
   "secs": 13.1,
-  "src": "clips/mainstream-us-english-edacc-c06-b-0.mp3"
+  "src": "clips/mainstream-us-english-edacc-c06-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C06",
+   "speaker_id": "EDACC-C06-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c06-b-1",
@@ -910,7 +2632,28 @@
   "gender": "male",
   "speaker": "EDACC-C06-B",
   "secs": 12.6,
-  "src": "clips/mainstream-us-english-edacc-c06-b-1.mp3"
+  "src": "clips/mainstream-us-english-edacc-c06-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C06",
+   "speaker_id": "EDACC-C06-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c06-b-2",
@@ -920,8 +2663,29 @@
   "continent": "North America",
   "gender": "male",
   "speaker": "EDACC-C06-B",
-  "secs": 11.0,
-  "src": "clips/mainstream-us-english-edacc-c06-b-2.mp3"
+  "secs": 11,
+  "src": "clips/mainstream-us-english-edacc-c06-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C06",
+   "speaker_id": "EDACC-C06-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c07-a-0",
@@ -932,7 +2696,28 @@
   "gender": "male",
   "speaker": "EDACC-C07-A",
   "secs": 13.1,
-  "src": "clips/mainstream-us-english-edacc-c07-a-0.mp3"
+  "src": "clips/mainstream-us-english-edacc-c07-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C07",
+   "speaker_id": "EDACC-C07-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c07-a-2",
@@ -942,8 +2727,29 @@
   "continent": "North America",
   "gender": "male",
   "speaker": "EDACC-C07-A",
-  "secs": 12.0,
-  "src": "clips/mainstream-us-english-edacc-c07-a-2.mp3"
+  "secs": 12,
+  "src": "clips/mainstream-us-english-edacc-c07-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C07",
+   "speaker_id": "EDACC-C07-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "mainstream-us-english-edacc-c07-a-3",
@@ -954,7 +2760,28 @@
   "gender": "male",
   "speaker": "EDACC-C07-A",
   "secs": 13.1,
-  "src": "clips/mainstream-us-english-edacc-c07-a-3.mp3"
+  "src": "clips/mainstream-us-english-edacc-c07-a-3.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C07",
+   "speaker_id": "EDACC-C07-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "scottish-english-edacc-c46-a-0",
@@ -965,7 +2792,28 @@
   "gender": "female",
   "speaker": "EDACC-C46-A",
   "secs": 12.6,
-  "src": "clips/scottish-english-edacc-c46-a-0.mp3"
+  "src": "clips/scottish-english-edacc-c46-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C46",
+   "speaker_id": "EDACC-C46-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "scottish-english-edacc-c46-a-1",
@@ -976,7 +2824,28 @@
   "gender": "female",
   "speaker": "EDACC-C46-A",
   "secs": 13.1,
-  "src": "clips/scottish-english-edacc-c46-a-1.mp3"
+  "src": "clips/scottish-english-edacc-c46-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C46",
+   "speaker_id": "EDACC-C46-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "scottish-english-edacc-c46-a-2",
@@ -987,7 +2856,28 @@
   "gender": "female",
   "speaker": "EDACC-C46-A",
   "secs": 13.1,
-  "src": "clips/scottish-english-edacc-c46-a-2.mp3"
+  "src": "clips/scottish-english-edacc-c46-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C46",
+   "speaker_id": "EDACC-C46-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "scottish-english-edacc-c46-b-0",
@@ -998,7 +2888,28 @@
   "gender": "male",
   "speaker": "EDACC-C46-B",
   "secs": 13.1,
-  "src": "clips/scottish-english-edacc-c46-b-0.mp3"
+  "src": "clips/scottish-english-edacc-c46-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C46",
+   "speaker_id": "EDACC-C46-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "scottish-english-edacc-c46-b-1",
@@ -1009,7 +2920,28 @@
   "gender": "male",
   "speaker": "EDACC-C46-B",
   "secs": 13.1,
-  "src": "clips/scottish-english-edacc-c46-b-1.mp3"
+  "src": "clips/scottish-english-edacc-c46-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C46",
+   "speaker_id": "EDACC-C46-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "scottish-english-edacc-c46-b-2",
@@ -1020,7 +2952,28 @@
   "gender": "male",
   "speaker": "EDACC-C46-B",
   "secs": 13.1,
-  "src": "clips/scottish-english-edacc-c46-b-2.mp3"
+  "src": "clips/scottish-english-edacc-c46-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C46",
+   "speaker_id": "EDACC-C46-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "south-african-english-edacc-c43-a-0",
@@ -1031,7 +2984,28 @@
   "gender": "male",
   "speaker": "EDACC-C43-A",
   "secs": 13.1,
-  "src": "clips/south-african-english-edacc-c43-a-0.mp3"
+  "src": "clips/south-african-english-edacc-c43-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C43",
+   "speaker_id": "EDACC-C43-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "south-african-english-edacc-c43-a-1",
@@ -1042,7 +3016,28 @@
   "gender": "male",
   "speaker": "EDACC-C43-A",
   "secs": 13.1,
-  "src": "clips/south-african-english-edacc-c43-a-1.mp3"
+  "src": "clips/south-african-english-edacc-c43-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C43",
+   "speaker_id": "EDACC-C43-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "south-african-english-edacc-c43-a-2",
@@ -1053,7 +3048,28 @@
   "gender": "male",
   "speaker": "EDACC-C43-A",
   "secs": 13.1,
-  "src": "clips/south-african-english-edacc-c43-a-2.mp3"
+  "src": "clips/south-african-english-edacc-c43-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C43",
+   "speaker_id": "EDACC-C43-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "south-african-english-edacc-c43-b-0",
@@ -1064,7 +3080,28 @@
   "gender": "female",
   "speaker": "EDACC-C43-B",
   "secs": 13.1,
-  "src": "clips/south-african-english-edacc-c43-b-0.mp3"
+  "src": "clips/south-african-english-edacc-c43-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C43",
+   "speaker_id": "EDACC-C43-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "south-african-english-edacc-c43-b-1",
@@ -1075,7 +3112,28 @@
   "gender": "female",
   "speaker": "EDACC-C43-B",
   "secs": 13.1,
-  "src": "clips/south-african-english-edacc-c43-b-1.mp3"
+  "src": "clips/south-african-english-edacc-c43-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C43",
+   "speaker_id": "EDACC-C43-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "south-african-english-edacc-c43-b-2",
@@ -1086,7 +3144,28 @@
   "gender": "female",
   "speaker": "EDACC-C43-B",
   "secs": 13.1,
-  "src": "clips/south-african-english-edacc-c43-b-2.mp3"
+  "src": "clips/south-african-english-edacc-c43-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C43",
+   "speaker_id": "EDACC-C43-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c03-b-0",
@@ -1097,7 +3176,28 @@
   "gender": "female",
   "speaker": "EDACC-C03-B",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c03-b-0.mp3"
+  "src": "clips/southern-british-english-edacc-c03-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C03",
+   "speaker_id": "EDACC-C03-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c03-b-1",
@@ -1108,7 +3208,28 @@
   "gender": "female",
   "speaker": "EDACC-C03-B",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c03-b-1.mp3"
+  "src": "clips/southern-british-english-edacc-c03-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C03",
+   "speaker_id": "EDACC-C03-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c03-b-2",
@@ -1119,7 +3240,28 @@
   "gender": "female",
   "speaker": "EDACC-C03-B",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c03-b-2.mp3"
+  "src": "clips/southern-british-english-edacc-c03-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C03",
+   "speaker_id": "EDACC-C03-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c04-b-0",
@@ -1130,7 +3272,28 @@
   "gender": "female",
   "speaker": "EDACC-C04-B",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c04-b-0.mp3"
+  "src": "clips/southern-british-english-edacc-c04-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C04",
+   "speaker_id": "EDACC-C04-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c04-b-1",
@@ -1141,7 +3304,28 @@
   "gender": "female",
   "speaker": "EDACC-C04-B",
   "secs": 12.1,
-  "src": "clips/southern-british-english-edacc-c04-b-1.mp3"
+  "src": "clips/southern-british-english-edacc-c04-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C04",
+   "speaker_id": "EDACC-C04-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c04-b-2",
@@ -1152,7 +3336,28 @@
   "gender": "female",
   "speaker": "EDACC-C04-B",
   "secs": 12.6,
-  "src": "clips/southern-british-english-edacc-c04-b-2.mp3"
+  "src": "clips/southern-british-english-edacc-c04-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C04",
+   "speaker_id": "EDACC-C04-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c06-a-0",
@@ -1163,7 +3368,28 @@
   "gender": "male",
   "speaker": "EDACC-C06-A",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c06-a-0.mp3"
+  "src": "clips/southern-british-english-edacc-c06-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C06",
+   "speaker_id": "EDACC-C06-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c06-a-1",
@@ -1174,7 +3400,28 @@
   "gender": "male",
   "speaker": "EDACC-C06-A",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c06-a-1.mp3"
+  "src": "clips/southern-british-english-edacc-c06-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C06",
+   "speaker_id": "EDACC-C06-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "southern-british-english-edacc-c06-a-2",
@@ -1185,7 +3432,28 @@
   "gender": "male",
   "speaker": "EDACC-C06-A",
   "secs": 13.1,
-  "src": "clips/southern-british-english-edacc-c06-a-2.mp3"
+  "src": "clips/southern-british-english-edacc-c06-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C06",
+   "speaker_id": "EDACC-C06-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "spanish-edacc-c23-a-0",
@@ -1196,7 +3464,28 @@
   "gender": "female",
   "speaker": "EDACC-C23-A",
   "secs": 13.1,
-  "src": "clips/spanish-edacc-c23-a-0.mp3"
+  "src": "clips/spanish-edacc-c23-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C23",
+   "speaker_id": "EDACC-C23-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "spanish-edacc-c23-a-1",
@@ -1207,7 +3496,28 @@
   "gender": "female",
   "speaker": "EDACC-C23-A",
   "secs": 13.1,
-  "src": "clips/spanish-edacc-c23-a-1.mp3"
+  "src": "clips/spanish-edacc-c23-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C23",
+   "speaker_id": "EDACC-C23-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "spanish-edacc-c23-a-2",
@@ -1218,7 +3528,28 @@
   "gender": "female",
   "speaker": "EDACC-C23-A",
   "secs": 13.1,
-  "src": "clips/spanish-edacc-c23-a-2.mp3"
+  "src": "clips/spanish-edacc-c23-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C23",
+   "speaker_id": "EDACC-C23-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c58-a-0",
@@ -1229,7 +3560,28 @@
   "gender": "male",
   "speaker": "EDACC-C58-A",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c58-a-0.mp3"
+  "src": "clips/vietnamese-edacc-c58-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C58",
+   "speaker_id": "EDACC-C58-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c58-a-1",
@@ -1240,7 +3592,28 @@
   "gender": "male",
   "speaker": "EDACC-C58-A",
   "secs": 11.7,
-  "src": "clips/vietnamese-edacc-c58-a-1.mp3"
+  "src": "clips/vietnamese-edacc-c58-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C58",
+   "speaker_id": "EDACC-C58-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c58-a-2",
@@ -1251,7 +3624,28 @@
   "gender": "male",
   "speaker": "EDACC-C58-A",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c58-a-2.mp3"
+  "src": "clips/vietnamese-edacc-c58-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C58",
+   "speaker_id": "EDACC-C58-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c58-b-0",
@@ -1262,7 +3656,28 @@
   "gender": "male",
   "speaker": "EDACC-C58-B",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c58-b-0.mp3"
+  "src": "clips/vietnamese-edacc-c58-b-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C58",
+   "speaker_id": "EDACC-C58-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c58-b-1",
@@ -1273,7 +3688,28 @@
   "gender": "male",
   "speaker": "EDACC-C58-B",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c58-b-1.mp3"
+  "src": "clips/vietnamese-edacc-c58-b-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C58",
+   "speaker_id": "EDACC-C58-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c58-b-2",
@@ -1284,7 +3720,28 @@
   "gender": "male",
   "speaker": "EDACC-C58-B",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c58-b-2.mp3"
+  "src": "clips/vietnamese-edacc-c58-b-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C58",
+   "speaker_id": "EDACC-C58-B",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c62-a-0",
@@ -1295,7 +3752,28 @@
   "gender": "female",
   "speaker": "EDACC-C62-A",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c62-a-0.mp3"
+  "src": "clips/vietnamese-edacc-c62-a-0.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C62",
+   "speaker_id": "EDACC-C62-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c62-a-1",
@@ -1306,7 +3784,28 @@
   "gender": "female",
   "speaker": "EDACC-C62-A",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c62-a-1.mp3"
+  "src": "clips/vietnamese-edacc-c62-a-1.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C62",
+   "speaker_id": "EDACC-C62-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  },
  {
   "id": "vietnamese-edacc-c62-a-2",
@@ -1317,6 +3816,27 @@
   "gender": "female",
   "speaker": "EDACC-C62-A",
   "secs": 13.1,
-  "src": "clips/vietnamese-edacc-c62-a-2.mp3"
+  "src": "clips/vietnamese-edacc-c62-a-2.mp3",
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "split": "validation",
+   "conversation": "EDACC-C62",
+   "speaker_id": "EDACC-C62-A",
+   "origin_status": "unverified_version",
+   "reference_basis": "current_owner_deposit",
+   "excerpt": {
+    "start_sec": null,
+    "end_sec": null
+   },
+   "retrieved_date": null,
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": null
+  }
  }
 ]
