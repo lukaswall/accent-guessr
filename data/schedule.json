@@ -1,0 +1,341 @@
+{
+ "_comment": "Pinned Daily sets (UTC date -> clip ids). Entries are immutable once published; app.js uses a pinned entry when present and only falls back to the seeded pick for unpinned dates.",
+ "manifest_clips": 120,
+ "sets": {
+  "2026-10-26": [
+   "southern-british-english-edacc-c04-b-2",
+   "indonesian-english-edacc-c39-b-0",
+   "irish-english-edacc-c50-b-0"
+  ],
+  "2026-10-27": [
+   "southern-british-english-edacc-c03-b-0",
+   "vietnamese-edacc-c58-b-0",
+   "scottish-english-edacc-c46-a-0"
+  ],
+  "2026-10-28": [
+   "indian-english-edacc-c09-a-0",
+   "mainstream-us-english-edacc-c06-b-2",
+   "eastern-european-edacc-c30-b-2"
+  ],
+  "2026-10-29": [
+   "indonesian-english-edacc-c39-b-1",
+   "southern-british-english-edacc-c03-b-1",
+   "brazilian-edacc-c55-b-2"
+  ],
+  "2026-10-30": [
+   "south-african-english-edacc-c43-a-2",
+   "mainstream-us-english-edacc-c06-b-2",
+   "irish-english-edacc-c50-a-0"
+  ],
+  "2026-10-31": [
+   "egyptian-edacc-c40-a-1",
+   "eastern-european-edacc-c30-a-2",
+   "catalan-edacc-c23-b-2"
+  ],
+  "2026-11-01": [
+   "catalan-edacc-c23-b-2",
+   "southern-british-english-edacc-c03-b-1",
+   "jamaican-english-edacc-c49-a-0"
+  ],
+  "2026-11-02": [
+   "mainstream-us-english-edacc-c07-a-0",
+   "chinese-edacc-c16-b-0",
+   "indonesian-english-edacc-c39-b-0"
+  ],
+  "2026-11-03": [
+   "spanish-edacc-c23-a-1",
+   "southern-british-english-edacc-c06-a-2",
+   "chinese-edacc-c16-b-2"
+  ],
+  "2026-11-04": [
+   "southern-british-english-edacc-c03-b-0",
+   "italian-edacc-c01-b-2",
+   "jamaican-english-edacc-c49-b-2"
+  ],
+  "2026-11-05": [
+   "indonesian-english-edacc-c39-b-1",
+   "southern-british-english-edacc-c03-b-1",
+   "catalan-edacc-c23-b-2"
+  ],
+  "2026-11-06": [
+   "italian-edacc-c01-b-0",
+   "irish-english-edacc-c61-a-1",
+   "egyptian-edacc-c40-a-0"
+  ],
+  "2026-11-07": [
+   "dutch-edacc-c13-b-1",
+   "italian-edacc-c01-a-2",
+   "jamaican-english-edacc-c49-b-2"
+  ],
+  "2026-11-08": [
+   "chinese-edacc-c16-a-0",
+   "italian-edacc-c01-a-1",
+   "bulgarian-edacc-c22-b-0"
+  ],
+  "2026-11-09": [
+   "indian-english-edacc-c09-b-2",
+   "jamaican-english-edacc-c49-a-1",
+   "southern-british-english-edacc-c03-b-1"
+  ],
+  "2026-11-10": [
+   "vietnamese-edacc-c62-a-2",
+   "italian-edacc-c01-a-0",
+   "southern-british-english-edacc-c03-b-1"
+  ],
+  "2026-11-11": [
+   "indian-english-edacc-c09-a-2",
+   "japanese-edacc-c14-b-0",
+   "mainstream-us-english-edacc-c06-b-1"
+  ],
+  "2026-11-12": [
+   "french-edacc-c18-a-2",
+   "vietnamese-edacc-c58-a-0",
+   "irish-english-edacc-c61-a-1"
+  ],
+  "2026-11-13": [
+   "scottish-english-edacc-c46-a-2",
+   "jamaican-english-edacc-c49-a-1",
+   "indonesian-english-edacc-c39-a-0"
+  ],
+  "2026-11-14": [
+   "irish-english-edacc-c50-a-0",
+   "indonesian-english-edacc-c39-a-2",
+   "french-edacc-c18-a-2"
+  ],
+  "2026-11-15": [
+   "mainstream-us-english-edacc-c07-a-3",
+   "egyptian-edacc-c40-b-2",
+   "bulgarian-edacc-c22-b-1"
+  ],
+  "2026-11-16": [
+   "irish-english-edacc-c50-a-0",
+   "jamaican-english-edacc-c49-a-1",
+   "italian-edacc-c44-b-0"
+  ],
+  "2026-11-17": [
+   "french-edacc-c18-a-2",
+   "southern-british-english-edacc-c03-b-1",
+   "south-african-english-edacc-c43-a-0"
+  ],
+  "2026-11-18": [
+   "mainstream-us-english-edacc-c03-a-2",
+   "indian-english-edacc-c09-a-1",
+   "southern-british-english-edacc-c03-b-2"
+  ],
+  "2026-11-19": [
+   "brazilian-edacc-c55-b-0",
+   "indian-english-edacc-c09-b-0",
+   "south-african-english-edacc-c43-b-2"
+  ],
+  "2026-11-20": [
+   "italian-edacc-c01-b-0",
+   "dutch-edacc-c13-b-1",
+   "japanese-edacc-c14-b-1"
+  ],
+  "2026-11-21": [
+   "southern-british-english-edacc-c03-b-0",
+   "japanese-edacc-c14-b-2",
+   "scottish-english-edacc-c46-a-2"
+  ],
+  "2026-11-22": [
+   "southern-british-english-edacc-c04-b-2",
+   "chinese-edacc-c16-a-1",
+   "japanese-edacc-c14-b-2"
+  ],
+  "2026-11-23": [
+   "southern-british-english-edacc-c04-b-0",
+   "french-edacc-c18-a-2",
+   "chinese-edacc-c16-b-2"
+  ],
+  "2026-11-24": [
+   "indonesian-english-edacc-c39-a-3",
+   "vietnamese-edacc-c62-a-0",
+   "spanish-edacc-c23-a-2"
+  ],
+  "2026-11-25": [
+   "chinese-edacc-c16-b-0",
+   "eastern-european-edacc-c30-a-1",
+   "scottish-english-edacc-c46-a-2"
+  ],
+  "2026-11-26": [
+   "irish-english-edacc-c50-a-2",
+   "french-edacc-c18-a-2",
+   "south-african-english-edacc-c43-a-1"
+  ],
+  "2026-11-27": [
+   "egyptian-edacc-c40-a-1",
+   "southern-british-english-edacc-c03-b-1",
+   "south-african-english-edacc-c43-b-2"
+  ],
+  "2026-11-28": [
+   "jamaican-english-edacc-c49-b-2",
+   "south-african-english-edacc-c43-b-0",
+   "southern-british-english-edacc-c04-b-2"
+  ],
+  "2026-11-29": [
+   "chinese-edacc-c16-a-0",
+   "southern-british-english-edacc-c03-b-2",
+   "scottish-english-edacc-c46-b-2"
+  ],
+  "2026-11-30": [
+   "mainstream-us-english-edacc-c06-b-0",
+   "french-edacc-c18-a-1",
+   "italian-edacc-c44-b-1"
+  ],
+  "2026-12-01": [
+   "eastern-european-edacc-c30-b-1",
+   "dutch-edacc-c13-b-2",
+   "indian-english-edacc-c09-a-0"
+  ],
+  "2026-12-02": [
+   "scottish-english-edacc-c46-b-1",
+   "catalan-edacc-c23-b-2",
+   "vietnamese-edacc-c62-a-0"
+  ],
+  "2026-12-03": [
+   "french-edacc-c18-b-1",
+   "bulgarian-edacc-c22-b-2",
+   "south-african-english-edacc-c43-a-1"
+  ],
+  "2026-12-04": [
+   "spanish-edacc-c23-a-2",
+   "scottish-english-edacc-c46-b-1",
+   "chinese-edacc-c16-a-1"
+  ],
+  "2026-12-05": [
+   "eastern-european-edacc-c30-a-0",
+   "indian-english-edacc-c09-b-2",
+   "indonesian-english-edacc-c39-b-2"
+  ],
+  "2026-12-06": [
+   "vietnamese-edacc-c58-a-2",
+   "south-african-english-edacc-c43-a-1",
+   "irish-english-edacc-c61-a-2"
+  ],
+  "2026-12-07": [
+   "brazilian-edacc-c55-b-1",
+   "irish-english-edacc-c50-b-2",
+   "italian-edacc-c01-b-1"
+  ],
+  "2026-12-08": [
+   "japanese-edacc-c14-b-1",
+   "irish-english-edacc-c50-b-1",
+   "italian-edacc-c44-b-2"
+  ],
+  "2026-12-09": [
+   "southern-british-english-edacc-c03-b-2",
+   "jamaican-english-edacc-c49-a-1",
+   "indonesian-english-edacc-c39-b-1"
+  ],
+  "2026-12-10": [
+   "jamaican-english-edacc-c49-a-0",
+   "mainstream-us-english-edacc-c03-a-0",
+   "catalan-edacc-c23-b-2"
+  ],
+  "2026-12-11": [
+   "chinese-edacc-c16-b-2",
+   "german-edacc-c11-a-1",
+   "eastern-european-edacc-c30-b-0"
+  ],
+  "2026-12-12": [
+   "italian-edacc-c01-a-2",
+   "jamaican-english-edacc-c49-b-0",
+   "german-edacc-c11-a-2"
+  ],
+  "2026-12-13": [
+   "scottish-english-edacc-c46-b-1",
+   "south-african-english-edacc-c43-b-1",
+   "indian-english-edacc-c09-a-1"
+  ],
+  "2026-12-14": [
+   "italian-edacc-c01-b-2",
+   "egyptian-edacc-c40-a-1",
+   "spanish-edacc-c23-a-2"
+  ],
+  "2026-12-15": [
+   "indonesian-english-edacc-c39-b-0",
+   "jamaican-english-edacc-c49-a-2",
+   "egyptian-edacc-c40-a-0"
+  ],
+  "2026-12-16": [
+   "chinese-edacc-c16-a-1",
+   "dutch-edacc-c13-b-0",
+   "jamaican-english-edacc-c49-a-2"
+  ],
+  "2026-12-17": [
+   "french-edacc-c18-a-0",
+   "chinese-edacc-c16-a-0",
+   "jamaican-english-edacc-c49-a-0"
+  ],
+  "2026-12-18": [
+   "vietnamese-edacc-c58-b-0",
+   "chinese-edacc-c16-a-2",
+   "egyptian-edacc-c40-a-1"
+  ],
+  "2026-12-19": [
+   "german-edacc-c11-a-1",
+   "chinese-edacc-c16-b-2",
+   "vietnamese-edacc-c62-a-0"
+  ],
+  "2026-12-20": [
+   "southern-british-english-edacc-c04-b-2",
+   "vietnamese-edacc-c58-b-1",
+   "chinese-edacc-c16-b-0"
+  ],
+  "2026-12-21": [
+   "vietnamese-edacc-c58-a-2",
+   "southern-british-english-edacc-c04-b-0",
+   "brazilian-edacc-c55-b-2"
+  ],
+  "2026-12-22": [
+   "eastern-european-edacc-c30-a-1",
+   "bulgarian-edacc-c22-b-0",
+   "south-african-english-edacc-c43-a-2"
+  ],
+  "2026-12-23": [
+   "southern-british-english-edacc-c04-b-1",
+   "french-edacc-c18-a-0",
+   "south-african-english-edacc-c43-a-1"
+  ],
+  "2026-12-24": [
+   "southern-british-english-edacc-c03-b-0",
+   "brazilian-edacc-c55-b-1",
+   "german-edacc-c11-a-0"
+  ],
+  "2026-12-25": [
+   "french-edacc-c18-a-0",
+   "indian-english-edacc-c09-b-1",
+   "south-african-english-edacc-c43-a-2"
+  ],
+  "2026-12-26": [
+   "mainstream-us-english-edacc-c07-a-3",
+   "south-african-english-edacc-c43-b-2",
+   "vietnamese-edacc-c58-b-1"
+  ],
+  "2026-12-27": [
+   "scottish-english-edacc-c46-a-0",
+   "irish-english-edacc-c61-a-1",
+   "chinese-edacc-c16-b-2"
+  ],
+  "2026-12-28": [
+   "irish-english-edacc-c50-a-0",
+   "scottish-english-edacc-c46-b-0",
+   "brazilian-edacc-c55-b-0"
+  ],
+  "2026-12-29": [
+   "irish-english-edacc-c50-a-1",
+   "chinese-edacc-c16-b-0",
+   "indian-english-edacc-c09-b-1"
+  ],
+  "2026-12-30": [
+   "italian-edacc-c01-b-0",
+   "indonesian-english-edacc-c39-a-0",
+   "south-african-english-edacc-c43-a-0"
+  ],
+  "2026-12-31": [
+   "south-african-english-edacc-c43-a-1",
+   "egyptian-edacc-c40-b-0",
+   "southern-british-english-edacc-c06-a-1"
+  ]
+ }
+}
