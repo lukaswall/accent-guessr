@@ -303,6 +303,46 @@ function buildMap(answer, wrongs) {
 const app = document.getElementById('app');
 let countdownTimer = null;
 
+// Screen URLs: the app is one page, but the browser Back button must move
+// between screens instead of leaving the site. Each screen change pushes a
+// hash entry; play/results re-enter safely (a finished or absent run sends
+// you home, never to a broken round).
+const SCREEN_HASH = { home: '', modes: '#/modes', progress: '#/progress', play: '#/play', results: '#/results' };
+const HASH_SCREEN = { '': 'home', '#/': 'home', '#/modes': 'modes', '#/progress': 'progress', '#/play': 'play', '#/results': 'results' };
+let pushedScreen = null;
+let navFromHistory = false;
+
+function runResumable() { return state.set && state.set.length > 0 && state.index < state.set.length; }
+function resultsViewable() { return state.rounds && state.rounds.length > 0; }
+
+function screenFromHash() {
+  const s = HASH_SCREEN[location.hash] || 'home';
+  if (s === 'play' && !runResumable()) return 'home';
+  if (s === 'results' && !resultsViewable()) return 'home';
+  return s;
+}
+
+function syncUrl() {
+  const h = SCREEN_HASH[state.screen] || '';
+  const target = h || (location.pathname + location.search);
+  if (navFromHistory || pushedScreen === state.screen) {
+    navFromHistory = false;
+    history.replaceState(history.state, '', target);
+  } else {
+    history.pushState({ ag: state.screen }, '', target);
+  }
+  pushedScreen = state.screen;
+}
+
+window.addEventListener('popstate', () => {
+  const s = screenFromHash();
+  if (s !== state.screen) {
+    navFromHistory = true;
+    state.screen = s;
+    render();
+  }
+});
+
 function render() {
   stopAudio();
   if (countdownTimer) { clearInterval(countdownTimer); countdownTimer = null; }
@@ -312,6 +352,7 @@ function render() {
   else if (state.screen === 'modes') renderModes();
   else if (state.screen === 'progress') renderProgress();
   else renderResults();
+  syncUrl();
 }
 
 function header() {
@@ -1109,6 +1150,7 @@ async function boot() {
   }
   ANSWERS = Array.from(new Set(CLIPS.map(c => c.answer))).sort((a, b) => a.localeCompare(b));
   if (window.AGAuth) AGAuth.onChange(() => { if (state.screen !== 'play') render(); });
+  state.screen = screenFromHash(); // honor deep links like #/modes; invalid play/results fall back home
   render();
 }
 boot();
