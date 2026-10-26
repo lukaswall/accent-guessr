@@ -30,3 +30,18 @@ investigate), then publish: move 45 clips to clips/, extend clips.json
 GUESS_CONTINENT/SEARCH_TERMS/MAP_ISO + MAP_REGION ellipse for Latin American),
 regenerate ATTRIBUTION.md, verify live. Daily untouched (pins through Dec 31
 unchanged; new labels need >=2 speakers for future pins per inventory rule).
+
+## Update (same day, later run)
+
+- Empty-transcript investigation: c2 re-read transcribed fine (transient);
+  c7-c10 persistently untranscribable despite speech-level energy and normal
+  spectrograms - treated as unverifiable, excluded from selection.
+- Spectrogram inspection added to QA (visual: speech structure, edges, anomalies).
+- Mistake: a cleanup glob deleted the 45 first-selection MP3s. All provenance
+  JSON survived (docs/qa-staging-2026-10-26/) and the clips are deterministically
+  regenerable via scripts/ingest-edacc.mjs (same filter order + same window policy).
+- Additional eyeball rejects: "going to Nigeria?" (Ghanaian speaker), "going to
+  the United States" (Lithuanian speaker) - place-mislead, excluded.
+- Corrected whitelist: C36-B <- candidates c2 (animals), c4 (multicultural),
+  c1 (child's first name; kept - parent guidance: name mention not automatic
+  reject); C38-B <- c1, c2, c3 (participant-ID prefix and US-mention dropped).
