@@ -316,7 +316,6 @@ function render() {
 
 function header() {
   const h = el('header', 'ag-header');
-  h.appendChild(el('h1', 'ag-title', 'Accent Guessr'));
   h.appendChild(el('p', 'ag-date', prettyDate()));
   h.appendChild(el('p', 'ag-intro', 'Real voices. Listen, then guess which accent each speaker has.'));
   return h;
@@ -408,6 +407,23 @@ function navIcon(kind) {
 
 function navBar(active) {
   const nav = el('nav', 'ag-nav');
+  if (active === 'play') {
+    const back = el('button', 'ag-nav-back');
+    back.type = 'button';
+    const arr = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    arr.setAttribute('viewBox', '0 0 24 24');
+    arr.setAttribute('class', 'ag-nav-ic');
+    arr.setAttribute('aria-hidden', 'true');
+    arr.innerHTML = '<path d="M15 5l-7 7 7 7"/>';
+    back.appendChild(arr);
+    back.appendChild(el('span', null, 'Back'));
+    back.onclick = () => { state.screen = 'home'; render(); };
+    nav.appendChild(back);
+    const NAMES = { daily: 'Daily', quick: 'Quick pick', endless: 'Endless', hard: 'Hard mode', short: 'Short clips', practice: 'Practice' };
+    nav.appendChild(el('span', 'ag-nav-mode', NAMES[state.mode] || ''));
+    nav.appendChild(el('span', 'ag-nav-mode', ''));
+    return nav;
+  }
   const brand = el('button', 'ag-nav-brand', 'Accent Guessr');
   brand.type = 'button';
   brand.onclick = () => { state.screen = 'home'; render(); };
@@ -480,7 +496,9 @@ function renderHome() {
 function renderModes() {
   app.appendChild(navBar('modes'));
   const home = el('div', 'ag-home');
-  home.appendChild(el('p', 'ag-home-sub', 'More ways to play'));
+  const h = el('header', 'ag-header');
+  h.appendChild(el('h1', 'ag-title is-small', 'More ways to play'));
+  home.appendChild(h);
   const modeRow = el('div', 'ag-mode-row');
   [['Quick pick', startQuick]].forEach(([lab, fn]) => {
     const b = el('button', 'ag-btn is-primary', lab);
@@ -517,7 +535,7 @@ function renderProgress() {
   app.appendChild(navBar('progress'));
   const home = el('div', 'ag-home');
   const h = el('header', 'ag-header');
-  h.appendChild(el('h1', 'ag-title', 'Your progress'));
+  h.appendChild(el('h1', 'ag-title is-small', 'Your progress'));
   h.appendChild(el('p', 'ag-date', prettyDate()));
   home.appendChild(h);
   if (state.stats.lastDaily === todayStr()) home.appendChild(doneBlock());
@@ -547,7 +565,7 @@ function renderRound() {
   const isRun = state.mode === 'endless' || isHard || isShort || isQuick;
   roundState = { played: false, wrong: [], over: false, solved: false, skipped: false, step: 0, clues: 0 };
 
-  app.appendChild(header());
+  app.appendChild(navBar('play'));
   const round = el('div', 'ag-round');
 
   const prog = el('div', 'ag-progress');
@@ -1006,7 +1024,7 @@ function finishRun() {
 }
 
 function renderResults() {
-  app.appendChild(header());
+  app.appendChild(navBar(null));
   const res = el('div', 'ag-results');
   const isHard = state.mode === 'hard';
   const isShort = state.mode === 'short';
