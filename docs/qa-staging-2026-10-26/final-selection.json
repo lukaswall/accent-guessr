@@ -8,12 +8,13 @@
   "gender": "female",
   "speaker": "EDACC-C04-A",
   "secs": 9.1,
-  "src": "clips/latin-american-edacc-c04-a-c1.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c04-a-0.mp3",
+  "src": "clips/latin-american-edacc-c04-a-0.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c04-a-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -41,7 +42,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c04-a-c1"
  },
  {
   "id": "latin-american-edacc-c04-a-1",
@@ -52,12 +54,13 @@
   "gender": "female",
   "speaker": "EDACC-C04-A",
   "secs": 10.6,
-  "src": "clips/latin-american-edacc-c04-a-c2.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c04-a-1.mp3",
+  "src": "clips/latin-american-edacc-c04-a-1.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c04-a-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -85,7 +88,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c04-a-c2"
  },
  {
   "id": "latin-american-edacc-c04-a-2",
@@ -96,12 +100,13 @@
   "gender": "female",
   "speaker": "EDACC-C04-A",
   "secs": 11.7,
-  "src": "clips/latin-american-edacc-c04-a-c3.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c04-a-2.mp3",
+  "src": "clips/latin-american-edacc-c04-a-2.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c04-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -129,7 +134,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c04-a-c3"
  },
  {
   "id": "romanian-edacc-c05-a-0",
@@ -140,12 +146,13 @@
   "gender": "female",
   "speaker": "EDACC-C05-A",
   "secs": 10.9,
-  "src": "clips/romanian-edacc-c05-a-c1.mp3",
-  "staged_file": "staging/clips/romanian-edacc-c05-a-0.mp3",
+  "src": "clips/romanian-edacc-c05-a-0.mp3",
+  "staged_file": "staging/clips/romanian-edacc-c05-a-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -173,7 +180,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "romanian-edacc-c05-a-c1"
  },
  {
   "id": "romanian-edacc-c05-a-1",
@@ -184,12 +192,13 @@
   "gender": "female",
   "speaker": "EDACC-C05-A",
   "secs": 9.4,
-  "src": "clips/romanian-edacc-c05-a-c2.mp3",
-  "staged_file": "staging/clips/romanian-edacc-c05-a-1.mp3",
+  "src": "clips/romanian-edacc-c05-a-1.mp3",
+  "staged_file": "staging/clips/romanian-edacc-c05-a-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -217,7 +226,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "romanian-edacc-c05-a-c2"
  },
  {
   "id": "romanian-edacc-c05-a-2",
@@ -228,12 +238,13 @@
   "gender": "female",
   "speaker": "EDACC-C05-A",
   "secs": 10.7,
-  "src": "clips/romanian-edacc-c05-a-c3.mp3",
-  "staged_file": "staging/clips/romanian-edacc-c05-a-2.mp3",
+  "src": "clips/romanian-edacc-c05-a-2.mp3",
+  "staged_file": "staging/clips/romanian-edacc-c05-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -261,7 +272,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "romanian-edacc-c05-a-c3"
  },
  {
   "id": "latin-american-edacc-c26-a-0",
@@ -272,12 +284,13 @@
   "gender": "female",
   "speaker": "EDACC-C26-A",
   "secs": 13.4,
-  "src": "clips/latin-american-edacc-c26-a-c1.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c26-a-0.mp3",
+  "src": "clips/latin-american-edacc-c26-a-0.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c26-a-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -305,7 +318,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c26-a-c1"
  },
  {
   "id": "latin-american-edacc-c26-a-1",
@@ -316,12 +330,13 @@
   "gender": "female",
   "speaker": "EDACC-C26-A",
   "secs": 9.3,
-  "src": "clips/latin-american-edacc-c26-a-c2.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c26-a-1.mp3",
+  "src": "clips/latin-american-edacc-c26-a-1.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c26-a-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -349,7 +364,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c26-a-c2"
  },
  {
   "id": "latin-american-edacc-c26-a-2",
@@ -360,12 +376,13 @@
   "gender": "female",
   "speaker": "EDACC-C26-A",
   "secs": 10.9,
-  "src": "clips/latin-american-edacc-c26-a-c3.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c26-a-2.mp3",
+  "src": "clips/latin-american-edacc-c26-a-2.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c26-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -393,7 +410,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c26-a-c3"
  },
  {
   "id": "latin-american-edacc-c26-b-0",
@@ -404,12 +422,13 @@
   "gender": "male",
   "speaker": "EDACC-C26-B",
   "secs": 9.5,
-  "src": "clips/latin-american-edacc-c26-b-c1.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c26-b-0.mp3",
+  "src": "clips/latin-american-edacc-c26-b-0.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c26-b-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -437,7 +456,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c26-b-c1"
  },
  {
   "id": "latin-american-edacc-c26-b-1",
@@ -448,12 +468,13 @@
   "gender": "male",
   "speaker": "EDACC-C26-B",
   "secs": 11,
-  "src": "clips/latin-american-edacc-c26-b-c2.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c26-b-1.mp3",
+  "src": "clips/latin-american-edacc-c26-b-1.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c26-b-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -481,7 +502,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c26-b-c2"
  },
  {
   "id": "latin-american-edacc-c26-b-2",
@@ -492,12 +514,13 @@
   "gender": "male",
   "speaker": "EDACC-C26-B",
   "secs": 11.2,
-  "src": "clips/latin-american-edacc-c26-b-c3.mp3",
-  "staged_file": "staging/clips/latin-american-edacc-c26-b-2.mp3",
+  "src": "clips/latin-american-edacc-c26-b-2.mp3",
+  "staged_file": "staging/clips/latin-american-edacc-c26-b-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -525,7 +548,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "latin-american-edacc-c26-b-c3"
  },
  {
   "id": "nigerian-english-edacc-c29-a-0",
@@ -536,12 +560,13 @@
   "gender": "female",
   "speaker": "EDACC-C29-A",
   "secs": 11.7,
-  "src": "clips/nigerian-english-edacc-c29-a-c0.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c29-a-0.mp3",
+  "src": "clips/nigerian-english-edacc-c29-a-0.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c29-a-c0.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -569,7 +594,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c29-a-c0"
  },
  {
   "id": "nigerian-english-edacc-c29-a-1",
@@ -580,12 +606,13 @@
   "gender": "female",
   "speaker": "EDACC-C29-A",
   "secs": 12.7,
-  "src": "clips/nigerian-english-edacc-c29-a-c2.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c29-a-1.mp3",
+  "src": "clips/nigerian-english-edacc-c29-a-1.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c29-a-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -613,7 +640,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c29-a-c2"
  },
  {
   "id": "nigerian-english-edacc-c29-a-2",
@@ -624,12 +652,13 @@
   "gender": "female",
   "speaker": "EDACC-C29-A",
   "secs": 11.5,
-  "src": "clips/nigerian-english-edacc-c29-a-c3.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c29-a-2.mp3",
+  "src": "clips/nigerian-english-edacc-c29-a-2.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c29-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -657,7 +686,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c29-a-c3"
  },
  {
   "id": "nigerian-english-edacc-c29-b-0",
@@ -668,12 +698,13 @@
   "gender": "male",
   "speaker": "EDACC-C29-B",
   "secs": 10.3,
-  "src": "clips/nigerian-english-edacc-c29-b-c0.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c29-b-0.mp3",
+  "src": "clips/nigerian-english-edacc-c29-b-0.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c29-b-c0.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -701,7 +732,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c29-b-c0"
  },
  {
   "id": "nigerian-english-edacc-c29-b-1",
@@ -712,12 +744,13 @@
   "gender": "male",
   "speaker": "EDACC-C29-B",
   "secs": 12.5,
-  "src": "clips/nigerian-english-edacc-c29-b-c1.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c29-b-1.mp3",
+  "src": "clips/nigerian-english-edacc-c29-b-1.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c29-b-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -745,7 +778,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c29-b-c1"
  },
  {
   "id": "nigerian-english-edacc-c29-b-2",
@@ -756,12 +790,13 @@
   "gender": "male",
   "speaker": "EDACC-C29-B",
   "secs": 12.3,
-  "src": "clips/nigerian-english-edacc-c29-b-c2.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c29-b-2.mp3",
+  "src": "clips/nigerian-english-edacc-c29-b-2.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c29-b-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -789,7 +824,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c29-b-c2"
  },
  {
   "id": "kenyan-english-edacc-c35-a-0",
@@ -800,12 +836,13 @@
   "gender": "female",
   "speaker": "EDACC-C35-A",
   "secs": 12,
-  "src": "clips/kenyan-english-edacc-c35-a-c1.mp3",
-  "staged_file": "staging/clips/kenyan-english-edacc-c35-a-0.mp3",
+  "src": "clips/kenyan-english-edacc-c35-a-0.mp3",
+  "staged_file": "staging/clips/kenyan-english-edacc-c35-a-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -833,7 +870,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "kenyan-english-edacc-c35-a-c1"
  },
  {
   "id": "kenyan-english-edacc-c35-a-1",
@@ -844,12 +882,13 @@
   "gender": "female",
   "speaker": "EDACC-C35-A",
   "secs": 11.7,
-  "src": "clips/kenyan-english-edacc-c35-a-c3.mp3",
-  "staged_file": "staging/clips/kenyan-english-edacc-c35-a-1.mp3",
+  "src": "clips/kenyan-english-edacc-c35-a-1.mp3",
+  "staged_file": "staging/clips/kenyan-english-edacc-c35-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -877,7 +916,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "kenyan-english-edacc-c35-a-c3"
  },
  {
   "id": "kenyan-english-edacc-c35-a-2",
@@ -888,12 +928,13 @@
   "gender": "female",
   "speaker": "EDACC-C35-A",
   "secs": 10.7,
-  "src": "clips/kenyan-english-edacc-c35-a-c4.mp3",
-  "staged_file": "staging/clips/kenyan-english-edacc-c35-a-2.mp3",
+  "src": "clips/kenyan-english-edacc-c35-a-2.mp3",
+  "staged_file": "staging/clips/kenyan-english-edacc-c35-a-c4.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -921,7 +962,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "kenyan-english-edacc-c35-a-c4"
  },
  {
   "id": "kenyan-english-edacc-c35-b-0",
@@ -932,12 +974,13 @@
   "gender": "male",
   "speaker": "EDACC-C35-B",
   "secs": 13.2,
-  "src": "clips/kenyan-english-edacc-c35-b-c0.mp3",
-  "staged_file": "staging/clips/kenyan-english-edacc-c35-b-0.mp3",
+  "src": "clips/kenyan-english-edacc-c35-b-0.mp3",
+  "staged_file": "staging/clips/kenyan-english-edacc-c35-b-c0.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -965,7 +1008,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "kenyan-english-edacc-c35-b-c0"
  },
  {
   "id": "kenyan-english-edacc-c35-b-1",
@@ -976,12 +1020,13 @@
   "gender": "male",
   "speaker": "EDACC-C35-B",
   "secs": 11.3,
-  "src": "clips/kenyan-english-edacc-c35-b-c1.mp3",
-  "staged_file": "staging/clips/kenyan-english-edacc-c35-b-1.mp3",
+  "src": "clips/kenyan-english-edacc-c35-b-1.mp3",
+  "staged_file": "staging/clips/kenyan-english-edacc-c35-b-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1009,7 +1054,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "kenyan-english-edacc-c35-b-c1"
  },
  {
   "id": "kenyan-english-edacc-c35-b-2",
@@ -1020,12 +1066,13 @@
   "gender": "male",
   "speaker": "EDACC-C35-B",
   "secs": 11.7,
-  "src": "clips/kenyan-english-edacc-c35-b-c2.mp3",
-  "staged_file": "staging/clips/kenyan-english-edacc-c35-b-2.mp3",
+  "src": "clips/kenyan-english-edacc-c35-b-2.mp3",
+  "staged_file": "staging/clips/kenyan-english-edacc-c35-b-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1053,7 +1100,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "kenyan-english-edacc-c35-b-c2"
  },
  {
   "id": "ghanaian-english-edacc-c36-b-0",
@@ -1063,57 +1111,14 @@
   "continent": "Africa",
   "gender": "female",
   "speaker": "EDACC-C36-B",
-  "secs": 13,
-  "src": "clips/ghanaian-english-edacc-c36-b-c1.mp3",
-  "staged_file": "staging/clips/ghanaian-english-edacc-c36-b-0.mp3",
-  "qa": {
-   "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
-  },
-  "source": {
-   "corpus": "EdAcc",
-   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
-   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
-   "reference_basis": "current_owner_deposit",
-   "deposit_equivalence": "unknown",
-   "split": "test",
-   "conversation": "EDACC-C36",
-   "speaker_id": "EDACC-C36-B",
-   "origin_status": "hf_mirror",
-   "hf_revision": "d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66",
-   "hf_row_idx": 4841,
-   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/4841/audio/audio.wav?Expires=1792980788&Signature=c7VnshHZ4Exa4YEEdJATH5IUVwaNwdbUaokeg8pPrXHhBlIrVV5-R9aCqEmMW6KbmfowdtNM6JlvnX5425feOceEQ9fllZ49oxRXXMBhF4aFdalnT9-IkxC-yIjpZNnPF~BJCDRoI9aBntt2Wem~VhqffKCL5tCGWwHbevrCnoHjJ0rZlKRTL46ubHR34GazlL9mq36HMaBt12HHWXkyCNe1Z8OXdeyaFppoaBmA0Nanae8l6vbIP~UuRccgiyi3k62V2fs8toti4OXDziO4h1KE2hkWtwWtS1mND1qp~VOzAqGoSZRiXbW9x5g8amOSxyEfepo1RguBWMVD4HcoKw__&Key-Pair-Id=K3C0L9WB6U5DUC",
-   "source_sha256": "9a0dc03c14bb6cf1161edec0c3a3809497b46bbedfe38c0dbbc7d4434cc75718",
-   "output_sha256": "96ce627a8a4435533588d5db6039b83dfd14378578e9202008919d6040c0ee03",
-   "excerpt": {
-    "start_sec": 0,
-    "end_sec": 13
-   },
-   "retrieved_date": "2026-10-26",
-   "label_origin": "corpus_metadata",
-   "label_normalized_from": "Ghanain English",
-   "import_batch": "edacc-2026-10-26"
-  }
- },
- {
-  "id": "ghanaian-english-edacc-c36-b-1",
-  "answer": "Ghanaian English",
-  "region": "Ghana",
-  "language": "Ghanain English",
-  "continent": "Africa",
-  "gender": "female",
-  "speaker": "EDACC-C36-B",
   "secs": 9.9,
-  "src": "clips/ghanaian-english-edacc-c36-b-c2.mp3",
-  "staged_file": "staging/clips/ghanaian-english-edacc-c36-b-1.mp3",
+  "src": "clips/ghanaian-english-edacc-c36-b-0.mp3",
+  "staged_file": "staging/clips/ghanaian-english-edacc-c36-b-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1130,7 +1135,7 @@
    "origin_status": "hf_mirror",
    "hf_revision": "d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66",
    "hf_row_idx": 4845,
-   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/4845/audio/audio.wav?Expires=1792980788&Signature=tV-bLsxOguESRN455TnAZXKyPs1KT5ivNL4e7Fuq1BMw7kpBEf4H0j69ZDizd14wGNJ0anJPVX9uNMIKOSkGUYcHuR0Bw7kc6NoaD50PpCIJuN0uJfT2mOhhoni5P5sOKrIafNMjIn9GTY0op0factRWonxFk2F-WL1ByDN9wXaxszRyXQ3EIyM8pITDw13YMYw0-x9UU~taxLalE4wYMN6XOwxUtGQm4cCGbTuueleIXiPkPWhVKUsrkA5KtNDqvSZEqwkhjxeonjbbPdm0SvmwW1ULbB-ptnhj3hEgg1LJ9kUsTUxbQydr1~U0kv7lRiEI4NVTYlIQMIS-NESWnw__&Key-Pair-Id=K3C0L9WB6U5DUC",
+   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/4845/audio/audio.wav?Expires=1792981429&Signature=nIBbitnQEUtYfDWm0cMsZekiJz7yzUDaEWQ819VlFTagjAUbsa8W-itH3wyc-tHORwsQFuGYH2PFyPgqGNg2ibLNa1P1cBw31oR9TK3ryRA~qt9vo9dSEb-Y7tHMwtGPAUMKq0v2PE6C7p9gqISX4Um6VE4Dvibi5G0lL7JHoxmcDe91G2UbbNeuRjIyVLRcRt5r2chAeOmdgN8eiDfPmShLo0RJNnw1uoiY-RRgfnOtiCejFqG9YYoD0HM1Fe770pts46ACqFPO7yEWf1TgNMW9-y2r8uNa2PFZDVLIrULa5HyhnfvbHH~~-ghBlRSQWRU-AXpKb75MyyDjBYJkmg__&Key-Pair-Id=K3C0L9WB6U5DUC",
    "source_sha256": "2e7b5e9bc6655a89328834fba8a0f0e6e1617fabd2a74f14318fa66a939d6193",
    "output_sha256": "c202c19c2803e65f82e5be155f5ad9295603eedd6e0d05ade9f9633341fae922",
    "excerpt": {
@@ -1141,23 +1146,25 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": "Ghanain English",
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "ghanaian-english-edacc-c36-b-c2"
  },
  {
-  "id": "ghanaian-english-edacc-c36-b-2",
+  "id": "ghanaian-english-edacc-c36-b-1",
   "answer": "Ghanaian English",
   "region": "Ghana",
   "language": "Ghanain English",
   "continent": "Africa",
   "gender": "female",
   "speaker": "EDACC-C36-B",
-  "secs": 13,
-  "src": "clips/ghanaian-english-edacc-c36-b-c3.mp3",
-  "staged_file": "staging/clips/ghanaian-english-edacc-c36-b-2.mp3",
+  "secs": 12,
+  "src": "clips/ghanaian-english-edacc-c36-b-1.mp3",
+  "staged_file": "staging/clips/ghanaian-english-edacc-c36-b-c4.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1173,19 +1180,20 @@
    "speaker_id": "EDACC-C36-B",
    "origin_status": "hf_mirror",
    "hf_revision": "d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66",
-   "hf_row_idx": 4873,
-   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/4873/audio/audio.wav?Expires=1792980788&Signature=guctS3LomsUZYJxWXJ5H3xdbFSqq-WkBdngHFZAG1ZgH6hWgfmv1dcfprC-PL4FMl584~oweWvjGdWYsu0phCNb0WgHLQAKT4fXgdH5c27Y1M4gYcvLDaVeDFzAFrkIK~CL-2T8nTGMqS6RlMm8heoyM5Dt~aSVTOoH5m8KONMSpPMv6WWotOgqLJIuX~I-WkEoAxSez~ol2pDRUs5pbCw07niJ3XpU9tpYNwzn7~q2vJWga6MrmZxS3E35DbqXl60Nd6oHtgwN1ur0sobBIFqIExuPGK46bgdYBh-pmaJDTAau6MFaE~08B-6UearF7TW4GVapYsmwOaCCjNcqKQQ__&Key-Pair-Id=K3C0L9WB6U5DUC",
-   "source_sha256": "5e188c3bcd4790a28400a6df179a61756b2a632cceca3e45b77180b8f9a0c7ae",
-   "output_sha256": "39a5b6aeede43c9635714e6283d8b97f836d372d5aa906cde46bcb4ffd7a624e",
+   "hf_row_idx": 4907,
+   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/4907/audio/audio.wav?Expires=1792981429&Signature=xCqv7RWk-n62if4FXmSsKkRFTiTVSi0wBjhUOvvFY5aWpDO8drVy4Od7BdBfOHfatXPdZ-luxEiXs0IEr6Y8dyZSUjx2Qo-pRc52B8Fus4d0OU~FZhQs78S7g4tES--4sqA3ceXcZ67Qlupgs1hQ99MeBvBUAy1pntT7T5RDkc2j0rxVv4ehM-K0Qv9w~GYsfE1bVAHvx8Ucwsi0WfJGodyyBiOzzRCznGU2qk35f2v~57B96gxUGcsJa0Esf~L1D3Uv3~CvAZBEvMXlX7MU4Ts~c7nhc9sZu77~XEehSiVJ02oQzrAlZDgq0jqBQpuAVl0f6h0itRErKu3sDYm5Sg__&Key-Pair-Id=K3C0L9WB6U5DUC",
+   "source_sha256": "0a55eb2cbe7285e977eb7970ca810b75b40f9e5623965ad9a11bd47a0fb8f20a",
+   "output_sha256": "3f2ca2b478a417f4712930660e0e0335ef6172b8bbba16aebca219b831d364d5",
    "excerpt": {
     "start_sec": 0,
-    "end_sec": 13
+    "end_sec": 12
    },
    "retrieved_date": "2026-10-26",
    "label_origin": "corpus_metadata",
    "label_normalized_from": "Ghanain English",
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "ghanaian-english-edacc-c36-b-c4"
  },
  {
   "id": "lithuanian-edacc-c38-a-0",
@@ -1196,12 +1204,13 @@
   "gender": "male",
   "speaker": "EDACC-C38-A",
   "secs": 10.5,
-  "src": "clips/lithuanian-edacc-c38-a-c1.mp3",
-  "staged_file": "staging/clips/lithuanian-edacc-c38-a-0.mp3",
+  "src": "clips/lithuanian-edacc-c38-a-0.mp3",
+  "staged_file": "staging/clips/lithuanian-edacc-c38-a-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1229,7 +1238,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "lithuanian-edacc-c38-a-c1"
  },
  {
   "id": "lithuanian-edacc-c38-a-1",
@@ -1240,12 +1250,13 @@
   "gender": "male",
   "speaker": "EDACC-C38-A",
   "secs": 13.8,
-  "src": "clips/lithuanian-edacc-c38-a-c2.mp3",
-  "staged_file": "staging/clips/lithuanian-edacc-c38-a-1.mp3",
+  "src": "clips/lithuanian-edacc-c38-a-1.mp3",
+  "staged_file": "staging/clips/lithuanian-edacc-c38-a-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1273,7 +1284,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "lithuanian-edacc-c38-a-c2"
  },
  {
   "id": "lithuanian-edacc-c38-a-2",
@@ -1284,12 +1296,13 @@
   "gender": "male",
   "speaker": "EDACC-C38-A",
   "secs": 10.4,
-  "src": "clips/lithuanian-edacc-c38-a-c3.mp3",
-  "staged_file": "staging/clips/lithuanian-edacc-c38-a-2.mp3",
+  "src": "clips/lithuanian-edacc-c38-a-2.mp3",
+  "staged_file": "staging/clips/lithuanian-edacc-c38-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1317,7 +1330,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "lithuanian-edacc-c38-a-c3"
  },
  {
   "id": "lithuanian-edacc-c38-b-0",
@@ -1327,57 +1341,14 @@
   "continent": "Europe",
   "gender": "male",
   "speaker": "EDACC-C38-B",
-  "secs": 11.1,
-  "src": "clips/lithuanian-edacc-c38-b-c0.mp3",
-  "staged_file": "staging/clips/lithuanian-edacc-c38-b-0.mp3",
-  "qa": {
-   "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
-  },
-  "source": {
-   "corpus": "EdAcc",
-   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
-   "license": "CC BY-SA 4.0",
-   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
-   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
-   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
-   "reference_basis": "current_owner_deposit",
-   "deposit_equivalence": "unknown",
-   "split": "test",
-   "conversation": "EDACC-C38",
-   "speaker_id": "EDACC-C38-B",
-   "origin_status": "hf_mirror",
-   "hf_revision": "d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66",
-   "hf_row_idx": 3066,
-   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/3066/audio/audio.wav?Expires=1792981177&Signature=tX4ttIkwR-VkcCZZx3rdkq0R7cVl6lxBrIDoF52VbpoucIWAPYrBYxazFpp0~V3USOXR9O2dbOG5qAI6l86LahpguBwBTV~uTZHWmDJJ5MIgjbZnqLyxsiD7OTW~XPjyUNu6coUAWiIT9IqKcQ8sQNGS6t7GMu6PqK1pOsoHIteNfCYjyolT4f8y855zi9TebbF9Oys8t5ifLO8JeHQFaTR3p8eYacdZzgmobG~4fi1rNC-WRpLlR9LYWBVAwrHqDvDvoaHn3DiA4rR4RWfwEbJf7xx9uEcOrNAczxUQrgOBGK0CLIJ6RWZDwpT4N8Fd21n6tAncPahy0G1EhR7W7Q__&Key-Pair-Id=K3C0L9WB6U5DUC",
-   "source_sha256": "cca1e882a950ee04a1be491f558f76fab2df8c37f148faf07f1a81144584bc0b",
-   "output_sha256": "eca915ac2a0c53d8cf14ec11800a41b54b545a1a9065b8d0202705310713339e",
-   "excerpt": {
-    "start_sec": 0,
-    "end_sec": 11.1
-   },
-   "retrieved_date": "2026-10-26",
-   "label_origin": "corpus_metadata",
-   "label_normalized_from": null,
-   "import_batch": "edacc-2026-10-26"
-  }
- },
- {
-  "id": "lithuanian-edacc-c38-b-1",
-  "answer": "Lithuanian",
-  "region": "Lithuania",
-  "language": "Lithuanian",
-  "continent": "Europe",
-  "gender": "male",
-  "speaker": "EDACC-C38-B",
   "secs": 12,
-  "src": "clips/lithuanian-edacc-c38-b-c1.mp3",
-  "staged_file": "staging/clips/lithuanian-edacc-c38-b-1.mp3",
+  "src": "clips/lithuanian-edacc-c38-b-0.mp3",
+  "staged_file": "staging/clips/lithuanian-edacc-c38-b-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1405,10 +1376,11 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "lithuanian-edacc-c38-b-c1"
  },
  {
-  "id": "lithuanian-edacc-c38-b-2",
+  "id": "lithuanian-edacc-c38-b-1",
   "answer": "Lithuanian",
   "region": "Lithuania",
   "language": "Lithuanian",
@@ -1416,12 +1388,13 @@
   "gender": "male",
   "speaker": "EDACC-C38-B",
   "secs": 10.8,
-  "src": "clips/lithuanian-edacc-c38-b-c2.mp3",
-  "staged_file": "staging/clips/lithuanian-edacc-c38-b-2.mp3",
+  "src": "clips/lithuanian-edacc-c38-b-1.mp3",
+  "staged_file": "staging/clips/lithuanian-edacc-c38-b-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1449,7 +1422,54 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "lithuanian-edacc-c38-b-c2"
+ },
+ {
+  "id": "lithuanian-edacc-c38-b-2",
+  "answer": "Lithuanian",
+  "region": "Lithuania",
+  "language": "Lithuanian",
+  "continent": "Europe",
+  "gender": "male",
+  "speaker": "EDACC-C38-B",
+  "secs": 10.6,
+  "src": "clips/lithuanian-edacc-c38-b-2.mp3",
+  "staged_file": "staging/clips/lithuanian-edacc-c38-b-c3.mp3",
+  "qa": {
+   "transcription_reviewed": true,
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
+  },
+  "source": {
+   "corpus": "EdAcc",
+   "corpus_url": "https://huggingface.co/datasets/edinburghcstr/edacc",
+   "license": "CC BY-SA 4.0",
+   "license_url": "https://creativecommons.org/licenses/by-sa/4.0/",
+   "deposit_url": "https://datashare.ed.ac.uk/handle/10283/8983",
+   "consent_info_url": "https://groups.inf.ed.ac.uk/edacc/",
+   "reference_basis": "current_owner_deposit",
+   "deposit_equivalence": "unknown",
+   "split": "test",
+   "conversation": "EDACC-C38",
+   "speaker_id": "EDACC-C38-B",
+   "origin_status": "hf_mirror",
+   "hf_revision": "d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66",
+   "hf_row_idx": 3098,
+   "asset_url": "https://datasets-server.huggingface.co/cached-assets/edinburghcstr/edacc/--/d9ae7bd344f0562b766ec93ee5ce8f2f9568ce66/--/default/test/3098/audio/audio.wav?Expires=1792981177&Signature=iMamadURtkp2w-J5ip-K45PgrbaUtTdgzXq5WPFv2GZn5fIx9x2vjkF4YTJownfyEvRculpXqyVkyhvKhbRcTJJ8Sli8s777gmTKOgHkvtXOEUUoJo-LsDT0EJXlP1mRNpAmstGWkKz7sdk2RG4M5FAjwWc7xDORpz1ByePr89mpnFfixs3zRX9vSAVwAuf3Lvol6HGkMfig9yRfAuYyc8rXixm7TpBu-GK-qZXmk3oCKHJ8OehFgix-1etHC1CmK8hhUjMSr7DWEYmT1RoOi3ns69D10ztnUDaezbm461W75Xh-Qm26cxF~ONwgbg-mxDsk1O40FYWpZOPm9eHU6w__&Key-Pair-Id=K3C0L9WB6U5DUC",
+   "source_sha256": "c5e1995e8531951e2052e9362b4d086500e5d6d3203401011f6cead517fb11aa",
+   "output_sha256": "8bc632b106ea2af684d6198f7a14d0227bd4e29e649be33c58b67ef05f62e0ca",
+   "excerpt": {
+    "start_sec": 0,
+    "end_sec": 10.6
+   },
+   "retrieved_date": "2026-10-26",
+   "label_origin": "corpus_metadata",
+   "label_normalized_from": null,
+   "import_batch": "edacc-2026-10-26"
+  },
+  "selected_from_candidate": "lithuanian-edacc-c38-b-c3"
  },
  {
   "id": "nigerian-english-edacc-c41-a-0",
@@ -1460,12 +1480,13 @@
   "gender": "female",
   "speaker": "EDACC-C41-A",
   "secs": 10.4,
-  "src": "clips/nigerian-english-edacc-c41-a-c2.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c41-a-0.mp3",
+  "src": "clips/nigerian-english-edacc-c41-a-0.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c41-a-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1493,7 +1514,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c41-a-c2"
  },
  {
   "id": "nigerian-english-edacc-c41-a-1",
@@ -1504,12 +1526,13 @@
   "gender": "female",
   "speaker": "EDACC-C41-A",
   "secs": 9.4,
-  "src": "clips/nigerian-english-edacc-c41-a-c3.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c41-a-1.mp3",
+  "src": "clips/nigerian-english-edacc-c41-a-1.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c41-a-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1537,7 +1560,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c41-a-c3"
  },
  {
   "id": "nigerian-english-edacc-c41-a-2",
@@ -1548,12 +1572,13 @@
   "gender": "female",
   "speaker": "EDACC-C41-A",
   "secs": 11.4,
-  "src": "clips/nigerian-english-edacc-c41-a-c4.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c41-a-2.mp3",
+  "src": "clips/nigerian-english-edacc-c41-a-2.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c41-a-c4.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1581,7 +1606,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c41-a-c4"
  },
  {
   "id": "nigerian-english-edacc-c45-a-0",
@@ -1592,12 +1618,13 @@
   "gender": "male",
   "speaker": "EDACC-C45-A",
   "secs": 10.5,
-  "src": "clips/nigerian-english-edacc-c45-a-c0.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c45-a-0.mp3",
+  "src": "clips/nigerian-english-edacc-c45-a-0.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c45-a-c0.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1625,7 +1652,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c45-a-c0"
  },
  {
   "id": "nigerian-english-edacc-c45-a-1",
@@ -1636,12 +1664,13 @@
   "gender": "male",
   "speaker": "EDACC-C45-A",
   "secs": 12.8,
-  "src": "clips/nigerian-english-edacc-c45-a-c4.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c45-a-1.mp3",
+  "src": "clips/nigerian-english-edacc-c45-a-1.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c45-a-c4.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1669,7 +1698,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c45-a-c4"
  },
  {
   "id": "nigerian-english-edacc-c45-a-2",
@@ -1680,12 +1710,13 @@
   "gender": "male",
   "speaker": "EDACC-C45-A",
   "secs": 9.3,
-  "src": "clips/nigerian-english-edacc-c45-a-c7.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c45-a-2.mp3",
+  "src": "clips/nigerian-english-edacc-c45-a-2.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c45-a-c7.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1713,7 +1744,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c45-a-c7"
  },
  {
   "id": "nigerian-english-edacc-c45-b-0",
@@ -1724,12 +1756,13 @@
   "gender": "male",
   "speaker": "EDACC-C45-B",
   "secs": 10.6,
-  "src": "clips/nigerian-english-edacc-c45-b-c0.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c45-b-0.mp3",
+  "src": "clips/nigerian-english-edacc-c45-b-0.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c45-b-c0.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1757,7 +1790,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c45-b-c0"
  },
  {
   "id": "nigerian-english-edacc-c45-b-1",
@@ -1768,12 +1802,13 @@
   "gender": "male",
   "speaker": "EDACC-C45-B",
   "secs": 9.3,
-  "src": "clips/nigerian-english-edacc-c45-b-c3.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c45-b-1.mp3",
+  "src": "clips/nigerian-english-edacc-c45-b-1.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c45-b-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1801,7 +1836,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c45-b-c3"
  },
  {
   "id": "nigerian-english-edacc-c45-b-2",
@@ -1812,12 +1848,13 @@
   "gender": "male",
   "speaker": "EDACC-C45-B",
   "secs": 11.4,
-  "src": "clips/nigerian-english-edacc-c45-b-c4.mp3",
-  "staged_file": "staging/clips/nigerian-english-edacc-c45-b-2.mp3",
+  "src": "clips/nigerian-english-edacc-c45-b-2.mp3",
+  "staged_file": "staging/clips/nigerian-english-edacc-c45-b-c4.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1845,7 +1882,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "nigerian-english-edacc-c45-b-c4"
  },
  {
   "id": "israeli-edacc-c57-b-0",
@@ -1856,12 +1894,13 @@
   "gender": "male",
   "speaker": "EDACC-C57-B",
   "secs": 11.1,
-  "src": "clips/israeli-edacc-c57-b-c1.mp3",
-  "staged_file": "staging/clips/israeli-edacc-c57-b-0.mp3",
+  "src": "clips/israeli-edacc-c57-b-0.mp3",
+  "staged_file": "staging/clips/israeli-edacc-c57-b-c1.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1889,7 +1928,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "israeli-edacc-c57-b-c1"
  },
  {
   "id": "israeli-edacc-c57-b-1",
@@ -1900,12 +1940,13 @@
   "gender": "male",
   "speaker": "EDACC-C57-B",
   "secs": 9.6,
-  "src": "clips/israeli-edacc-c57-b-c2.mp3",
-  "staged_file": "staging/clips/israeli-edacc-c57-b-1.mp3",
+  "src": "clips/israeli-edacc-c57-b-1.mp3",
+  "staged_file": "staging/clips/israeli-edacc-c57-b-c2.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1933,7 +1974,8 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "israeli-edacc-c57-b-c2"
  },
  {
   "id": "israeli-edacc-c57-b-2",
@@ -1944,12 +1986,13 @@
   "gender": "male",
   "speaker": "EDACC-C57-B",
   "secs": 12.4,
-  "src": "clips/israeli-edacc-c57-b-c3.mp3",
-  "staged_file": "staging/clips/israeli-edacc-c57-b-2.mp3",
+  "src": "clips/israeli-edacc-c57-b-2.mp3",
+  "staged_file": "staging/clips/israeli-edacc-c57-b-c3.mp3",
   "qa": {
    "transcription_reviewed": true,
-   "review_method": "platform-transcription+waveform-metadata+automated-content-scan",
-   "audible_review": false
+   "review_method": "platform-transcription+waveform-metadata+automated-content-scan+place-mislead-review",
+   "audible_review": false,
+   "listening_review": "pending_required"
   },
   "source": {
    "corpus": "EdAcc",
@@ -1977,6 +2020,7 @@
    "label_origin": "corpus_metadata",
    "label_normalized_from": null,
    "import_batch": "edacc-2026-10-26"
-  }
+  },
+  "selected_from_candidate": "israeli-edacc-c57-b-c3"
  }
 ]
