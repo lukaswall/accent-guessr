@@ -312,7 +312,7 @@ const HASH_SCREEN = { '': 'home', '#/': 'home', '#/modes': 'modes', '#/progress'
 let pushedScreen = null;
 let navFromHistory = false;
 
-function runResumable() { return state.set && state.set.length > 0 && state.index < state.set.length; }
+function runResumable() { return !state.runOver && state.set && state.set.length > 0 && state.index < state.set.length; }
 function resultsViewable() { return state.rounds && state.rounds.length > 0; }
 
 function screenFromHash() {
@@ -391,28 +391,28 @@ function startPractice() {
   state.seen = state.seen.concat(set.map(c => c.id));
   if (state.seen.length >= CLIPS.length - 4) state.seen = [];
   store.set('accent-guessr.practice-seen.v1', state.seen);
-  state.mode = 'practice'; state.set = set; state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+  state.mode = 'practice'; state.set = set; state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 function startEndless() {
   state.mode = 'endless';
   state.set = buildQueue(hashStr(`endless:${Date.now()}`), new Set());
-  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+  state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 function startHard() {
   state.mode = 'hard';
   state.set = buildQueue(hashStr(`hard:${Date.now()}`), new Set());
-  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+  state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 function startShort(key) {
   state.mode = 'short';
   state.shortMode = key;
   state.set = buildQueue(hashStr(`short:${key}:${Date.now()}`), new Set());
-  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+  state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 function startQuick() {
   state.mode = 'quick';
   state.set = buildQueue(hashStr(`quick:${Date.now()}`), new Set());
-  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+  state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 
 // Account gate (inert unless accounts are configured in auth-config.js).
@@ -488,7 +488,7 @@ function navBar(active) {
 function startDaily() {
   const today = todayStr();
   state.mode = 'daily'; state.set = pickSet(hashStr(`accent-guessr:${today}`), new Set(), 3);
-  state.index = 0; state.rounds = []; state.cleared = 0; state.screen = 'play'; render();
+  state.index = 0; state.rounds = []; state.cleared = 0; state.runOver = false; state.screen = 'play'; render();
 }
 
 function doneBlock() {
@@ -1025,6 +1025,7 @@ function renderRound() {
 }
 
 function finishRun() {
+  state.runOver = true; // back-button re-entry to #/play must not replay a finished run
   if (state.mode === 'daily') {
     const today = todayStr();
     const score = state.rounds.reduce((s, r) => s + r.points, 0);
